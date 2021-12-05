@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
 import './user-creation.scss'
@@ -9,14 +9,26 @@ import { userCreationSchema } from '@constant/validation-schema.constant'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
-import { postapiHandler } from '@utils/apiHandler'
+import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { userCreationResponse } from './user-creation-utils'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
+import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 
 export default function UserCreationForm(): JSX.Element {
   const methods = useForm<IUserCreationForm>({
     resolver: yupResolver(userCreationSchema),
   })
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiData = {
+        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
+      }
+      const res: IApiHandlerReturn = await getApiHandler(apiData)
+      console.log(res)
+    }
+    fetchData()
+  }, [])
 
   const submitEnquiryForm: SubmitHandler<IUserCreationForm> = async (data: IUserCreationForm) => {
     console.log('data submitted', data)
@@ -26,7 +38,7 @@ export default function UserCreationForm(): JSX.Element {
       apiUrl: 'http://138.197.146.75:9050/v1/api/location/create',
       payload: userResponse,
     }
-    const res = await postapiHandler(apiData)
+    const res = await postApiHandler(apiData)
     console.log(res)
   }
   const buildingOption = [

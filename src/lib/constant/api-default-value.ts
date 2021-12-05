@@ -1,4 +1,5 @@
 import { ILocationApi } from '@modal/location-building-room.modal'
+import { IRoomsApi } from '@modal/rooms.modal'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
 
 export const locationApiDefaultData: ILocationApi = {
@@ -109,4 +110,36 @@ export const userCreationApiDefaultData: IUserCreationFormApi = {
   },
   userType: '',
   zipCode: '',
+}
+
+export const roomCreationApiDafaultData: IRoomsApi = {
+  buildingsDTO: {
+    buildingAddress: '',
+    buildingName: '',
+    createAt: '',
+    createdBy: '',
+    deleted: false,
+    id: 0,
+    latitude: '',
+    locationsDTO: {
+      createAt: '',
+      createdBy: '',
+      deleted: false,
+      id: 0,
+      locationName: '',
+      publish: true,
+      updateAt: '',
+      updatedBy: '',
+    },
+    longitude: '',
+    publish: true,
+    updateAt: '',
+    updatedBy: '',
+    zipCode: '',
+  },
+  id: 0,
+  roomCapacity: 0,
+  roomFloor: 0,
+  roomName: '',
+  roomType: '',
 }

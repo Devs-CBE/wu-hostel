@@ -5,6 +5,11 @@ import React from 'react'
 export interface IRoute {
   path: string
   components: any
+  children?: Array<IChildrenRoute>
+}
+interface IChildrenRoute {
+  childPath: string
+  childComponents: any
 }
 
 export const routesConfig: IRoute[] = [
@@ -14,15 +19,19 @@ export const routesConfig: IRoute[] = [
   },
   {
     path: 'enquiry',
+    components: React.lazy(() => import('@pages/enquiry-form/enquiry-dashboard')),
+  },
+  {
+    path: 'enquiry-creation',
     components: React.lazy(() => import('./pages/enquiry-form/Enquiry-Form')),
   },
   {
     path: 'complaint',
-    components: React.lazy(() => import('./pages/complaint-form/Complaint-form')),
+    components: React.lazy(() => import('./pages/complaint-form/complaint-dashboard')),
   },
   {
-    path: 'test',
-    components: React.lazy(() => import('./pages/test')),
+    path: 'complaint-creation',
+    components: React.lazy(() => import('./pages/complaint-form/Complaint-form')),
   },
   {
     path: 'user-creation',
@@ -35,5 +44,9 @@ export const routesConfig: IRoute[] = [
   {
     path: 'location-creation',
     components: React.lazy(() => import('@pages/location-form/location-form')),
+  },
+  {
+    path: 'master',
+    components: React.lazy(() => import('@pages/master-home/master')),
   },
 ]

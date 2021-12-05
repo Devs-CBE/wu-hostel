@@ -16,7 +16,7 @@ export default function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          {routesConfig.map(({ path, components }, i) => {
+          {routesConfig.map(({ path, components, children }, i) => {
             const NewComponents = components
             return (
               <Route key={i} element={<Layout />}>
@@ -29,7 +29,7 @@ export default function App(): JSX.Element {
                       </RequireAuth>
                     </React.Suspense>
                   }
-                />
+                ></Route>
               </Route>
             )
           })}

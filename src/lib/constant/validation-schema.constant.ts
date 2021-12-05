@@ -1,4 +1,5 @@
-import { ILocation, IRoom } from '@modal/location-building-room.modal'
+import { ILocation } from '@modal/location-building-room.modal'
+import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
 import * as Yup from 'yup'
 
@@ -16,19 +17,12 @@ export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
   }),
 })
 
-export const roomCreationSchema: Yup.SchemaOf<IRoom> = Yup.object({
-  buildings: Yup.array().required(),
-  createAt: Yup.string().optional(),
-  createdBy: Yup.string().optional(),
-  deleted: Yup.boolean().optional(),
-  id: Yup.number().optional(),
-  publish: Yup.boolean().optional(),
+export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
+  buildingsDTO: Yup.mixed().required(),
   roomCapacity: Yup.number().required(),
   roomFloor: Yup.number().required(),
   roomName: Yup.string().required(),
   roomType: Yup.string().required(),
-  updateAt: Yup.string().optional(),
-  updatedBy: Yup.string().optional(),
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({

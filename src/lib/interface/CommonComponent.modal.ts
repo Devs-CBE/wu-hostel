@@ -25,12 +25,19 @@ export interface IReactHookFormInputSelectProps {
   label: string
   name: string
   optionList: Array<any>
-  optionParam: string
-  optionObject?: boolean
+  optionParam?: string
+  optionObject: boolean
+  multiSelect?: boolean
 }
 
 export interface IFileInputProps {
   label: string
   name: string
   id: string
+}
+
+export interface IApiHandlerReturn {
+  responseData: any | null
+  isLoaded: boolean
+  responseError: any | null
 }

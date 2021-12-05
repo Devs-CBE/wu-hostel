@@ -7,7 +7,8 @@
         "@components/*" : ["src/lib/components/*"],
         "@constant/*" : ["src/lib/constant/*"],
         "@hooks/*" : ["src/lib/hooks/*"],
-        "@pages/*" : ["src/pages/*"]
+        "@pages/*" : ["src/pages/*"],
+        "@assests/*" : ["src/assest/*"]
       }
     }
   }

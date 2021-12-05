@@ -17,7 +17,7 @@ export const sideData: Array<ISideNavconfig> = [
     icon: <FeedbackIcon />,
   },
   {
-    title: 'Enquiry Form',
+    title: 'Enquiry',
     path: '/enquiry',
     icon: <ChatBubbleOutlineIcon />,
   },
@@ -27,8 +27,8 @@ export const sideData: Array<ISideNavconfig> = [
     icon: <RequestPageIcon />,
   },
   {
-    title: 'Tenent Form',
-    path: '/admin-dashboard',
+    title: 'Master',
+    path: '/master',
     icon: <FolderOpenIcon />,
   },
 ]

@@ -13,7 +13,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import IconButton from '@mui/material/Button'
 import './location-form.scss'
 import { locationResponseDto } from './location-utils'
-import { postapiHandler } from '@utils/apiHandler'
+import { postApiHandler } from '@utils/apiHandler'
 
 export default function LocationForm(): JSX.Element {
   const methods = useForm<ILocation>({
@@ -34,7 +34,7 @@ export default function LocationForm(): JSX.Element {
       apiUrl: 'http://138.197.146.75:9050/v1/api/location/create',
       payload: locationResponse,
     }
-    const res = await postapiHandler(data)
+    const res = await postApiHandler(data)
     console.log(res)
   }
 

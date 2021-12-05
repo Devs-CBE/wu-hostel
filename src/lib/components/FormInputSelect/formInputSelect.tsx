@@ -10,6 +10,7 @@ export default function FormInputSelect({
   optionList,
   optionParam,
   optionObject,
+  multiSelect = false,
 }: IReactHookFormInputSelectProps): JSX.Element {
   const {
     register,
@@ -29,10 +30,11 @@ export default function FormInputSelect({
         {...register(name)}
         defaultValue={[]}
         SelectProps={{
-          multiple: true,
+          multiple: multiSelect,
         }}
       >
         {optionObject &&
+          optionParam &&
           optionList.map((option, index) => (
             <MenuItem key={index} value={option}>
               {option[optionParam]}

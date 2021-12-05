@@ -1,19 +1,7 @@
 import React from 'react'
-import { experimentalStyled as styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  marginBottom: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.primary,
-  borderColor: theme.palette.primary.dark,
-  boxShadow: theme.shadows[2],
-}))
 
 export default function DashboardCard(): JSX.Element {
   const cardDetails = [
@@ -46,12 +34,12 @@ export default function DashboardCard(): JSX.Element {
         columns={{ xs: 12, sm: 12, md: 12 }}
       >
         {cardDetails.map((item, index) => (
-          <Grid item xs={6} sm={4} md={3} key={index}>
-            <Item>
+          <Grid item xs={12} sm={4} md={4} key={index}>
+            <div className="form-container flex justify-center mb-5">
               <Typography variant="h6" margin={2}>
                 {item.name}
               </Typography>
-            </Item>
+            </div>
           </Grid>
         ))}
       </Grid>
