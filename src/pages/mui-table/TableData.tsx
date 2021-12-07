@@ -56,7 +56,7 @@ const people = [
   },
 ]
 
-export default function ComplaintTable() {
+export default function ComplaintTable(): JSX.Element {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
