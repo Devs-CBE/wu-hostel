@@ -49,77 +49,79 @@ export default function UserCreationForm(): JSX.Element {
   ]
 
   return (
-    <div className="wrapper-user-creation p-5 flex justify-center">
-      <div className="form-container p-7">
-        <div className="p-3 flex-1 flex-row justify-center align-center">
-          <Typography className="text-center" variant="h3" color="initial">
-            User Creation
-          </Typography>
-          <Box sx={{ mt: '1rem' }}>
-            <Typography variant="h6" className="text-center">
-              Create a user and maintain your hostel inside your hands
+    <>
+      <div className="wrapper-user-creation p-5 flex justify-center">
+        <div className="form-container p-7">
+          <div className="p-3 flex-1 flex-row justify-center align-center">
+            <Typography className="text-center" variant="h3" color="initial">
+              User Creation
             </Typography>
-          </Box>
-          <Box sx={{ flexGrow: 1 }}>
-            <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(submitEnquiryForm)}>
-                <Grid container spacing={2} columns={12}>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Name" name="name" />
+            <Box sx={{ mt: '1rem' }}>
+              <Typography variant="h6" className="text-center">
+                Create a user and maintain your hostel inside your hands
+              </Typography>
+            </Box>
+            <Box sx={{ flexGrow: 1 }}>
+              <FormProvider {...methods}>
+                <form onSubmit={methods.handleSubmit(submitEnquiryForm)}>
+                  <Grid container spacing={2} columns={12}>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Name" name="name" />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Password" name="password" />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Phone Number" name="phoneNumber" />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Email" name="email" />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="User Type" name="userType" />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Zipcode" name="zipCode" />
+                    </Grid>
+                    <Grid item xs={12} md={12} sm={12}>
+                      <FormInputText
+                        label="Address"
+                        inputMultiline={true}
+                        inputRows={3}
+                        name="address"
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputSelect
+                        label="Buildings"
+                        name="buildingsDTO"
+                        optionList={buildingOption}
+                        optionParam="name"
+                        optionObject={true}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={4} sm={4}>
+                      <FormInputText label="Room" name="roomsDTO.roomName" />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Password" name="password" />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Phone Number" name="phoneNumber" />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Email" name="email" />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="User Type" name="userType" />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Zipcode" name="zipCode" />
-                  </Grid>
-                  <Grid item xs={12} md={12} sm={12}>
-                    <FormInputText
-                      label="Address"
-                      inputMultiline={true}
-                      inputRows={3}
-                      name="address"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputSelect
-                      label="Buildings"
-                      name="buildingsDTO"
-                      optionList={buildingOption}
-                      optionParam="name"
-                      optionObject={true}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={4} sm={4}>
-                    <FormInputText label="Room" name="roomsDTO.roomName" />
-                  </Grid>
-                </Grid>
-                <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
-                  <div>
-                    <Button type="reset" variant="outlined">
-                      Cancel
-                    </Button>
-                  </div>
-                  <div className="ml-5">
-                    <Button type="submit" variant="contained">
-                      Login
-                    </Button>
-                  </div>
-                </Box>
-              </form>
-            </FormProvider>
-          </Box>
+                  <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
+                    <div>
+                      <Button type="reset" variant="outlined">
+                        Cancel
+                      </Button>
+                    </div>
+                    <div className="ml-5">
+                      <Button type="submit" variant="contained">
+                        Login
+                      </Button>
+                    </div>
+                  </Box>
+                </form>
+              </FormProvider>
+            </Box>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
