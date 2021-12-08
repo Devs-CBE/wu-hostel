@@ -7,6 +7,8 @@ import { routesConfig } from './route-mapping'
 import Home from '@pages/home/home'
 import Login from '@pages/login/login'
 import Layout from '@pages/layout/layout'
+import Denquiry from '@pages/Denquiry-form/Denquiry-form'
+import Dialogue from '@pages/Denquiry-form/Dialogue'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 
 export default function App(): JSX.Element {
@@ -16,6 +18,8 @@ export default function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/denquiry" element={<Denquiry />} />
+          <Route path="/dialogue" element={<Dialogue />} />
           {routesConfig.map(({ path, components, children }, i) => {
             const NewComponents = components
             return (

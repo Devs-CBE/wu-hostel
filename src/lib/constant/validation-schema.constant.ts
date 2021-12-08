@@ -1,3 +1,4 @@
+import { IDenquiry } from '@modal/Denquiry-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
@@ -42,4 +43,18 @@ export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
       zipCode: Yup.mixed().optional(),
     }),
   ),
+})
+export const denquiryCreationSchema: Yup.SchemaOf<IDenquiry> = Yup.object({
+  name: Yup.string().required('Required'),
+  phoneNumber: Yup.string().required('Required'),
+  email: Yup.string().required('Required'),
+  numberOfPeople: Yup.string().required('Required'),
+  roomChoice: Yup.string().required('Required'),
+  locations: Yup.object().required('Required'),
+  buildings: Yup.object().required('Required'),
+  address: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
+  zipCode: Yup.string().required('Required'),
+  duration: Yup.string().required('Required'),
+  referal: Yup.string().required('Required'),
 })
