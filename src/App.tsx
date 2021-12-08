@@ -7,6 +7,7 @@ import { routesConfig } from './route-mapping'
 import Home from '@pages/home/home'
 import Login from '@pages/login/login'
 import Layout from '@pages/layout/layout'
+import Snackbar from '@pages/snackbar-model/snackbar'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 
 export default function App(): JSX.Element {
@@ -16,6 +17,7 @@ export default function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/snackbar" element={<Snackbar />} />
           {routesConfig.map(({ path, components, children }, i) => {
             const NewComponents = components
             return (
