@@ -1,7 +1,7 @@
 import { enquiryFormApiDeaultData } from '@constant/api-default-value'
-import { IEnquiry, IEnquiryApi } from '@modal/Enquiry-form.modal'
+import { IEnquiryForm, IEnquiryApi } from '@modal/Enquiry-form.modal'
 
-export function EnquiryCreationResponse(user: IEnquiry): IEnquiryApi {
+export function EnquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
   const responseData = enquiryFormApiDeaultData
   responseData.address = user.address
   responseData.adminId = 0

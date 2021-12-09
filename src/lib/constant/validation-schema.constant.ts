@@ -1,4 +1,4 @@
-import { IEnquiry } from '@modal/Enquiry-form.modal'
+import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
@@ -45,7 +45,7 @@ export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
   ),
 })
 
-export const enquiryFormSchema: Yup.SchemaOf<IEnquiry> = Yup.object({
+export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
   name: Yup.string().required('Required'),
   phoneNumber: Yup.string().required('Required'),
   email: Yup.string().required('Required'),
