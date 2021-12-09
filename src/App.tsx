@@ -4,75 +4,44 @@ import './App.scss'
 import { ThemeProvider } from '@mui/material/styles/'
 import { theme } from './theme/materialUI'
 import { routesConfig } from './route-mapping'
-import Home from '@pages/home/home'
 import Login from '@pages/login/login'
 import Layout from '@pages/layout/layout'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { AuthProvider, useAuth } from '@context/authContext'
 
 export default function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          {routesConfig.map(({ path, components, children }, i) => {
-            const NewComponents = components
-            return (
-              <Route key={i} element={<Layout />}>
-                <Route
-                  path={path}
-                  element={
-                    <React.Suspense fallback={<>...</>}>
-                      <RequireAuth>
-                        <NewComponents />
-                      </RequireAuth>
-                    </React.Suspense>
-                  }
-                ></Route>
-              </Route>
-            )
-          })}
-        </Routes>
-      </AuthProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            {routesConfig.map(({ path, components, children }, i) => {
+              const NewComponents = components
+              return (
+                <Route key={i} element={<Layout />}>
+                  <Route
+                    path={path}
+                    element={
+                      <React.Suspense fallback={<>...</>}>
+                        <RequireAuth>
+                          <NewComponents />
+                        </RequireAuth>
+                      </React.Suspense>
+                    }
+                  ></Route>
+                </Route>
+              )
+            })}
+          </Routes>
+        </AuthProvider>
+      </ThemeProvider>
+      <ToastContainer />
+    </>
   )
-}
-
-interface AuthContextType {
-  user: any
-  signin: (user: string, callback: VoidFunction) => void
-  signout: (callback: VoidFunction) => void
-}
-
-const AuthContext = React.createContext<AuthContextType>(null!)
-
-function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = React.useState<any>(true)
-
-  const signin = (newUser: string, callback: VoidFunction) => {
-    // return fakeAuthProvider.signin(() => {
-    //   setUser(newUser)
-    //   callback()
-    // })
-    setUser(true)
-  }
-
-  const signout = (callback: VoidFunction) => {
-    // return fakeAuthProvider.signout(() => {
-    //   setUser(null)
-    //   callback()
-    // })
-    setUser(false)
-  }
-
-  const value = { user, signin, signout }
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
-
-function useAuth() {
-  return React.useContext(AuthContext)
 }
 
 function RequireAuth({ children }: { children: JSX.Element }) {

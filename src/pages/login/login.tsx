@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import './login.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import FormInputText from '../../lib/components/FormInputText/FormInputText'
 import { ILoginForm } from '@modal/login.modal'
 import { object, SchemaOf, string } from 'yup'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AuthContext } from '@context/authContext'
 
 const loginFormSchema: SchemaOf<ILoginForm> = object({
   userName: string().required('Username required'),
@@ -21,8 +22,15 @@ function Login(): JSX.Element {
     resolver: yupResolver(loginFormSchema),
   })
 
+  const { signin } = useContext(AuthContext)
+  const navigate = useNavigate()
+
   const submitLoginForm: SubmitHandler<ILoginForm> = async (data: ILoginForm) => {
     console.log('data submitted', data)
+    signin(data, (res: any) => {
+      console.log(res)
+      navigate('/admin-dashboard')
+    })
   }
 
   return (

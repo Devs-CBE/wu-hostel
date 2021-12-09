@@ -5,6 +5,7 @@ import { FaRegBell } from 'react-icons/fa'
 import classNames from 'classnames'
 import { ISideNavProps } from '@modal/sidenav.modal'
 import { useLocation } from 'react-router-dom'
+import LogoutIcon from '@mui/icons-material/Logout'
 
 import '../../../index.scss'
 import { Link } from 'react-router-dom'
@@ -54,6 +55,17 @@ const Sidebar = ({ navigationData }: ISideNavProps): JSX.Element => {
         </div>
         <span className="text-3xl text-gray-400 hover:text-gray-800 cursor-pointer">
           <RiSettings4Fill />
+        </span>
+        <span className="text-3xl mt-2 text-gray-400 hover:text-gray-800 cursor-pointer">
+          <LogoutIcon />
+          <span
+            className={classNames([
+              'absolute w-auto min-w-max left-16 text-base font-medium hidden',
+              'group-hover:inline',
+            ])}
+          >
+            Log Out
+          </span>
         </span>
       </div>
     </nav>

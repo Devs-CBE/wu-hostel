@@ -28,7 +28,7 @@ export const masterRoute = [
 
 export const complaintRoute = [
   {
-    name: 'create Complaint/Request',
+    name: 'Create Complaint/Request',
     icon: LocationIcon,
     url: '/complaint-creation',
   },
@@ -59,5 +59,13 @@ export const enquiryRoute = [
     name: 'Enquiry Status',
     icon: LocationIcon,
     url: '/complaint-creation',
+  },
+]
+
+export const expenseRoute = [
+  {
+    name: 'Add Expenses',
+    icon: LocationIcon,
+    url: '/expanses',
   },
 ]

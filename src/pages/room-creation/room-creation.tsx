@@ -13,6 +13,7 @@ import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { roomResponseDto } from './room.utils'
+import { toast } from 'react-toastify'
 
 export default function RoomCreation(): JSX.Element {
   const [buildings, setBuilding] = useState([])
@@ -26,7 +27,6 @@ export default function RoomCreation(): JSX.Element {
         apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
-      console.log(res)
       if (res.isLoaded) {
         setBuilding(res.responseData.entities)
       }
@@ -43,7 +43,9 @@ export default function RoomCreation(): JSX.Element {
       payload: userResponse,
     }
     const res = await postApiHandler(apiData)
-    console.log(res)
+    res && res.isLoaded
+      ? toast.success('Room Created successfully')
+      : toast.error('Please contact our admin')
   }
 
   return (

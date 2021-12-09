@@ -49,4 +49,8 @@ export const routesConfig: IRoute[] = [
     path: 'master',
     components: React.lazy(() => import('@pages/master-home/master')),
   },
+  {
+    path: 'building-creation',
+    components: React.lazy(() => import('@pages/building-creation/building-form')),
+  },
 ]
