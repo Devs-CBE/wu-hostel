@@ -1,3 +1,4 @@
+import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
@@ -142,4 +143,22 @@ export const roomCreationApiDafaultData: IRoomsApi = {
   roomFloor: 0,
   roomName: '',
   roomType: '',
+}
+
+export const enquiryFormApiDeaultData: IEnquiryApi = {
+  address: '',
+  adminId: 0,
+  buildings: 0,
+  description: '',
+  duration: '',
+  email: '',
+  enquiryStatus: '',
+  id: 0,
+  locations: 0,
+  name: '',
+  numberOfPeople: 0,
+  phoneNumber: '',
+  referral: '',
+  roomChoice: '',
+  zipCode: '',
 }

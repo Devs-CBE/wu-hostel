@@ -7,29 +7,17 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { SubmitHandler, FormProvider, useForm } from 'react-hook-form'
-import { SchemaOf, string, object } from 'yup'
+import { SchemaOf, string, object, number } from 'yup'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { IEnquiry } from '@modal/Enquiry-form.modal'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
-
-const formSchema: SchemaOf<IEnquiry> = object({
-  name: string().required('Required'),
-  phoneNumber: string().required('Required'),
-  email: string().required('Required'),
-  numberOfPeople: string().required('Required'),
-  roomChoice: string().required('Required'),
-  locations: object().required('Required'),
-  buildings: object().required('Required'),
-  address: string().required('Required'),
-  description: string().required('Required'),
-  zipCode: string().required('Required'),
-  duration: string().required('Required'),
-  referal: string().required('Required'),
-})
+import { EnquiryCreationResponse } from './Enquiry-utils'
+import { enquiryFormSchema } from '@constant/validation-schema.constant'
+import { postApiHandler } from '@utils/apiHandler'
 
 export default function EnquiryForm(): JSX.Element {
   const methods = useForm<IEnquiry>({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(enquiryFormSchema),
   })
 
   const buildingList = [
@@ -49,6 +37,14 @@ export default function EnquiryForm(): JSX.Element {
 
   const submitEnquiryForm: SubmitHandler<IEnquiry> = async (data: IEnquiry) => {
     console.log('data submitted', data)
+    const enquiryResponseData = EnquiryCreationResponse(data)
+    console.log(enquiryResponseData)
+    const apiData = {
+      apiUrl: 'http://138.197.146.75:9050//v1/api/enquiry/create',
+      payload: enquiryResponseData,
+    }
+    const res = await postApiHandler(apiData)
+    console.log(res)
   }
 
   return (
