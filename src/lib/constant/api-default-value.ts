@@ -1,3 +1,4 @@
+import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
@@ -161,4 +162,15 @@ export const enquiryFormApiDeaultData: IEnquiryApi = {
   referral: '',
   roomChoice: '',
   zipCode: '',
+}
+
+export const complaintFormApiDeaultData: IComplaintApi = {
+  attachment: '',
+  complaintDescription: '',
+  compaintStatus: '',
+  complaintsType: '',
+  contactNumber: '',
+  downloadPath: '',
+  id: 0,
+  user: 0,
 }

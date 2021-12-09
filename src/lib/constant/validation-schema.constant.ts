@@ -1,3 +1,4 @@
+import { IComplaintForm } from '@modal/complaint-form.modal'
 import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
@@ -59,4 +60,15 @@ export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
   duration: Yup.string().required('Required'),
   referal: Yup.string().required('Required'),
   adminId: Yup.number().required('Required'),
+})
+
+export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({
+  attachment: Yup.string().required('Required'),
+  complaintDescription: Yup.string().required('Required'),
+  compaintStatus: Yup.string().required('Required'),
+  complaintsType: Yup.string().required('Required'),
+  contactNumber: Yup.string().required('Required'),
+  downloadPath: Yup.string().required('Required'),
+  id: Yup.object().required('Required'),
+  user: Yup.object().required('Required'),
 })
