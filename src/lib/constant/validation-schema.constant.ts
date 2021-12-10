@@ -1,3 +1,4 @@
+import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
@@ -23,7 +24,7 @@ export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
   roomCapacity: Yup.number().required(),
   roomFloor: Yup.number().required(),
   roomName: Yup.string().required(),
-  roomType: Yup.string().required(),
+  roomType: Yup.mixed().required(),
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
@@ -59,4 +60,16 @@ export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
   duration: Yup.string().required('Required'),
   referal: Yup.string().required('Required'),
   adminId: Yup.number().required('Required'),
+})
+
+export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({
+  attachment: Yup.mixed().required('Required'),
+  complaintDescription: Yup.string().required('Required'),
+  complaintsType: Yup.string().required('Required'),
+  contactNumber: Yup.string().required('Required'),
+})
+
+export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup.object({
+  attachment: Yup.mixed().required('Required'),
+  complaintId: Yup.number().required('Required'),
 })

@@ -35,7 +35,7 @@ export const complaintRoute = [
   {
     name: 'Update Complaint/Request',
     icon: LocationIcon,
-    url: '/complaint-creation',
+    url: '/complaint-update',
   },
   {
     name: 'Complaint/Request Status',
@@ -48,17 +48,17 @@ export const enquiryRoute = [
   {
     name: 'Create Enquiry',
     icon: LocationIcon,
-    url: '/complaint-creation',
+    url: '/enquiry-creation',
   },
   {
     name: 'Update Enquiry',
     icon: LocationIcon,
-    url: '/complaint-creation',
+    url: '/enquiry-creation',
   },
   {
     name: 'Enquiry Status',
     icon: LocationIcon,
-    url: '/complaint-creation',
+    url: '/enquiry-creation',
   },
 ]
 

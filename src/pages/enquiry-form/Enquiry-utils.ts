@@ -9,7 +9,7 @@ export function EnquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
   responseData.description = user.description
   responseData.duration = user.duration
   responseData.email = user.email
-  responseData.enquiryStatus = 'new'
+  responseData.enquiryStatus = 'NEW'
   responseData.id = 0
   responseData.locations = user.locations
   responseData.name = user.name

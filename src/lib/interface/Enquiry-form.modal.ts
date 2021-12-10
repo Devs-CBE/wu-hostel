@@ -21,7 +21,7 @@ export interface IEnquiryApi {
   description: string
   duration: string
   email: string
-  enquiryStatus: string
+  enquiryStatus: 'NEW' | 'ACKNOWLEDGED' | 'DECLINED' | 'APPROVED' | 'JOINED'
   id: number
   locations: number
   name: string

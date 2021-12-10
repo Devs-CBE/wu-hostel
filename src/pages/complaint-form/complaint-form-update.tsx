@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
-import { IComplaintForm } from '@modal/complaint-form.modal'
+import { IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { Button, Grid, Typography } from '@mui/material'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,18 +8,14 @@ import Box from '@mui/material/Box'
 import './complaint-form.scss'
 import CommonFilesInput from '@components/FormInputFiles/common-files-input'
 import { toBase64 } from '@utils/filereader'
-import { complaintCreationResponse } from './Complaint-utils'
-import { complaintFormSchema } from '@constant/validation-schema.constant'
-import { postApiHandler } from '@utils/apiHandler'
-import FormInputSelect from '@components/FormInputSelect/formInputSelect'
+import { complaintUpdateFormSchema } from '@constant/validation-schema.constant'
+import { patchApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 
-export default function ComplaintForm(): JSX.Element {
-  const methods = useForm<IComplaintForm>({
-    resolver: yupResolver(complaintFormSchema),
+export default function ComplaintFormUpdate() {
+  const methods = useForm<IComplaintUpdateForm>({
+    resolver: yupResolver(complaintUpdateFormSchema),
   })
-
-  const complaintTypeList = ['FOOD', 'ROOM', 'WIFI', 'PARKING', 'OTHER']
 
   const { watch } = methods
 
@@ -38,18 +34,18 @@ export default function ComplaintForm(): JSX.Element {
     return () => {}
   }, [fileInputWatch])
 
-  const submitComplaintForm: SubmitHandler<IComplaintForm> = async (data: IComplaintForm) => {
+  const submitComplaintForm: SubmitHandler<IComplaintUpdateForm> = async (
+    data: IComplaintUpdateForm,
+  ) => {
     console.log('data submitted', data)
     const documentString = await toBase64(data.attachment[0])
-    const complaintRes = complaintCreationResponse(data, documentString)
-    console.log(complaintRes)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/create',
-      payload: complaintRes,
+      apiUrl: `http://138.197.146.75:9050/v1/api/complaints/upload?complaintsId=${data.complaintId}`,
+      payload: documentString,
     }
-    const res = await postApiHandler(apiData)
+    const res = await patchApiHandler(apiData)
     res && res.isLoaded
-      ? toast.success('Complaint/Request  registered successfully')
+      ? toast.success('Complaint/Request  updated successfully')
       : toast.error('Please contact our admin')
     console.log(res)
   }
@@ -70,24 +66,8 @@ export default function ComplaintForm(): JSX.Element {
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(submitComplaintForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                  <Grid item xs={12} md={6} sm={12}>
-                    <FormInputText label="Contact Number" name="contactNumber" />
-                  </Grid>
-                  <Grid item xs={12} md={6} sm={12}>
-                    <FormInputSelect
-                      label="Complaints Type"
-                      name="complaintsType"
-                      optionList={complaintTypeList}
-                      optionObject={false}
-                    ></FormInputSelect>
-                  </Grid>
                   <Grid item xs={12} md={12} sm={12}>
-                    <FormInputText
-                      label="Complaint Description"
-                      inputMultiline={true}
-                      inputRows={4}
-                      name="complaintDescription"
-                    />
+                    <FormInputText label="Complaint Id" name="complaintId" />
                   </Grid>
                   <Grid item xs={12} md={12} sm={12}>
                     <CommonFilesInput name="attachment" id="compaint-files" label="compaintFiles" />
@@ -101,7 +81,7 @@ export default function ComplaintForm(): JSX.Element {
                   </div>
                   <div className="ml-5">
                     <Button type="submit" variant="contained">
-                      Create Complaint
+                      Update Complaint
                     </Button>
                   </div>
                 </Box>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import './Enquiry-Form.scss'
 import Box from '@mui/material/Box'
@@ -12,27 +12,48 @@ import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { EnquiryCreationResponse } from './Enquiry-utils'
 import { enquiryFormSchema } from '@constant/validation-schema.constant'
-import { postApiHandler } from '@utils/apiHandler'
+import { getApiHandler, postApiHandler } from '@utils/apiHandler'
+import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 
 export default function EnquiryForm(): JSX.Element {
   const methods = useForm<IEnquiryForm>({
     resolver: yupResolver(enquiryFormSchema),
   })
+  const [buildingList, setBuilding] = useState([])
 
-  const buildingList = [
-    {
-      name: 'newBuilding',
-      location: 'saravanan',
-    },
-    {
-      name: 'newBuilding',
-      location: 'saravanan1',
-    },
-    {
-      name: 'newBuilding',
-      location: 'saravanan2',
-    },
-  ]
+  const { watch } = methods
+
+  const locationWatch = watch('locations')
+
+  useEffect(() => {
+    async function fetchData() {
+      if (locationWatch) {
+        const apiData = {
+          apiUrl: `http://138.197.146.75:9050/v1/api/buildings/location/${locationWatch.id}`,
+        }
+        const res: IApiHandlerReturn = await getApiHandler(apiData)
+        if (res.isLoaded) {
+          setBuilding(res.responseData.entities)
+        }
+      }
+    }
+    fetchData()
+  }, [locationWatch])
+
+  const [locationList, setLocation] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiData = {
+        apiUrl: 'http://138.197.146.75:9050/v1/api/location/list',
+      }
+      const res: IApiHandlerReturn = await getApiHandler(apiData)
+      if (res.isLoaded) {
+        setLocation(res.responseData.entities)
+      }
+    }
+    fetchData()
+  }, [])
 
   const submitEnquiryForm: SubmitHandler<IEnquiryForm> = async (data: IEnquiryForm) => {
     console.log('data submitted', data)
@@ -76,7 +97,7 @@ export default function EnquiryForm(): JSX.Element {
                     <FormInputSelect
                       name="locations"
                       label="Location"
-                      optionList={buildingList}
+                      optionList={locationList}
                       optionObject={true}
                       optionParam="location"
                     />

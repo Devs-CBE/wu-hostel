@@ -1,3 +1,4 @@
+import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
@@ -142,7 +143,7 @@ export const roomCreationApiDafaultData: IRoomsApi = {
   roomCapacity: 0,
   roomFloor: 0,
   roomName: '',
-  roomType: '',
+  roomType: 'BILLABLE',
 }
 
 export const enquiryFormApiDeaultData: IEnquiryApi = {
@@ -152,7 +153,7 @@ export const enquiryFormApiDeaultData: IEnquiryApi = {
   description: '',
   duration: '',
   email: '',
-  enquiryStatus: '',
+  enquiryStatus: 'NEW',
   id: 0,
   locations: 0,
   name: '',
@@ -161,4 +162,15 @@ export const enquiryFormApiDeaultData: IEnquiryApi = {
   referral: '',
   roomChoice: '',
   zipCode: '',
+}
+
+export const complaintFormApiDeaultData: IComplaintApi = {
+  attachment: '',
+  complaintDescription: '',
+  compaintStatus: 'NEW',
+  complaintsType: '',
+  contactNumber: '',
+  downloadPath: '',
+  id: 0,
+  user: 0,
 }

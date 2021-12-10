@@ -15,6 +15,6 @@ export interface IAdminRegisterationPost {
   name: string
   password: string
   phoneNumber: string
-  userType: string
+  userType: 'ADMIN' | 'SUPER_ADMIN' | 'USER' | 'STAFF' | 'KITCHEN_STAFF'
   zipCode: string
 }
