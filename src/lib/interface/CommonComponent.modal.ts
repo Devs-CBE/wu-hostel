@@ -34,6 +34,7 @@ export interface IFileInputProps {
   label: string
   name: string
   id: string
+  multipleFiles?: boolean
 }
 
 export interface IApiHandlerReturn {

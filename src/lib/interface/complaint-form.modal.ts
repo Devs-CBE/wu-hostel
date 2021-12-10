@@ -1,12 +1,13 @@
 export interface IComplaintForm {
-  attachment: string
+  attachment: any
   complaintDescription: string
   complaintsType: string
   contactNumber: string
-  compaintStatus: any
-  downloadPath: string
-  id: any
-  user: any
+}
+
+export interface IComplaintUpdateForm {
+  attachment: any
+  complaintId: number
 }
 
 export interface IComplaintApi {
@@ -14,7 +15,7 @@ export interface IComplaintApi {
   complaintDescription: string
   complaintsType: string
   contactNumber: string
-  compaintStatus: any
+  compaintStatus: 'NEW' | 'ASSIGNED' | 'PENDING' | 'COMPLETED'
   downloadPath: string
   id: any
   user: any

@@ -143,7 +143,7 @@ export const roomCreationApiDafaultData: IRoomsApi = {
   roomCapacity: 0,
   roomFloor: 0,
   roomName: '',
-  roomType: '',
+  roomType: 'BILLABLE',
 }
 
 export const enquiryFormApiDeaultData: IEnquiryApi = {
@@ -153,7 +153,7 @@ export const enquiryFormApiDeaultData: IEnquiryApi = {
   description: '',
   duration: '',
   email: '',
-  enquiryStatus: '',
+  enquiryStatus: 'NEW',
   id: 0,
   locations: 0,
   name: '',
@@ -167,7 +167,7 @@ export const enquiryFormApiDeaultData: IEnquiryApi = {
 export const complaintFormApiDeaultData: IComplaintApi = {
   attachment: '',
   complaintDescription: '',
-  compaintStatus: '',
+  compaintStatus: 'NEW',
   complaintsType: '',
   contactNumber: '',
   downloadPath: '',

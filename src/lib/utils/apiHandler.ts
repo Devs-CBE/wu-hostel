@@ -57,3 +57,24 @@ export async function getApiHandler(apiData: IApiRequestHook): Promise<IApiHandl
 //     responseError = error
 //     console.log(error)
 //   })
+
+export const patchApiHandler = async (apiData: IApiRequestHook): Promise<any> => {
+  let responseData = null
+  let isLoaded = false
+  let responseError = null
+  try {
+    const resData: any = await axios({
+      method: 'PATCH',
+      url: apiData.apiUrl,
+      data: apiData.payload,
+    })
+    if (resData) {
+      isLoaded = true
+      responseData = resData
+    }
+  } catch (e: any) {
+    responseError = e
+  }
+
+  return { responseData, isLoaded, responseError }
+}

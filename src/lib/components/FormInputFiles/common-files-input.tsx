@@ -5,7 +5,12 @@ import Button from '@mui/material/Button'
 import { useFormContext } from 'react-hook-form'
 import './common-file-input.scss'
 
-export default function CommonFilesInput({ name, id, label }: IFileInputProps): JSX.Element {
+export default function CommonFilesInput({
+  name,
+  id,
+  label,
+  multipleFiles = false,
+}: IFileInputProps): JSX.Element {
   const {
     register,
     formState: { errors },
@@ -19,7 +24,7 @@ export default function CommonFilesInput({ name, id, label }: IFileInputProps): 
         type="file"
         {...register(name)}
         style={{ display: 'none' }}
-        inputProps={{ multiple: true }}
+        inputProps={{ multiple: multipleFiles }}
         fullWidth
       />
       <label htmlFor={id}>
