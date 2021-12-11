@@ -1,11 +1,11 @@
 import { AuthContextType } from '@modal/auth.modal'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { authService } from '../service/auth-service'
 
 export const AuthContext = React.createContext<AuthContextType>(null!)
 
 export function AuthProvider({ children }: { children: React.ReactNode }): JSX.Element {
-  const [user, setUser] = React.useState<any>(false)
+  const [user, setUser] = React.useState<any>(localStorage.getItem('auth'))
 
   const signin = (newUser: { userName: string; password: string }, callback: any) => {
     authService.signUp(newUser, (res: any) => {

@@ -28,7 +28,7 @@ export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
-  locationName: Yup.mixed().optional(),
+  locationName: Yup.string().required('Required'),
   buildings: Yup.array().of(
     Yup.object({
       buildingAddress: Yup.mixed().optional(),

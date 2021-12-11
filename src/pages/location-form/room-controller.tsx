@@ -27,25 +27,25 @@ export default function RoomController({ nestIndex, control }: IRoomControllerPr
           <Grid container spacing={{ xs: 2, md: 2 }} columns={12} key={item.id}>
             <Grid item xs={12} md={4} sm={4}>
               <FormInputText
-                label="roomCapacity"
+                label="Room Capacity"
                 name={`buildings[${nestIndex}].rooms[${k}].roomCapacity`}
               />
             </Grid>
             <Grid item xs={12} md={4} sm={4}>
               <FormInputText
-                label="roomFloor"
+                label="Room Floor"
                 name={`buildings[${nestIndex}].rooms[${k}].roomFloor`}
               />
             </Grid>
             <Grid item xs={12} md={4} sm={4}>
               <FormInputText
-                label="roomName"
+                label="Room Name"
                 name={`buildings[${nestIndex}].rooms[${k}].roomName`}
               />
             </Grid>
             <Grid item xs={12} md={4} sm={4}>
               <FormInputText
-                label="roomType"
+                label="Room Type"
                 name={`buildings[${nestIndex}].rooms[${k}].roomType`}
               />
             </Grid>

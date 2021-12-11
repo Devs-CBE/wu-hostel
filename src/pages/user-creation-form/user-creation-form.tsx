@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
 import './user-creation.scss'
@@ -30,6 +30,23 @@ export default function UserCreationForm(): JSX.Element {
     fetchData()
   }, [])
 
+  const [buildingList, setBuilding] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiData = {
+        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
+      }
+      const res: IApiHandlerReturn = await getApiHandler(apiData)
+      if (res.isLoaded) {
+        setBuilding(res.responseData.entities)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const userTypeList = ['ADMIN', 'SUPER_ADMIN', 'USER', 'STAFF', 'KITCHEN_STAFF']
+
   const submitEnquiryForm: SubmitHandler<IUserCreationForm> = async (data: IUserCreationForm) => {
     console.log('data submitted', data)
     const userResponse: IUserCreationFormApi = userCreationResponse(data)
@@ -41,12 +58,6 @@ export default function UserCreationForm(): JSX.Element {
     const res = await postApiHandler(apiData)
     console.log(res)
   }
-  const buildingOption = [
-    {
-      name: 'WU Hostel',
-      id: 1,
-    },
-  ]
 
   return (
     <>
@@ -78,7 +89,12 @@ export default function UserCreationForm(): JSX.Element {
                       <FormInputText label="Email" name="email" />
                     </Grid>
                     <Grid item xs={12} md={4} sm={4}>
-                      <FormInputText label="User Type" name="userType" />
+                      <FormInputSelect
+                        label="User Type"
+                        name="userType"
+                        optionList={userTypeList}
+                        optionObject={false}
+                      />
                     </Grid>
                     <Grid item xs={12} md={4} sm={4}>
                       <FormInputText label="Zipcode" name="zipCode" />
@@ -95,8 +111,8 @@ export default function UserCreationForm(): JSX.Element {
                       <FormInputSelect
                         label="Buildings"
                         name="buildingsDTO"
-                        optionList={buildingOption}
-                        optionParam="name"
+                        optionList={buildingList}
+                        optionParam="buildingName"
                         optionObject={true}
                       />
                     </Grid>

@@ -64,38 +64,47 @@ export default function LocationForm(): JSX.Element {
                     <Grid container spacing={{ xs: 2, md: 2 }} columns={12} key={item.id}>
                       <Grid item xs={12} md={4} sm={4}>
                         <FormInputText
-                          label="buildingAddress"
+                          label="Building Address"
                           name={`buildings[${index}].buildingAddress`}
                         />
                       </Grid>
                       <Grid item xs={12} md={4} sm={4}>
                         <FormInputText
-                          label="buildingName"
+                          label="Building Name"
                           name={`buildings[${index}].buildingName`}
                         />
                       </Grid>
                       <Grid item xs={12} md={4} sm={4}>
-                        <FormInputText label="zipCode" name={`buildings[${index}].zipCode`} />
+                        <FormInputText label="Zipcode" name={`buildings[${index}].zipCode`} />
                       </Grid>
                       <Grid item xs={12} md={12} sm={12}>
                         <RoomController nestIndex={index} {...{ control }} />
                       </Grid>
-                      <IconButton
-                        onClick={() => {
-                          remove(index)
-                        }}
-                        aria-label="delete"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => {
-                          append(buildingDefaultValue)
-                        }}
-                        aria-label="add"
-                      >
-                        <AddCircleOutlineIcon />
-                      </IconButton>
+                      {fields.length - 1 === 0 ? (
+                        <IconButton
+                          onClick={() => {
+                            remove(index)
+                          }}
+                          aria-label="delete"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      ) : (
+                        ''
+                      )}
+
+                      {fields.length - 1 === index ? (
+                        <IconButton
+                          onClick={() => {
+                            append(buildingDefaultValue)
+                          }}
+                          aria-label="add"
+                        >
+                          <AddCircleOutlineIcon />
+                        </IconButton>
+                      ) : (
+                        ''
+                      )}
                     </Grid>
                   )
                 })}

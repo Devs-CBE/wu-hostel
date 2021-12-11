@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 import { IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { Button, Grid, Typography } from '@mui/material'
@@ -17,14 +17,14 @@ export default function ComplaintFormUpdate() {
     resolver: yupResolver(complaintUpdateFormSchema),
   })
 
+  const [fileName, setFileName] = useState<Array<string>>([])
+
   const { watch } = methods
 
   const fileInputWatch = watch('attachment')
-  let fileName = []
   useEffect(() => {
     if (fileInputWatch) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      fileName = []
+      setFileName([])
       for (let i = 0; i < fileInputWatch.length; i++) {
         const file: File = fileInputWatch[i]
         fileName.push(file.name)
@@ -32,7 +32,7 @@ export default function ComplaintFormUpdate() {
       console.log(fileName)
     }
     return () => {}
-  }, [fileInputWatch])
+  }, [fileInputWatch, fileName])
 
   const submitComplaintForm: SubmitHandler<IComplaintUpdateForm> = async (
     data: IComplaintUpdateForm,

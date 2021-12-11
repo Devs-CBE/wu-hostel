@@ -99,7 +99,7 @@ export default function EnquiryForm(): JSX.Element {
                       label="Location"
                       optionList={locationList}
                       optionObject={true}
-                      optionParam="location"
+                      optionParam="locationName"
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={4}>

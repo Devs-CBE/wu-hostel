@@ -2,6 +2,9 @@ import LocationIcon from '@assests/icons/location.svg'
 import BuildingIcon from '@assests/icons/buildings.svg'
 import RoomIcon from '@assests/icons/rooms.svg'
 import AddUserIcon from '@assests/icons/add-user.svg'
+import CreateEnquiryIcon from '@assests/icons/create_enquiry.svg'
+import UpdateEnquiryIcon from '@assests/icons/update_enquiry.svg'
+import StatusEnquiryIcon from '@assests/icons/status_enquiry.svg'
 
 export const masterRoute = [
   {
@@ -47,17 +50,17 @@ export const complaintRoute = [
 export const enquiryRoute = [
   {
     name: 'Create Enquiry',
-    icon: LocationIcon,
+    icon: CreateEnquiryIcon,
     url: '/enquiry-creation',
   },
   {
     name: 'Update Enquiry',
-    icon: LocationIcon,
+    icon: UpdateEnquiryIcon,
     url: '/enquiry-creation',
   },
   {
     name: 'Enquiry Status',
-    icon: LocationIcon,
+    icon: StatusEnquiryIcon,
     url: '/enquiry-creation',
   },
 ]

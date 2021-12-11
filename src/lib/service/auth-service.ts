@@ -10,6 +10,7 @@ const authService = {
       password: password,
       userName: userName,
     })
+    localStorage.setItem('auth', 'true')
     callback(signupRes)
   },
 
