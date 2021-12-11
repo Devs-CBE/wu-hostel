@@ -14,9 +14,7 @@ export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
   userType: Yup.mixed().required(),
   zipCode: Yup.mixed().required(),
   buildingsDTO: Yup.array(),
-  roomsDTO: Yup.object({
-    id: Yup.number(),
-  }),
+  roomsDTO: Yup.object(),
 })
 
 export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({

@@ -10,7 +10,7 @@ export function userCreationResponse(user: IUserCreationForm): IUserCreationForm
   responseData.phoneNumber = user.phoneNumber
   responseData.userType = user.userType
   responseData.zipCode = user.zipCode
-  responseData.roomsDTO.id = user.roomsDTO.id
+  responseData.roomsDTO.id = user.roomsDTO.roomName.id
   const defaultData = responseData.buildingsDTO[0]
   for (let index = 0; index < user.buildingsDTO.length; index++) {
     const element = user.buildingsDTO[index]

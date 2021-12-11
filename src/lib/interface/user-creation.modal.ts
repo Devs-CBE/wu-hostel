@@ -13,10 +13,13 @@ export interface IUserCreationForm {
 export interface IBuildingsDto {
   buildingName: string
   id: number
+  rooms: Array<any>
 }
 
 export interface IRoomsDto {
-  id?: number
+  roomName: {
+    id?: number
+  }
 }
 
 // api response modal

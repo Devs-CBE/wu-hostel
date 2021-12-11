@@ -13,24 +13,15 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { userCreationResponse } from './user-creation-utils'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
+import { toast } from 'react-toastify'
 
 export default function UserCreationForm(): JSX.Element {
   const methods = useForm<IUserCreationForm>({
     resolver: yupResolver(userCreationSchema),
   })
 
-  useEffect(() => {
-    async function fetchData() {
-      const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
-      }
-      const res: IApiHandlerReturn = await getApiHandler(apiData)
-      console.log(res)
-    }
-    fetchData()
-  }, [])
-
   const [buildingList, setBuilding] = useState([])
+  const [roomsList, setRooms] = useState<Array<any>>([])
 
   useEffect(() => {
     async function fetchData() {
@@ -45,7 +36,24 @@ export default function UserCreationForm(): JSX.Element {
     fetchData()
   }, [])
 
+  const { watch } = methods
+
+  const buildingsWatch = watch('buildingsDTO')
+
+  useEffect(() => {
+    if (buildingsWatch !== [] && buildingsWatch) {
+      const rooms = []
+      for (let i = 0; i < buildingsWatch.length; i++) {
+        const element = buildingsWatch[i]
+        rooms.push(...element.rooms)
+      }
+      setRooms(rooms)
+    }
+  }, [buildingsWatch])
+
   const userTypeList = ['ADMIN', 'SUPER_ADMIN', 'USER', 'STAFF', 'KITCHEN_STAFF']
+
+  const { reset } = methods
 
   const submitEnquiryForm: SubmitHandler<IUserCreationForm> = async (data: IUserCreationForm) => {
     console.log('data submitted', data)
@@ -57,6 +65,26 @@ export default function UserCreationForm(): JSX.Element {
     }
     const res = await postApiHandler(apiData)
     console.log(res)
+    res && res.isLoaded
+      ? toast.success('User Created successfully')
+      : toast.error('Please contact our admin')
+    reset(
+      {
+        address: '',
+        buildingsDTO: [],
+        email: '',
+        name: '',
+        password: '',
+        phoneNumber: '',
+        roomsDTO: {},
+        userType: '',
+        zipCode: '',
+      },
+      {
+        keepErrors: false,
+        keepDirty: false,
+      },
+    )
   }
 
   return (
@@ -114,10 +142,17 @@ export default function UserCreationForm(): JSX.Element {
                         optionList={buildingList}
                         optionParam="buildingName"
                         optionObject={true}
+                        multiSelect={true}
                       />
                     </Grid>
                     <Grid item xs={12} md={4} sm={4}>
-                      <FormInputText label="Room" name="roomsDTO.roomName" />
+                      <FormInputSelect
+                        label="Room"
+                        name="roomsDTO.roomName"
+                        optionList={roomsList}
+                        optionParam="roomName"
+                        optionObject={true}
+                      />
                     </Grid>
                   </Grid>
                   <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
@@ -128,7 +163,7 @@ export default function UserCreationForm(): JSX.Element {
                     </div>
                     <div className="ml-5">
                       <Button type="submit" variant="contained">
-                        Login
+                        Create
                       </Button>
                     </div>
                   </Box>

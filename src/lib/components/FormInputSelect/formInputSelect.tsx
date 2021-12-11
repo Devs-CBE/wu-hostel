@@ -28,7 +28,7 @@ export default function FormInputSelect({
         fullWidth
         margin="dense"
         {...register(name)}
-        defaultValue={''}
+        defaultValue={multiSelect ? [] : ''}
         SelectProps={{
           multiple: multiSelect,
         }}
