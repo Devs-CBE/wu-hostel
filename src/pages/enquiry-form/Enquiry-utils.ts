@@ -5,13 +5,13 @@ export function EnquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
   const responseData = enquiryFormApiDeaultData
   responseData.address = user.address
   responseData.adminId = 0
-  responseData.buildings = user.buildings
+  responseData.buildings = user.buildings.id
   responseData.description = user.description
   responseData.duration = user.duration
   responseData.email = user.email
   responseData.enquiryStatus = 'NEW'
   responseData.id = 0
-  responseData.locations = user.locations
+  responseData.locations = user.locations.id
   responseData.name = user.name
   responseData.numberOfPeople = user.numberOfPeople
   responseData.phoneNumber = user.phoneNumber

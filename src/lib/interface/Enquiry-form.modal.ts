@@ -3,7 +3,6 @@ export interface IEnquiryForm {
   referal: string
   roomChoice: string
   address: string
-  adminId: number
   buildings: any
   description: string
   email: string
@@ -30,4 +29,8 @@ export interface IEnquiryApi {
   referral: string
   roomChoice: string
   zipCode: string
+}
+
+export interface IEnquiryDetailForm {
+  adminId: any
 }
