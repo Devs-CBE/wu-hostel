@@ -10,7 +10,7 @@ import { SubmitHandler, FormProvider, useForm } from 'react-hook-form'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
-import { EnquiryCreationResponse } from './Enquiry-utils'
+import { enquiryCreationResponse } from './Enquiry-utils'
 import { enquiryFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
@@ -57,12 +57,13 @@ export default function EnquiryForm(): JSX.Element {
 
   const submitEnquiryForm: SubmitHandler<IEnquiryForm> = async (data: IEnquiryForm) => {
     console.log('data submitted', data)
-    const enquiryResponseData = EnquiryCreationResponse(data)
+    const enquiryResponseData = enquiryCreationResponse(data)
     console.log(enquiryResponseData)
     const apiData = {
       apiUrl: 'http://138.197.146.75:9050/v1/api/enquiry/create',
       payload: enquiryResponseData,
     }
+
     const res = await postApiHandler(apiData)
     console.log(res)
   }
