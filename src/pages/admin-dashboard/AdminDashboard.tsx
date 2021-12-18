@@ -3,6 +3,7 @@ import ComplaintTable from '@pages/mui-table/TableData'
 import * as React from 'react'
 import DashboardCard from './components/card'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const people = [
   {
@@ -65,15 +66,24 @@ const actionList: IActionButton[] = [
   {
     icon: <ArrowForwardIcon />,
     action: 'detailed_view',
+    route: 'complaint',
   },
 ]
 
-const tableClick = (data: any, index: any) => {
-  console.log(data)
-  console.log(index)
-}
-
 const AdminDashboard = (): JSX.Element => {
+  const navigate = useNavigate()
+
+  const tableClick = (data: any, btnAction: IActionButton) => {
+    console.log(data)
+    console.log(btnAction)
+    if (btnAction.route === 'complaint') {
+      sessionStorage.setItem('complaint_detail', data)
+      navigate('/complaint-mapping')
+    } else if (btnAction.route === 'enquiry') {
+      sessionStorage.setItem('enquiry_detail', data)
+      navigate('/enquiry-mapping')
+    }
+  }
   return (
     <div className="container m-5">
       <DashboardCard></DashboardCard>

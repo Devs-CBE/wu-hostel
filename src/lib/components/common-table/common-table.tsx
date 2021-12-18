@@ -12,6 +12,7 @@ export interface IActionButton {
   icon: any
   label?: string
   action: any
+  route: string
 }
 
 export default function CommonTable(props: ITableProps) {
@@ -54,7 +55,7 @@ export default function CommonTable(props: ITableProps) {
                                 <IconButton
                                   key={'tr' + index + 'td' + i + 'btn' + actionIndex}
                                   onClick={() => {
-                                    props.linkClicked(tableData, actionItem.action)
+                                    props.linkClicked(tableData, actionItem)
                                   }}
                                 >
                                   {actionItem.icon}
