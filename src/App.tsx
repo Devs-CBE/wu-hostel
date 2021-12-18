@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider, useAuth } from '@context/authContext'
 import CommonTable from '@components/common-table/common-table'
 import EnquiryDetailView from '@pages/enquiry-form/enquiry-detailed-view'
+import KitchenExpenseForm from '@pages/kitchen-expanse-form/kitchen-expense-form'
 
 export default function App(): JSX.Element {
   return (
@@ -22,6 +23,8 @@ export default function App(): JSX.Element {
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/detail" element={<EnquiryDetailView />} />
+            <Route path="/kitchen-expense-form" element={<KitchenExpenseForm />} />
+
             {routesConfig.map(({ path, components, children }, i) => {
               const NewComponents = components
               return (
