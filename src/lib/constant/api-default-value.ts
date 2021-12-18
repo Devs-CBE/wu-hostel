@@ -2,6 +2,7 @@ import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
+import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
 
 export const locationApiDefaultData: ILocationApi = {
@@ -172,5 +173,11 @@ export const complaintFormApiDeaultData: IComplaintApi = {
   contactNumber: '',
   downloadPath: '',
   id: 0,
+  user: 0,
+}
+export const StaffAttendanceFormApiDeaultData: IStaffAttendanceFormApi = {
+  id: 0,
+  present: true,
+  presentDate: '',
   user: 0,
 }

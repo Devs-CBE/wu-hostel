@@ -3,6 +3,7 @@ import { IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
+import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
@@ -70,4 +71,11 @@ export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({
 export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup.object({
   attachment: Yup.mixed().required('Required'),
   complaintId: Yup.number().required('Required'),
+})
+
+export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
+  id: Yup.number().required('Required'),
+  present: Yup.mixed().required('Required'),
+  presentDate: Yup.mixed().required('Required'),
+  user: Yup.number().required('Required'),
 })
