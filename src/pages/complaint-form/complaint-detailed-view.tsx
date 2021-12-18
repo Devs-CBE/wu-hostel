@@ -8,7 +8,7 @@ import { IEnquiryDetailForm } from '@modal/Enquiry-form.modal'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { enquiryDetailFormSchema } from '@constant/validation-schema.constant'
 
-export default function EnquiryDetailView() {
+export default function EnquiryDetailView(): JSX.Element {
   const methods = useForm<IEnquiryDetailForm>({
     resolver: yupResolver(enquiryDetailFormSchema),
   })

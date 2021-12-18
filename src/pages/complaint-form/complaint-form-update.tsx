@@ -12,7 +12,7 @@ import { complaintUpdateFormSchema } from '@constant/validation-schema.constant'
 import { patchApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 
-export default function ComplaintFormUpdate() {
+export default function ComplaintFormUpdate(): JSX.Element {
   const methods = useForm<IComplaintUpdateForm>({
     resolver: yupResolver(complaintUpdateFormSchema),
   })
