@@ -1,4 +1,5 @@
-import { enquiryFormApiDeaultData } from '@constant/api-default-value'
+import { enquiryFormApiDeaultData, enquiryMappingDefaultData } from '@constant/api-default-value'
+import { IEnquiryMappingApi, IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryForm, IEnquiryApi } from '@modal/Enquiry-form.modal'
 
 export function enquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
@@ -23,3 +24,10 @@ export function enquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
 }
 
 export const enquiryDetail = undefined
+
+export function enquiryMappingCreationResponse(user: IEnquiryMappingForm): IEnquiryMappingApi {
+  const responseData = enquiryMappingDefaultData
+  responseData.adminId = 0
+
+  return responseData
+}

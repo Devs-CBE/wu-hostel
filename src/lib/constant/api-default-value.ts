@@ -1,4 +1,5 @@
 import { IComplaintApi } from '@modal/complaint-form.modal'
+import { IEnquiryMappingApi } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { IExpenseFormApi } from '@modal/Expense-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
@@ -185,4 +186,23 @@ export const expenseFormApiDeaultData: IExpenseFormApi = {
   expansesStatus: '',
   id: 0,
   recurring: true,
+}
+
+export const enquiryMappingDefaultData: IEnquiryMappingApi = {
+  address: '',
+  adminId: 0,
+  buildings: 0,
+  date: '',
+  description: '',
+  duration: '',
+  email: '',
+  enquiryStatus: '',
+  id: 0,
+  locations: 0,
+  name: '',
+  numberOfPeople: 0,
+  phoneNumber: '',
+  referral: '',
+  roomChoice: '',
+  zipCode: '',
 }
