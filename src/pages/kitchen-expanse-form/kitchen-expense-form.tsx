@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import './kitchen-form.scss'
@@ -15,9 +14,6 @@ import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { IKitchenForm } from '@modal/kitchen-form.modal'
 import { KitchenCreationResponse } from './kitchen-utils'
 
-import { makeStyles } from '@mui/styles'
-import { styled } from '@mui/styles'
-
 import TextField from '@mui/material/TextField'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
@@ -33,8 +29,6 @@ export default function KitchenExpenseForm(): JSX.Element {
 
   const [buildingList, setBuilding] = useState([])
   const expenseStatus = ['Paid', 'UnPaid', 'Hold']
-
-  const { watch } = methods
 
   useEffect(() => {
     async function fetchData() {

@@ -1,6 +1,3 @@
-import { SchemaOf } from 'yup'
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React from 'react'
 
 export interface IRoute {

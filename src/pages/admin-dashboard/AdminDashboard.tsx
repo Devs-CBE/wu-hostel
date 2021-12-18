@@ -1,9 +1,9 @@
 import CommonTable, { IActionButton } from '@components/common-table/common-table'
-import ComplaintTable from '@pages/mui-table/TableData'
+// import ComplaintTable from '@pages/mui-table/TableData'
 import * as React from 'react'
 import DashboardCard from './components/card'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const people = [
   {
