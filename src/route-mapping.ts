@@ -1,3 +1,4 @@
+import { SchemaOf } from 'yup'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react'
@@ -56,5 +57,17 @@ export const routesConfig: IRoute[] = [
   {
     path: 'building-creation',
     components: React.lazy(() => import('@pages/building-creation/building-form')),
+  },
+  {
+    path: 'expense-form',
+    components: React.lazy(() => import('@pages/expanse-form/Expense-Form')),
+  },
+  {
+    path: 'complaint-mapping',
+    components: React.lazy(() => import('@pages/complaint-form/complaint-detailed-view')),
+  },
+  {
+    path: 'enquiry-mapping',
+    components: React.lazy(() => import('@pages/enquiry-form/enquiry-detailed-view')),
   },
 ]

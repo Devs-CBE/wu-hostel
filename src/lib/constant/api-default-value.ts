@@ -1,6 +1,7 @@
 import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { IKitchenApi } from '@modal/kitchen-form.modal'
+import { IExpenseFormApi } from '@modal/Expense-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
@@ -174,6 +175,17 @@ export const complaintFormApiDeaultData: IComplaintApi = {
   downloadPath: '',
   id: 0,
   user: 0,
+}
+export const expenseFormApiDeaultData: IExpenseFormApi = {
+  amountToBePaid: 0,
+  buildings: 0,
+  description: '',
+  expanseMonthYear: '',
+  expanseName: '',
+  expansesCategory: 0,
+  expansesStatus: '',
+  id: 0,
+  recurring: true,
 }
 
 export const kitchenFormApiDeaultData: IKitchenApi = {

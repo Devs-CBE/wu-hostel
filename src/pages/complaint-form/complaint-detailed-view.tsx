@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import './Enquiry-Form.scss'
+import './complaint-form.scss'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { IEnquiryDetailForm } from '@modal/Enquiry-form.modal'

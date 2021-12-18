@@ -1,6 +1,7 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { IKitchenForm } from '@modal/kitchen-form.modal'
+import { IExpenseForm } from '@modal/Expense-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
@@ -58,6 +59,18 @@ export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
   zipCode: Yup.string().required('Required'),
   duration: Yup.string().required('Required'),
   referal: Yup.string().required('Required'),
+})
+
+export const expenseFormSchema: Yup.SchemaOf<IExpenseForm> = Yup.object({
+  amountToBePaid: Yup.number().required('Required'),
+  buildings: Yup.number().required('Required'),
+  description: Yup.string().required('Required'),
+  expanseMonthYear: Yup.string().required('Required'),
+  expanseName: Yup.string().required('Required'),
+  expansesCategory: Yup.number().required('Required'),
+  expansesStatus: Yup.string().required('Required'),
+  id: Yup.number().required('Required'),
+  recurring: Yup.mixed().required('Required'),
 })
 
 export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({

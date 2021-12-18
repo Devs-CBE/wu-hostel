@@ -10,7 +10,6 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider, useAuth } from '@context/authContext'
-import CommonTable from '@components/common-table/common-table'
 import EnquiryDetailView from '@pages/enquiry-form/enquiry-detailed-view'
 import KitchenExpenseForm from '@pages/kitchen-expanse-form/kitchen-expense-form'
 
