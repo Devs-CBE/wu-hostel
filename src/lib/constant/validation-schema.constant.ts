@@ -5,6 +5,7 @@ import { IExpenseForm } from '@modal/Expense-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
+import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
@@ -100,4 +101,11 @@ export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   expansesStatus: Yup.string().required('Required'),
   id: Yup.number().required('Required'),
   recurring: Yup.mixed().required('Required'),
+})
+
+export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
+  id: Yup.number().required('Required'),
+  present: Yup.mixed().required('Required'),
+  presentDate: Yup.mixed().required('Required'),
+  user: Yup.number().required('Required'),
 })

@@ -4,6 +4,7 @@ import { IKitchenApi } from '@modal/kitchen-form.modal'
 import { IExpenseFormApi } from '@modal/Expense-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
+import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
 
 export const locationApiDefaultData: ILocationApi = {
@@ -198,4 +199,11 @@ export const kitchenFormApiDeaultData: IKitchenApi = {
   expansesStatus: '',
   id: 0,
   recurring: true,
+}
+
+export const StaffAttendanceFormApiDeaultData: IStaffAttendanceFormApi = {
+  id: 0,
+  present: true,
+  presentDate: '',
+  user: 0,
 }

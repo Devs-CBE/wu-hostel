@@ -6,6 +6,7 @@ import { theme } from './theme/materialUI'
 import { routesConfig } from './route-mapping'
 import Login from '@pages/login/login'
 import Layout from '@pages/layout/layout'
+import Staff from '@pages/staff-attendance/staff-attendance-form'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -21,6 +22,7 @@ export default function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/staff-attendance" element={<Staff />} />
             <Route path="/detail" element={<EnquiryDetailView />} />
             <Route path="/kitchen-expense-form" element={<KitchenExpenseForm />} />
 
