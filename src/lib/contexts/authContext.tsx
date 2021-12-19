@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { AuthContextType } from '@modal/auth.modal'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { authService } from '../service/auth-service'
 
 export const AuthContext = React.createContext<AuthContextType>(null!)

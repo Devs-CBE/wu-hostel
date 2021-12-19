@@ -11,6 +11,8 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider, useAuth } from '@context/authContext'
+import EnquiryDetailView from '@pages/enquiry-form/enquiry-detailed-view'
+import KitchenExpenseForm from '@pages/kitchen-expanse-form/kitchen-expense-form'
 
 export default function App(): JSX.Element {
   return (
@@ -21,6 +23,9 @@ export default function App(): JSX.Element {
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/staff-attendance" element={<Staff />} />
+            <Route path="/detail" element={<EnquiryDetailView />} />
+            <Route path="/kitchen-expense-form" element={<KitchenExpenseForm />} />
+
             {routesConfig.map(({ path, components, children }, i) => {
               const NewComponents = components
               return (

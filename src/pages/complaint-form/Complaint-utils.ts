@@ -1,7 +1,7 @@
 import { complaintFormApiDeaultData } from '@constant/api-default-value'
 import { IComplaintForm, IComplaintApi } from '@modal/complaint-form.modal'
 
-export function complaintCreationResponse(user: IComplaintForm, docs: any): IComplaintApi {
+export function complaintCreationResponse(user: IComplaintForm, docs: string): IComplaintApi {
   const responseData = complaintFormApiDeaultData
   responseData.attachment = docs
   responseData.complaintDescription = user.complaintDescription

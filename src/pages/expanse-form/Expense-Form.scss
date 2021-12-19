@@ -15,3 +15,9 @@
   justify-content: center;
   align-items: center;
 }
+.form-containers {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 40px;
+  max-width: 600px;
+  border: 1px solid $primary;
+}
