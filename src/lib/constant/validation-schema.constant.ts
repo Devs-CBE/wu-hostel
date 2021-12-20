@@ -1,6 +1,7 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
+import { IKitchenForm } from '@modal/kitchen-form.modal'
 import { IExpenseForm } from '@modal/Expense-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
@@ -88,6 +89,20 @@ export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup
 export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.object({
   adminId: Yup.mixed().required('Required'),
 })
+
+export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
+  amountToBePaid: Yup.number().required('Required'),
+  buildings: Yup.mixed().required('Required'),
+
+  description: Yup.string().required('Required'),
+  expanseMonthYear: Yup.string().required('Required'),
+  expanseName: Yup.string().required('Required'),
+  expansesCategory: Yup.number().required('Required'),
+  expansesStatus: Yup.string().required('Required'),
+  id: Yup.number().required('Required'),
+  recurring: Yup.mixed().required('Required'),
+})
+
 export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
   adminId: Yup.mixed().required('Required'),
 })

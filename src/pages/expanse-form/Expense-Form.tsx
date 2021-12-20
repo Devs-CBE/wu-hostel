@@ -49,7 +49,6 @@ export default function ExpenseForm(): JSX.Element {
     fetchData()
   }, [])
 
-  const { reset } = methods
   const submitExpenseForm: SubmitHandler<IExpenseForm> = async (data: IExpenseForm) => {
     console.log('data submitted', data)
     const expenseResponseData: IExpenseFormApi = ExpenseCreationResponse(data)
