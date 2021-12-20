@@ -77,17 +77,16 @@ const AdminDashboard = (): JSX.Element => {
     console.log(data)
     console.log(btnAction)
     if (btnAction.route === 'complaint') {
-      sessionStorage.setItem('complaint_detail', data)
+      sessionStorage.setItem('complaint_detail', JSON.stringify(data))
       navigate('/complaint-mapping')
     } else if (btnAction.route === 'enquiry') {
-      sessionStorage.setItem('enquiry_detail', data)
+      sessionStorage.setItem('enquiry_detail', JSON.stringify(data))
       navigate('/enquiry-mapping')
     }
   }
   return (
     <div className="container m-5">
       <DashboardCard></DashboardCard>
-      {/* <ComplaintTable></ComplaintTable> */}
       <CommonTable
         headerName={headerName}
         actionList={actionList}

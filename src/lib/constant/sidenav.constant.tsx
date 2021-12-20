@@ -22,7 +22,7 @@ export const sideData: Array<ISideNavconfig> = [
   // },
   {
     title: 'Expenses',
-    path: '/',
+    path: '/expense-dashboard',
     icon: <RequestPageIcon />,
   },
   {

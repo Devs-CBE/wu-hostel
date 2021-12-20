@@ -25,28 +25,8 @@ export default function FormInputDatePicker({
   } = useFormContext()
 
   return (
-    // <LocalizationProvider dateAdapter={AdapterDateFns}>
-    //   <DatePicker
-    //     label={label}
-    //     value={value}
-    //     onChange={(newValue) => {
-    //       setValue(newValue)
-    //     }}
-    //     renderInput={(params) => (
-    //       <TextField
-    //         {...params}
-    //         error={!!errors[name]}
-    //         helperText={errors[name]?.message ?? ''}
-    //         fullWidth={inputFullWidth}
-    //         margin="dense"
-    //         {...register(name)}
-    //         variant="outlined"
-    //       />
-    //     )}
-    //   />
-    // </LocalizationProvider>
     <Controller
-      {...register(name)}
+      name={name}
       defaultValue={new Date()}
       control={control}
       render={({ field }) => {

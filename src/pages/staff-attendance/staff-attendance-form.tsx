@@ -50,7 +50,7 @@ export default function StaffAttendanceForm(): JSX.Element {
     const res = await postApiHandler(apiData)
     console.log(res)
     res && res.isLoaded
-      ? toast.success('User Created successfully')
+      ? toast.success('Attendance Updated successfully')
       : toast.error('Please contact our admin')
   }
 

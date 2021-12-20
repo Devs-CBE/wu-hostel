@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import classNames from 'classnames'
 
 export default function DashboardCard(): JSX.Element {
   const cardDetails = [
@@ -22,6 +23,12 @@ export default function DashboardCard(): JSX.Element {
       icon: '',
     },
   ]
+  const [menuTab, setMenuTab] = React.useState('Complaints')
+
+  const tabClick = (item: any) => {
+    console.log(item)
+    setMenuTab(item.name)
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -35,7 +42,13 @@ export default function DashboardCard(): JSX.Element {
       >
         {cardDetails.map((item, index) => (
           <Grid item xs={12} sm={4} md={4} key={index}>
-            <div className="form-container flex justify-center mb-5">
+            <div
+              onClick={() => tabClick(item)}
+              className={classNames([
+                'flex justify-center cursor-pointer items-center mb-5',
+                menuTab === item.name ? 'selected-form-container' : 'form-container',
+              ])}
+            >
               <Typography variant="h6" margin={2}>
                 {item.name}
               </Typography>

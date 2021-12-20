@@ -52,8 +52,8 @@ export const routesConfig: IRoute[] = [
     components: React.lazy(() => import('@pages/building-creation/building-form')),
   },
   {
-    path: 'expense-form',
-    components: React.lazy(() => import('@pages/expanse-form/Expense-Form')),
+    path: 'expense-dashboard',
+    components: React.lazy(() => import('@pages/expenses/expenses-dashboard')),
   },
   {
     path: 'complaint-mapping',
