@@ -16,10 +16,6 @@ export const routesConfig: IRoute[] = [
     components: React.lazy(() => import('./pages/admin-dashboard/AdminDashboard')),
   },
   {
-    path: 'enquiry',
-    components: React.lazy(() => import('@pages/enquiry-form/enquiry-dashboard')),
-  },
-  {
     path: 'enquiry-creation',
     components: React.lazy(() => import('./pages/enquiry-form/Enquiry-Form')),
   },
@@ -66,5 +62,13 @@ export const routesConfig: IRoute[] = [
   {
     path: 'enquiry-mapping',
     components: React.lazy(() => import('@pages/enquiry-form/enquiry-detailed-view')),
+  },
+  {
+    path: 'staff-attendance',
+    components: React.lazy(() => import('@pages/staff-attendance/staff-attendance-form')),
+  },
+  {
+    path: 'kitchen-expense',
+    components: React.lazy(() => import('@pages/kitchen-expanse-form/kitchen-expense-form')),
   },
 ]

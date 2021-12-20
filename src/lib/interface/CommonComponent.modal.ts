@@ -42,3 +42,10 @@ export interface IApiHandlerReturn {
   isLoaded: boolean
   responseError: any | null
 }
+
+export interface IFormInputToggle {
+  label: string
+  name: string
+  initialValue?: boolean
+  labelPlacement?: 'top' | 'start' | 'bottom' | 'end'
+}
