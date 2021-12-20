@@ -104,7 +104,7 @@ export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
 })
 
 export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
-  // present: Yup.mixed().required('Required'),
+  present: Yup.boolean().required('Required'),
   presentDate: Yup.date().required('Required'),
-  // user: Yup.number().required('Required'),
+  user: Yup.mixed().required('Required'),
 })

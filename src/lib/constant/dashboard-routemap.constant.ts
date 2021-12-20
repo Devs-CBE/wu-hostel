@@ -3,8 +3,6 @@ import BuildingIcon from '@assests/icons/buildings.svg'
 import RoomIcon from '@assests/icons/rooms.svg'
 import AddUserIcon from '@assests/icons/add-user.svg'
 import CreateEnquiryIcon from '@assests/icons/create_enquiry.svg'
-import UpdateEnquiryIcon from '@assests/icons/update_enquiry.svg'
-import StatusEnquiryIcon from '@assests/icons/status_enquiry.svg'
 
 export const masterRoute = [
   {

@@ -17,8 +17,7 @@ export default function FormInputDatePicker({
   name,
   inputFullWidth = true,
   initialValue = null,
-}: IFormDatePickerProps) {
-  const [value, setValue] = React.useState(initialValue)
+}: IFormDatePickerProps): JSX.Element {
   const {
     control,
     register,

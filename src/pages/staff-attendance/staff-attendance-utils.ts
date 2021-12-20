@@ -6,9 +6,9 @@ export function StaffAttendanceCreationResponse(
 ): IStaffAttendanceFormApi {
   const responseData = StaffAttendanceFormApiDeaultData
   responseData.id = 0
-  responseData.user = 0
+  responseData.user = user.user.id
   responseData.presentDate = user.presentDate
-  // responseData.present = user.present
+  responseData.present = user.present
 
   return responseData
 }

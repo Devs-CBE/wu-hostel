@@ -1,5 +1,4 @@
 import DashboardIcon from '@mui/icons-material/Dashboard'
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import FeedbackIcon from '@mui/icons-material/Feedback'
 import RequestPageIcon from '@mui/icons-material/RequestPage'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'

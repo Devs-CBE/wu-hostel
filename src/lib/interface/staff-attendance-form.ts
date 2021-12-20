@@ -1,8 +1,8 @@
 // For Forms
 export interface IStaffAttendanceForm {
-  // present: boolean
+  present: boolean
   presentDate: Date
-  // user: number
+  user: any
 }
 
 // For Sending API Response
