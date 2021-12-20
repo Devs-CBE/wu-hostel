@@ -1,3 +1,4 @@
+import { IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
 import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
 import { IExpenseFormApi } from '@modal/Expense-form.modal'
@@ -185,4 +186,10 @@ export const expenseFormApiDeaultData: IExpenseFormApi = {
   expansesStatus: '',
   id: 0,
   recurring: true,
+}
+export const complaintDetailedFormApiDeaultData: IcomplaintDetailedFormApi = {
+  complaintStatus: '',
+  complaints: 0,
+  description: '',
+  id: 0,
 }

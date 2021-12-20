@@ -8,3 +8,13 @@
   width: 100%;
   min-height: 100vh;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.wrapper-complaints {
+  margin-left: 90px;
+}

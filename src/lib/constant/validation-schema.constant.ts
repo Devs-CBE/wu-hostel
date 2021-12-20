@@ -1,4 +1,5 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
+import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { IExpenseForm } from '@modal/Expense-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
@@ -86,4 +87,11 @@ export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup
 
 export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.object({
   adminId: Yup.mixed().required('Required'),
+})
+
+export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> = Yup.object({
+  complaintStatus: Yup.string().required('Required'),
+  complaints: Yup.number().required('Required'),
+  description: Yup.string().required('Required'),
+  id: Yup.number().required('Required'),
 })
