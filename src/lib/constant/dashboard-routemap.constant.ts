@@ -27,6 +27,16 @@ export const masterRoute = [
     icon: AddUserIcon,
     url: '/user-creation',
   },
+  {
+    name: 'Staff Attendance',
+    icon: AddUserIcon,
+    url: '/staff-attendance',
+  },
+  {
+    name: 'Create Enquiry',
+    icon: CreateEnquiryIcon,
+    url: '/enquiry-creation',
+  },
 ]
 
 export const complaintRoute = [
@@ -47,28 +57,15 @@ export const complaintRoute = [
   },
 ]
 
-export const enquiryRoute = [
-  {
-    name: 'Create Enquiry',
-    icon: CreateEnquiryIcon,
-    url: '/enquiry-creation',
-  },
-  {
-    name: 'Update Enquiry',
-    icon: UpdateEnquiryIcon,
-    url: '/enquiry-creation',
-  },
-  {
-    name: 'Enquiry Status',
-    icon: StatusEnquiryIcon,
-    url: '/enquiry-creation',
-  },
-]
-
 export const expenseRoute = [
   {
-    name: 'Add Expenses',
+    name: 'Monthly Rent',
     icon: LocationIcon,
     url: '/expanses',
+  },
+  {
+    name: 'Kitchen Expenses',
+    icon: LocationIcon,
+    url: '/kitchen-expense',
   },
 ]

@@ -5,16 +5,13 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { IoAccessibilityOutline } from 'react-icons/io5'
+import Select from '@mui/material/Select'
 import { staffFormSchema } from '@constant/validation-schema.constant'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { useEffect } from 'react'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { IStaffAttendanceForm, IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { StaffAttendanceCreationResponse } from './staff-attendance-utils'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
@@ -25,6 +22,9 @@ import Stack from '@mui/material/Stack'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker'
+import { Grid } from '@mui/material'
+import FormInputText from '@components/FormInputText/FormInputText'
+import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 
 // Code Start
 export default function StaffAttendanceForm(): JSX.Element {
@@ -57,7 +57,54 @@ export default function StaffAttendanceForm(): JSX.Element {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className="wrapper-login p-5 flex justify-center">
+      <div className="form-container p-7">
+        <div className="p-3 flex-1 flex-row justify-center align-center">
+          <Typography className="text-center" variant="h3" color="initial">
+            Login
+          </Typography>
+          <Box sx={{ mt: '1rem' }}>
+            <Typography variant="h6" className="text-center">
+              Sign in and start managing your Hostellers!
+            </Typography>
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(submitStaffAttendanceForm)}>
+                <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
+                  {/* <Grid item xs={12} md={12} sm={12}>
+                    <FormInputText label="Employee ID" name="emp_id" />
+                  </Grid>
+                  <Grid item xs={12} md={12} sm={12}>
+                    <FormInputText label="Employee ID" name="emp_id" />
+                  </Grid> */}
+                  <Grid item xs={12} md={12} sm={12}>
+                    <FormInputDatePicker label="Employee ID" name="presentDate" />
+                  </Grid>
+                </Grid>
+                <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
+                  <div>
+                    <Button type="reset" variant="outlined">
+                      Cancel
+                    </Button>
+                  </div>
+                  <div className="ml-5">
+                    <Button type="submit" variant="contained">
+                      Login
+                    </Button>
+                  </div>
+                </Box>
+              </form>
+            </FormProvider>
+          </Box>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  /* <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
@@ -116,6 +163,5 @@ export default function StaffAttendanceForm(): JSX.Element {
           </Button>
         </Box>
       </Box>
-    </Container>
-  )
+    </Container> */
 }

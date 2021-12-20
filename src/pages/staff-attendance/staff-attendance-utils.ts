@@ -8,7 +8,7 @@ export function StaffAttendanceCreationResponse(
   responseData.id = 0
   responseData.user = 0
   responseData.presentDate = user.presentDate
-  responseData.present = user.present
+  // responseData.present = user.present
 
   return responseData
 }

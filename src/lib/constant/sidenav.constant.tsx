@@ -16,11 +16,11 @@ export const sideData: Array<ISideNavconfig> = [
     path: '/complaint',
     icon: <FeedbackIcon />,
   },
-  {
-    title: 'Enquiry',
-    path: '/enquiry',
-    icon: <ChatBubbleOutlineIcon />,
-  },
+  // {
+  //   title: 'Enquiry',
+  //   path: '/enquiry',
+  //   icon: <ChatBubbleOutlineIcon />,
+  // },
   {
     title: 'Expenses',
     path: '/',

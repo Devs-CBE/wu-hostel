@@ -1,9 +1,8 @@
 // For Forms
 export interface IStaffAttendanceForm {
-  id: number
-  present: boolean
-  presentDate: string
-  user: number
+  // present: boolean
+  presentDate: Date
+  // user: number
 }
 
 // For Sending API Response
@@ -11,6 +10,6 @@ export interface IStaffAttendanceForm {
 export interface IStaffAttendanceFormApi {
   id: number
   present: boolean
-  presentDate: string
+  presentDate: Date
   user: number
 }

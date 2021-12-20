@@ -204,6 +204,6 @@ export const kitchenFormApiDeaultData: IKitchenApi = {
 export const StaffAttendanceFormApiDeaultData: IStaffAttendanceFormApi = {
   id: 0,
   present: true,
-  presentDate: '',
+  presentDate: new Date(),
   user: 0,
 }
