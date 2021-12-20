@@ -4,19 +4,30 @@ import Typography from '@mui/material/Typography'
 import './Enquiry-Form.scss'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { IEnquiryDetailForm } from '@modal/Enquiry-form.modal'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { enquiryDetailFormSchema } from '@constant/validation-schema.constant'
+import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
+import { postApiHandler } from '@utils/apiHandler'
+import { enquiryMappingCreationResponse } from './Enquiry-utils'
+import { enquiryMappingFormSchema } from '@constant/validation-schema.constant'
 
-export default function EnquiryDetailView(): JSX.Element {
-  const methods = useForm<IEnquiryDetailForm>({
-    resolver: yupResolver(enquiryDetailFormSchema),
+export default function EnquiryDetailView() {
+  const methods = useForm<IEnquiryMappingForm>({
+    resolver: yupResolver(enquiryMappingFormSchema),
   })
 
-  const submitEnquiryDetailForm: SubmitHandler<IEnquiryDetailForm> = async (
-    data: IEnquiryDetailForm,
+  const submitEnquiryMappingForm: SubmitHandler<IEnquiryMappingForm> = async (
+    data: IEnquiryMappingForm,
   ) => {
     console.log(data)
+    const enquiryResponseData = enquiryMappingCreationResponse(data)
+    console.log(enquiryResponseData)
+    const apiData = {
+      apiUrl: 'http://138.197.146.75:9050/v1/api/enquiry/mapping/create',
+      payload: enquiryResponseData,
+    }
+
+    const res = await postApiHandler(apiData)
+    console.log(res)
   }
   return (
     <>
@@ -73,8 +84,8 @@ export default function EnquiryDetailView(): JSX.Element {
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
               <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit(submitEnquiryDetailForm)}>
-                  <FormInputText name="name" label="Name" />
+                <form onSubmit={methods.handleSubmit(submitEnquiryMappingForm)}>
+                  <FormInputText name="name" label="Admin Name" />
                 </form>
               </FormProvider>
             </Grid>

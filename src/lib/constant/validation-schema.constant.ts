@@ -1,4 +1,5 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
+import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { IKitchenForm } from '@modal/kitchen-form.modal'
 import { IExpenseForm } from '@modal/Expense-form.modal'
@@ -107,4 +108,8 @@ export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
   present: Yup.boolean().required('Required'),
   presentDate: Yup.date().required('Required'),
   user: Yup.mixed().required('Required'),
+})
+
+export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
+  adminId: Yup.mixed().required('Required'),
 })
