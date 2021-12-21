@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import './complaint-form.scss'
@@ -19,13 +19,33 @@ export default function ComplaintDetailedView(): JSX.Element {
     resolver: yupResolver(complaintDetailedFormSchema),
   })
 
+  const initialValue = {
+    name: '',
+    complaints: '',
+    room: '',
+    building: '',
+    mobile: '',
+    email: '',
+    remarks: '',
+    image: '',
+  }
+  const [complaintDetail, setComplaintDetail] = useState(initialValue)
+
+  useEffect(() => {
+    const complaintDetails = sessionStorage.getItem('complaint_detail')
+    const parseData = complaintDetails ? JSON.parse(complaintDetails) : initialValue
+    setComplaintDetail(parseData)
+  }, [initialValue])
+
   const submitComplaintDetailedForm: SubmitHandler<IcomplaintDetailedForm> = async (
     data: IcomplaintDetailedForm,
   ) => {
     console.log('data submitted', data)
 
-    const complaintResponseData: IcomplaintDetailedFormApi =
-      ComplaintDetailedFormCreationResponse(data)
+    const complaintResponseData: IcomplaintDetailedFormApi = ComplaintDetailedFormCreationResponse(
+      data,
+      complaintDetail,
+    )
 
     console.log(complaintResponseData)
     const apiData = {
@@ -50,60 +70,35 @@ export default function ComplaintDetailedView(): JSX.Element {
               <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(submitComplaintDetailedForm)}>
                   <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                    <Grid item xs={12} sm={6} md={12}></Grid>
                     <Grid item xs={12} sm={6} md={4}>
                       <span>Name</span>
-                      <Typography variant="subtitle2"></Typography>
+                      <Typography variant="subtitle2">{complaintDetail?.name}</Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                      <span>Phone Number</span>
-                      <Typography variant="subtitle2"></Typography>
+                      <span>Complaints</span>
+                      <Typography variant="subtitle2">{complaintDetail.complaints}</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                      <span>Room</span>
+                      <Typography variant="subtitle2">{complaintDetail.room}</Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                       <span>Email</span>
-                      <Typography variant="subtitle2"></Typography>
+                      <Typography variant="subtitle2">{complaintDetail.email}</Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                      <span>No of People</span>
-                      <Typography variant="subtitle2"></Typography>
+                      <span>Mobile</span>
+                      <Typography variant="subtitle2">{complaintDetail.mobile}</Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                      <span>Room Choice</span>
-                      <Typography variant="subtitle2"></Typography>
+                      <span>Remarks</span>
+                      <Typography variant="subtitle2">{complaintDetail.remarks}</Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Location</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Building</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Duration</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Referal</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Description</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Address</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Zip Code</span>
-                      <Typography variant="subtitle2"></Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} className=" wrapper-complaints">
+                    <Grid item xs={12} sm={6} md={4} className="wrapper-complaints">
                       <FormInputText name="complaints" label="Complaint" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} className=" wrapper-complaints">
-                      <FormInputText name="complaint Status" label="Complaint Status" />
+                      <FormInputText name="complaintStatus" label="Complaint Status" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={9.3} className=" wrapper-complaints">
                       <FormInputText

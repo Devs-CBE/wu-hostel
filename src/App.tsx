@@ -10,7 +10,6 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider, useAuth } from '@context/authContext'
-import EnquiryDetailView from '@pages/enquiry-form/enquiry-detailed-view'
 
 export default function App(): JSX.Element {
   return (
@@ -20,7 +19,6 @@ export default function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/detail" element={<EnquiryDetailView />} />
             {routesConfig.map(({ path, components, children }, i) => {
               const NewComponents = components
               return (

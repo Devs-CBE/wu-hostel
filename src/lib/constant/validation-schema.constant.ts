@@ -1,10 +1,13 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
 import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form'
+import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
+import { IKitchenForm } from '@modal/kitchen-form.modal'
 import { IExpenseForm } from '@modal/Expense-form.modal'
 import { ILocation } from '@modal/location-building-room.modal'
 import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
+import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
@@ -89,9 +92,31 @@ export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.obj
   adminId: Yup.mixed().required('Required'),
 })
 
+export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
+  amountToBePaid: Yup.number().required('Required'),
+  buildings: Yup.mixed().required('Required'),
+
+  description: Yup.string().required('Required'),
+  expanseMonthYear: Yup.string().required('Required'),
+  expanseName: Yup.string().required('Required'),
+  expansesCategory: Yup.number().required('Required'),
+  expansesStatus: Yup.string().required('Required'),
+  id: Yup.number().required('Required'),
+  recurring: Yup.mixed().required('Required'),
+})
+
+export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
+  present: Yup.boolean().required('Required'),
+  presentDate: Yup.date().required('Required'),
+  user: Yup.mixed().required('Required'),
+})
+
+export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
+  adminId: Yup.mixed().required('Required'),
+})
+
 export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> = Yup.object({
   complaintStatus: Yup.string().required('Required'),
   complaints: Yup.number().required('Required'),
   description: Yup.string().required('Required'),
-  id: Yup.number().required('Required'),
 })

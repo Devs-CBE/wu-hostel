@@ -11,6 +11,9 @@ import { object, SchemaOf, string } from 'yup'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AuthContext } from '@context/authContext'
+import { AxiosResponse } from 'axios'
+import { IApiResponse } from 'src/lib/service/auth-service'
+import { toast } from 'react-toastify'
 
 const loginFormSchema: SchemaOf<ILoginForm> = object({
   userName: string().required('Username required'),
@@ -27,9 +30,14 @@ function Login(): JSX.Element {
 
   const submitLoginForm: SubmitHandler<ILoginForm> = async (data: ILoginForm) => {
     console.log('data submitted', data)
-    signin(data, (res: any) => {
+    signin(data, (res: AxiosResponse<IApiResponse, any>) => {
       console.log(res)
-      navigate('/admin-dashboard')
+      if (res.data.entities[0]) {
+        toast.success(`Login Successfull`)
+        navigate('/admin-dashboard')
+      } else {
+        toast.error(`Login Failed`)
+      }
     })
   }
 

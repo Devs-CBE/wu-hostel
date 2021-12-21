@@ -1,11 +1,11 @@
 import {
-  complaintDetailedFormApiDeaultData,
+  complaintDetailedFormApiDefaultData,
   complaintFormApiDeaultData,
 } from '@constant/api-default-value'
 import { IcomplaintDetailedForm, IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
 import { IComplaintForm, IComplaintApi } from '@modal/complaint-form.modal'
 
-export function complaintCreationResponse(user: IComplaintForm, docs: any): IComplaintApi {
+export function complaintCreationResponse(user: IComplaintForm, docs: string): IComplaintApi {
   const responseData = complaintFormApiDeaultData
   responseData.attachment = docs
   responseData.complaintDescription = user.complaintDescription
@@ -18,8 +18,9 @@ export function complaintCreationResponse(user: IComplaintForm, docs: any): ICom
 
 export function ComplaintDetailedFormCreationResponse(
   user: IcomplaintDetailedForm,
+  complaintDetail: any,
 ): IcomplaintDetailedFormApi {
-  const responseData = complaintDetailedFormApiDeaultData
+  const responseData = complaintDetailedFormApiDefaultData
   responseData.complaintStatus = user.complaintStatus
   responseData.complaints = 0
   responseData.description = user.description

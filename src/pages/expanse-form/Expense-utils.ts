@@ -1,6 +1,5 @@
 import { expenseFormApiDeaultData } from '@constant/api-default-value'
 import { IExpenseForm, IExpenseFormApi } from '@modal/Expense-form.modal'
-import { boolean } from 'yup'
 
 export function ExpenseCreationResponse(user: IExpenseForm): IExpenseFormApi {
   const responseData = expenseFormApiDeaultData

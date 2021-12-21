@@ -5,4 +5,14 @@
   border-radius: 40px;
   max-width: 900px;
   border: 1px solid $primary;
+  min-height: 150px;
+}
+
+.selected-form-container {
+  background: $primary;
+  border-radius: 40px;
+  max-width: 900px;
+  border: 1px solid $white;
+  color: $white;
+  min-height: 150px;
 }

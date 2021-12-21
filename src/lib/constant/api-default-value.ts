@@ -1,9 +1,12 @@
 import { IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
 import { IComplaintApi } from '@modal/complaint-form.modal'
+import { IEnquiryMappingApi } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
+import { IKitchenApi } from '@modal/kitchen-form.modal'
 import { IExpenseFormApi } from '@modal/Expense-form.modal'
 import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
+import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
 
 export const locationApiDefaultData: ILocationApi = {
@@ -187,7 +190,46 @@ export const expenseFormApiDeaultData: IExpenseFormApi = {
   id: 0,
   recurring: true,
 }
-export const complaintDetailedFormApiDeaultData: IcomplaintDetailedFormApi = {
+
+export const kitchenFormApiDeaultData: IKitchenApi = {
+  amountToBePaid: 0,
+  buildings: 0,
+  description: '',
+  expanseMonthYear: '',
+  expanseName: '',
+  expansesCategory: 0,
+  expansesStatus: '',
+  id: 0,
+  recurring: true,
+}
+
+export const StaffAttendanceFormApiDeaultData: IStaffAttendanceFormApi = {
+  id: 0,
+  present: true,
+  presentDate: new Date(),
+  user: 0,
+}
+
+export const enquiryMappingDefaultData: IEnquiryMappingApi = {
+  address: '',
+  adminId: 0,
+  buildings: 0,
+  date: '',
+  description: '',
+  duration: '',
+  email: '',
+  enquiryStatus: '',
+  id: 0,
+  locations: 0,
+  name: '',
+  numberOfPeople: 0,
+  phoneNumber: '',
+  referral: '',
+  roomChoice: '',
+  zipCode: '',
+}
+
+export const complaintDetailedFormApiDefaultData: IcomplaintDetailedFormApi = {
   complaintStatus: '',
   complaints: 0,
   description: '',

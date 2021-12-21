@@ -1,6 +1,3 @@
-import { SchemaOf } from 'yup'
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React from 'react'
 
 export interface IRoute {
@@ -17,10 +14,6 @@ export const routesConfig: IRoute[] = [
   {
     path: 'admin-dashboard',
     components: React.lazy(() => import('./pages/admin-dashboard/AdminDashboard')),
-  },
-  {
-    path: 'enquiry',
-    components: React.lazy(() => import('@pages/enquiry-form/enquiry-dashboard')),
   },
   {
     path: 'enquiry-creation',
@@ -59,8 +52,8 @@ export const routesConfig: IRoute[] = [
     components: React.lazy(() => import('@pages/building-creation/building-form')),
   },
   {
-    path: 'expense-form',
-    components: React.lazy(() => import('@pages/expanse-form/Expense-Form')),
+    path: 'expense-dashboard',
+    components: React.lazy(() => import('@pages/expenses/expenses-dashboard')),
   },
   {
     path: 'complaint-mapping',
@@ -69,5 +62,13 @@ export const routesConfig: IRoute[] = [
   {
     path: 'enquiry-mapping',
     components: React.lazy(() => import('@pages/enquiry-form/enquiry-detailed-view')),
+  },
+  {
+    path: 'staff-attendance',
+    components: React.lazy(() => import('@pages/staff-attendance/staff-attendance-form')),
+  },
+  {
+    path: 'kitchen-expense',
+    components: React.lazy(() => import('@pages/kitchen-expanse-form/kitchen-expense-form')),
   },
 ]
