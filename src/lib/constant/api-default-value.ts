@@ -1,3 +1,4 @@
+import { IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
 import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryMappingApi } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'
@@ -226,4 +227,11 @@ export const enquiryMappingDefaultData: IEnquiryMappingApi = {
   referral: '',
   roomChoice: '',
   zipCode: '',
+}
+
+export const complaintDetailedFormApiDefaultData: IcomplaintDetailedFormApi = {
+  complaintStatus: '',
+  complaints: 0,
+  description: '',
+  id: 0,
 }
