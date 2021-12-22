@@ -57,7 +57,7 @@ export default function ComplaintForm(): JSX.Element {
   return (
     <div className="wrapper-complaint p-5 flex justify-center">
       <div className="form-container p-7">
-        <div className="p-3 flex-1 flex-row justify-center align-center">
+        <div className="flex-1 flex-row justify-center align-center">
           <Typography className="text-center" variant="h3" color="initial">
             Complaint
           </Typography>

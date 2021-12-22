@@ -11,37 +11,7 @@ import { IUserCreationFormApi } from '@modal/user-creation.modal'
 import { IBuildingFormApi } from '@modal/building-form-modal'
 
 export const locationApiDefaultData: ILocationApi = {
-  buildings: [
-    {
-      buildingAddress: '',
-      buildingName: '',
-      createAt: '',
-      createdBy: '',
-      deleted: false,
-      id: null,
-      latitude: '',
-      longitude: '',
-      publish: true,
-      rooms: [
-        {
-          createAt: '',
-          createdBy: '',
-          deleted: false,
-          id: null,
-          publish: true,
-          roomCapacity: 0,
-          roomFloor: 0,
-          roomName: '',
-          roomType: '',
-          updateAt: '',
-          updatedBy: '',
-        },
-      ],
-      updateAt: '',
-      updatedBy: '',
-      zipCode: '',
-    },
-  ],
+  buildings: [],
   createAt: '',
   createdBy: '',
   deleted: false,
@@ -241,7 +211,7 @@ export const buildingFormApiDefaultData: IBuildingFormApi = {
   buildingName: '',
   createAt: '',
   createdBy: '',
-  deleted: true,
+  deleted: false,
   id: null,
   latitude: '',
   longitude: '',

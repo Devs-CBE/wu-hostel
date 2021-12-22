@@ -11,8 +11,7 @@ export function complaintCreationResponse(user: IComplaintForm, docs: string): I
   responseData.complaintDescription = user.complaintDescription
   responseData.complaintsType = user.complaintsType
   responseData.contactNumber = user.contactNumber
-  responseData.user = 0
-
+  responseData.user = null
   return responseData
 }
 

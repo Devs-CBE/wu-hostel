@@ -10,25 +10,26 @@ import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 import { IBuildingForm } from '@modal/building-form-modal'
+import { IRoomTypeConstant } from '@constant/constant'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
-  address: Yup.mixed().required(),
-  email: Yup.mixed().required(),
-  name: Yup.mixed().required(),
-  password: Yup.mixed().required(),
-  phoneNumber: Yup.mixed().required(),
-  userType: Yup.mixed().required(),
-  zipCode: Yup.mixed().required(),
+  address: Yup.string().required(),
+  email: Yup.string().required(),
+  name: Yup.string().required(),
+  password: Yup.string().required(),
+  phoneNumber: Yup.string().required(),
+  userType: Yup.string().required(),
+  zipCode: Yup.string().required(),
   buildingsDTO: Yup.array(),
   roomsDTO: Yup.object(),
 })
 
 export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
-  buildingsDTO: Yup.mixed().required(),
+  buildingsDTO: Yup.object().required(),
   roomCapacity: Yup.number().required(),
   roomFloor: Yup.number().required(),
   roomName: Yup.string().required(),
-  roomType: Yup.mixed().required(),
+  roomType: Yup.mixed().oneOf(IRoomTypeConstant),
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
@@ -108,7 +109,10 @@ export const buildingFormSchema: Yup.SchemaOf<IBuildingForm> = Yup.object({
   buildingAddress: Yup.string().required('Required'),
   buildingName: Yup.string().required('Required'),
   zipCode: Yup.string().required('Required'),
-  locationsDTO: Yup.object(),
+  locationsDTO: Yup.object().shape({
+    locationName: Yup.string().required('Required'),
+    id: Yup.number().required('Required'),
+  }),
 })
 export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
   present: Yup.boolean().required('Required'),

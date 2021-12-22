@@ -54,13 +54,13 @@ export default function ExpenseForm(): JSX.Element {
     const expenseResponseData: IExpenseFormApi = ExpenseCreationResponse(data)
     console.log(expenseResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050POST /v1/api/expanses/create',
+      apiUrl: 'http://138.197.146.75:9050/v1/api/expanses/create',
       payload: expenseResponseData,
     }
     const res = await postApiHandler(apiData)
     console.log(res)
     res && res.isLoaded
-      ? toast.success('User Created successfully')
+      ? toast.success('Expense Added successfully')
       : toast.error('Please contact our admin')
   }
   return (

@@ -1,7 +1,7 @@
 export interface IBuildingForm {
   buildingAddress: string
   buildingName: string
-  locationsDTO: ILocationsDto
+  locationsDTO: any
   zipCode: string
 }
 

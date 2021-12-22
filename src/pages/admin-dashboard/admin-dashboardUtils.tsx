@@ -12,14 +12,6 @@ export const complaintHeader = [
     parameterName: 'complaintDescription',
   },
   {
-    displayName: 'building',
-    parameterName: '',
-  },
-  {
-    displayName: 'room',
-    parameterName: '',
-  },
-  {
     displayName: 'mobile',
     parameterName: 'contactNumber',
   },

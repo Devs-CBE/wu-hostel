@@ -51,27 +51,12 @@ export default function KitchenExpenseForm(): JSX.Element {
     fetchData()
   }, [])
 
-  useEffect(() => {
-    async function fetchData() {
-      const apiData = {
-        apiUrl: 'http://138.197.146.75:9050//v1/api/kitchen/expanses/month/{monthYear}',
-      }
-      const res: IApiHandlerReturn = await getApiHandler(apiData)
-      if (res.isLoaded) {
-        setCategory(res.responseData.entities)
-      }
-    }
-    fetchData()
-  }, [])
-
-  const { watch } = methods
-
   const submitKitchenForm: SubmitHandler<IKitchenForm> = async (data: IKitchenForm) => {
     console.log('data submitted', data)
     const kitchenResponseData: IKitchenApi = KitchenCreationResponse(data)
     console.log(kitchenResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050//v1/api/kitchen/expanses/create',
+      apiUrl: 'http://138.197.146.75:9050/v1/api/kitchen/expanses/create',
       payload: kitchenResponseData,
     }
     const res = await postApiHandler(apiData)
