@@ -90,7 +90,7 @@ export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup
 })
 
 export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.object({
-  adminId: Yup.mixed().required('Required'),
+  adminId: Yup.number().required('Required'),
 })
 
 export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
@@ -117,7 +117,7 @@ export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
 })
 
 export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
-  adminId: Yup.mixed().required('Required'),
+  adminId: Yup.number().required('Required'),
 })
 
 export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> = Yup.object({
