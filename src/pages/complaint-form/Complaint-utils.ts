@@ -24,6 +24,6 @@ export function ComplaintDetailedFormCreationResponse(
   responseData.complaintStatus = user.complaintStatus
   responseData.complaints = 0
   responseData.description = user.description
-  responseData.id = 0
+  responseData.id = null
   return responseData
 }

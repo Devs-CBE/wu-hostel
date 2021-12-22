@@ -9,10 +9,11 @@ import FormInputText from '@components/FormInputText/FormInputText'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { complaintDetailedFormSchema } from '@constant/validation-schema.constant'
 import { IcomplaintDetailedForm, IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
-import { postApiHandler } from '@utils/apiHandler'
+import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { ComplaintDetailedFormCreationResponse } from './Complaint-utils'
 import { Box } from '@mui/system'
+import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 
 export default function ComplaintDetailedView(): JSX.Element {
   const methods = useForm<IcomplaintDetailedForm>({
@@ -20,6 +21,7 @@ export default function ComplaintDetailedView(): JSX.Element {
   })
 
   const initialValue = {
+    id: 0,
     name: '',
     complaints: '',
     room: '',
@@ -30,6 +32,7 @@ export default function ComplaintDetailedView(): JSX.Element {
     image: '',
   }
   const [complaintDetail, setComplaintDetail] = useState(initialValue)
+  const [complaintMapping, setComplaintMapping] = useState<any>()
 
   useEffect(() => {
     const complaintDetails = sessionStorage.getItem('complaint_detail')
@@ -37,10 +40,26 @@ export default function ComplaintDetailedView(): JSX.Element {
     setComplaintDetail(parseData)
   }, [initialValue])
 
+  useEffect(() => {
+    async function fetchData() {
+      if (complaintDetail.id) {
+        const apiData = {
+          apiUrl: `http://138.197.146.75:9050/v1/api/complaints/mapping/list/${complaintDetail.id}`,
+        }
+        const res: IApiHandlerReturn = await getApiHandler(apiData)
+        if (res.isLoaded) {
+          setComplaintMapping(res.responseData.entities)
+        }
+      }
+    }
+    fetchData()
+  }, [complaintDetail])
+
   const submitComplaintDetailedForm: SubmitHandler<IcomplaintDetailedForm> = async (
     data: IcomplaintDetailedForm,
   ) => {
     console.log('data submitted', data)
+    console.log('complaint mapping', complaintMapping)
 
     const complaintResponseData: IcomplaintDetailedFormApi = ComplaintDetailedFormCreationResponse(
       data,
@@ -49,13 +68,13 @@ export default function ComplaintDetailedView(): JSX.Element {
 
     console.log(complaintResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050POST /v1/api/complaints/mapping/create',
+      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/mapping/create',
       payload: complaintResponseData,
     }
     const res = await postApiHandler(apiData)
     console.log(res)
     res && res.isLoaded
-      ? toast.success('User Created successfully')
+      ? toast.success('Complaint Updated successfully')
       : toast.error('Please contact our admin')
   }
   return (

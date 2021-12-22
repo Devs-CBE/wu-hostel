@@ -22,7 +22,7 @@ export interface ILocationApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   locationName: string
   publish: boolean
   updateAt: string
@@ -35,7 +35,7 @@ export interface IBuildingApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   latitude: string
   longitude: string
   publish: boolean
@@ -49,7 +49,7 @@ export interface IRoomApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   publish: boolean
   roomCapacity: number | undefined
   roomFloor: number | undefined

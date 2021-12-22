@@ -10,7 +10,7 @@ import { postApiHandler } from '@utils/apiHandler'
 import { enquiryMappingCreationResponse } from './Enquiry-utils'
 import { enquiryMappingFormSchema } from '@constant/validation-schema.constant'
 
-export default function EnquiryDetailView() {
+export default function EnquiryDetailView(): JSX.Element {
   const methods = useForm<IEnquiryMappingForm>({
     resolver: yupResolver(enquiryMappingFormSchema),
   })

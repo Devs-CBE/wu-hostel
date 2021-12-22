@@ -8,5 +8,5 @@ export interface IcomplaintDetailedFormApi {
   complaintStatus: string
   complaints: number
   description: string
-  id: number
+  id: number | null
 }

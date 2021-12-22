@@ -11,7 +11,7 @@ export interface IEnquiryMappingApi {
   duration: string
   email: string
   enquiryStatus: string
-  id: number
+  id: number | null
   locations: number
   name: string
   numberOfPeople: number

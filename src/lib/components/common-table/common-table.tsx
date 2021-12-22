@@ -2,7 +2,7 @@ import React from 'react'
 import IconButton from '@mui/material/IconButton'
 
 interface ITableProps {
-  headerName: Array<string>
+  headerName: Array<any>
   data: Array<any>
   linkClicked: any
   actionList: Array<IActionButton>
@@ -31,7 +31,7 @@ export default function CommonTable(props: ITableProps): JSX.Element {
                         key={i}
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        {item}
+                        {item.displayName}
                       </th>
                     )
                   })}
@@ -44,7 +44,7 @@ export default function CommonTable(props: ITableProps): JSX.Element {
                 {props.data.map((tableData, index) => (
                   <tr key={'tr' + index}>
                     {props.headerName.map((item, i) => {
-                      if (item === 'Action') {
+                      if (item.displayName === 'Action') {
                         return (
                           <td
                             key={'tr' + index + 'td' + i}
@@ -70,7 +70,7 @@ export default function CommonTable(props: ITableProps): JSX.Element {
                             key={'tr' + index + 'td' + i}
                             className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                           >
-                            {tableData[item]}
+                            {tableData[item.parameterName]}
                           </td>
                         )
                       }

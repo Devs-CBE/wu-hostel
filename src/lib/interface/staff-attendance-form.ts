@@ -8,7 +8,7 @@ export interface IStaffAttendanceForm {
 // For Sending API Response
 
 export interface IStaffAttendanceFormApi {
-  id: number
+  id: number | null
   present: boolean
   presentDate: Date
   user: number
