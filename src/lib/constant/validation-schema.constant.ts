@@ -9,6 +9,7 @@ import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
+import { IBuildingForm } from '@modal/building-form-modal'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
   address: Yup.mixed().required(),
@@ -94,8 +95,7 @@ export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.obj
 
 export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.mixed().required('Required'),
-
+  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
@@ -104,7 +104,12 @@ export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   id: Yup.number().required('Required'),
   recurring: Yup.mixed().required('Required'),
 })
-
+export const buildingFormSchema: Yup.SchemaOf<IBuildingForm> = Yup.object({
+  buildingAddress: Yup.string().required('Required'),
+  buildingName: Yup.string().required('Required'),
+  zipCode: Yup.string().required('Required'),
+  locationsDTO: Yup.object(),
+})
 export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
   present: Yup.boolean().required('Required'),
   presentDate: Yup.date().required('Required'),
