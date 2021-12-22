@@ -8,6 +8,7 @@ import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
 import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
+import { IBuildingFormApi } from '@modal/building-form-modal'
 
 export const locationApiDefaultData: ILocationApi = {
   buildings: [
@@ -234,4 +235,28 @@ export const complaintDetailedFormApiDefaultData: IcomplaintDetailedFormApi = {
   complaints: 0,
   description: '',
   id: 0,
+}
+export const buildingFormApiDefaultData: IBuildingFormApi = {
+  buildingAddress: '',
+  buildingName: '',
+  createAt: '',
+  createdBy: '',
+  deleted: true,
+  id: null,
+  latitude: '',
+  longitude: '',
+  publish: true,
+  updateAt: '',
+  updatedBy: '',
+  zipCode: '',
+  locationsDTO: {
+    createAt: '',
+    createdBy: '',
+    deleted: false,
+    id: null,
+    locationName: '',
+    publish: true,
+    updateAt: '',
+    updatedBy: '',
+  },
 }
