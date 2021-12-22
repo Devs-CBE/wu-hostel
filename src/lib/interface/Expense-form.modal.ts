@@ -6,7 +6,7 @@ export interface IExpenseForm {
   expanseName: string
   expansesCategory: number
   expansesStatus: string
-  id: number
+  id: number | null
   recurring: boolean
 }
 export interface IExpenseFormApi {
@@ -17,6 +17,6 @@ export interface IExpenseFormApi {
   expanseName: string
   expansesCategory: number
   expansesStatus: string
-  id: 0
+  id: number | null
   recurring: boolean
 }

@@ -93,15 +93,15 @@ export default function KitchenExpenseForm(): JSX.Element {
                     </LocalizationProvider>
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseName" label="ExpenseName" />
+                    <FormInputText name="expanseName" label="ExpenseName" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseCategory" label="Expense Category" />
+                    <FormInputText name="expanseCategory" label="Expense Category" />
                   </Grid>
 
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect
-                      name="expensestatus"
+                      name="expansestatus"
                       label="Expense Status"
                       optionList={expenseStatus}
                       optionObject={false}

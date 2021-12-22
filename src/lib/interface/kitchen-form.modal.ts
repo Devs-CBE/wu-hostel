@@ -6,7 +6,7 @@ export interface IKitchenForm {
   expanseName: string
   expansesCategory: number
   expansesStatus: string
-  id: number
+  id: number | null
   recurring: boolean
 }
 
@@ -18,6 +18,6 @@ export interface IKitchenApi {
   expanseName: string
   expansesCategory: number
   expansesStatus: string
-  id: number
+  id: number | null
   recurring: boolean
 }

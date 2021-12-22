@@ -1,6 +1,6 @@
 export interface IRoomsApi {
   buildingsDTO: IBuildingsDtoApi
-  id: number
+  id: number | null
   roomCapacity: number
   roomFloor: number
   roomName: string
@@ -13,7 +13,7 @@ export interface IBuildingsDtoApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   latitude: string
   locationsDTO: ILocationsDtoApi
   longitude: string
@@ -27,7 +27,7 @@ export interface ILocationsDtoApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   locationName: string
   publish: boolean
   updateAt: string

@@ -12,13 +12,13 @@ export interface IUserCreationForm {
 
 export interface IBuildingsDto {
   buildingName: string
-  id: number
+  id: number | null
   rooms: Array<any>
 }
 
 export interface IRoomsDto {
   roomName: {
-    id?: number
+    id?: number | null
   }
 }
 
@@ -27,7 +27,7 @@ export interface IUserCreationFormApi {
   address: string
   buildingsDTO: IBuildingsDtoApi[]
   email: string
-  id: number
+  id: number | null
   name: string
   password: string
   phoneNumber: string
@@ -42,7 +42,7 @@ export interface IBuildingsDtoApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   latitude: string
   locationsDTO: Partial<ILocationsDtoApi>
   longitude: string
@@ -56,7 +56,7 @@ export interface ILocationsDtoApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number | undefined
+  id: number | null
   locationName: string
   publish: boolean
   updateAt: string
@@ -65,7 +65,7 @@ export interface ILocationsDtoApi {
 
 export interface IRoomsDtoApi {
   buildingsDTO: IBuildingsDto2Api
-  id?: number
+  id?: number | null
   roomCapacity: number
   roomFloor: number
   roomName: string
@@ -78,7 +78,7 @@ export interface IBuildingsDto2Api {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   latitude: string
   locationsDTO: ILocationsDto2Api
   longitude: string
@@ -92,7 +92,7 @@ export interface ILocationsDto2Api {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number
+  id: number | null
   locationName: string
   publish: boolean
   updateAt: string

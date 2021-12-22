@@ -109,7 +109,7 @@ export const userCreationApiDefaultData: IUserCreationFormApi = {
       updatedBy: '',
       zipCode: '',
     },
-    id: 0,
+    id: null,
     roomCapacity: 0,
     roomFloor: 0,
     roomName: '',

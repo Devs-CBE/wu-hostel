@@ -11,7 +11,7 @@ export interface IAdminRegisteration {
 export interface IAdminRegisterationPost {
   address: string
   email: string
-  id: number
+  id: number | null
   name: string
   password: string
   phoneNumber: string
