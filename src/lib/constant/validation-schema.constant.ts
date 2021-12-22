@@ -94,8 +94,7 @@ export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.obj
 
 export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.mixed().required('Required'),
-
+  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
