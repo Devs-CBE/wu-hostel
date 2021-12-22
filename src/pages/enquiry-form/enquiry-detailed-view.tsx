@@ -13,7 +13,7 @@ import { Box } from '@mui/system'
 import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
 
-export default function EnquiryDetailView() {
+export default function EnquiryDetailView(): JSX.Element {
   const methods = useForm<IEnquiryMappingForm>({
     resolver: yupResolver(enquiryMappingFormSchema),
   })

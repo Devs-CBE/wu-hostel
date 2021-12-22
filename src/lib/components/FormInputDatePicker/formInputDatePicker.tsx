@@ -20,7 +20,6 @@ export default function FormInputDatePicker({
 }: IFormDatePickerProps): JSX.Element {
   const {
     control,
-    register,
     formState: { errors },
   } = useFormContext()
 

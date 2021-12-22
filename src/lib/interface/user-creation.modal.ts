@@ -56,7 +56,7 @@ export interface ILocationsDtoApi {
   createAt: string
   createdBy: string
   deleted: boolean
-  id: number | null
+  id: number | null | undefined
   locationName: string
   publish: boolean
   updateAt: string

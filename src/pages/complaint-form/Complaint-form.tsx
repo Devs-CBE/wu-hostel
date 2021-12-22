@@ -40,7 +40,7 @@ export default function ComplaintForm(): JSX.Element {
 
   const submitComplaintForm: SubmitHandler<IComplaintForm> = async (data: IComplaintForm) => {
     console.log('data submitted', data)
-    const documentString = await toBase64(data.attachment[0])
+    const documentString = data?.attachment[0] ? await toBase64(data.attachment[0]) : ''
     const complaintRes = complaintCreationResponse(data, documentString)
     console.log(complaintRes)
     const apiData = {

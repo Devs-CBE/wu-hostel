@@ -4,7 +4,11 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import classNames from 'classnames'
 
-export default function DashboardCard(): JSX.Element {
+export interface IDashboardCardProps {
+  tabClick: any
+}
+
+export default function DashboardCard(props: IDashboardCardProps): JSX.Element {
   const cardDetails = [
     {
       name: 'Enquiry/Booking Form',
@@ -28,6 +32,7 @@ export default function DashboardCard(): JSX.Element {
   const tabClick = (item: any) => {
     console.log(item)
     setMenuTab(item.name)
+    props.tabClick(item)
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
