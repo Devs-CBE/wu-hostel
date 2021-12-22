@@ -11,23 +11,19 @@ import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { kitchenFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
-import { IKitchenForm } from '@modal/kitchen-form.modal'
+import { IKitchenApi, IKitchenForm } from '@modal/kitchen-form.modal'
 import { KitchenCreationResponse } from './kitchen-utils'
-
-import TextField from '@mui/material/TextField'
-import AdapterDateFns from '@mui/lab/AdapterDateFns'
-import LocalizationProvider from '@mui/lab/LocalizationProvider'
-import DatePicker from '@mui/lab/DatePicker'
+import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
+import { toast } from 'react-toastify'
 
 export default function KitchenExpenseForm(): JSX.Element {
-  // const [value, onChange] = useState(new Date())
-  const [value, setValue] = React.useState<Date | null>(null) //using from mui date component
-
   const methods = useForm<IKitchenForm>({
     resolver: yupResolver(kitchenFormSchema),
   })
 
   const [buildingList, setBuilding] = useState([])
+  const [CategoryId, setCategory] = useState([])
+
   const expenseStatus = ['Paid', 'UnPaid', 'Hold']
 
   useEffect(() => {
@@ -40,13 +36,39 @@ export default function KitchenExpenseForm(): JSX.Element {
         setBuilding(res.responseData.entities)
       }
     }
-
+    fetchData()
+  }, [])
+  useEffect(() => {
+    async function fetchData() {
+      const apiData = {
+        apiUrl: 'http://138.197.146.75:9050/v1/api/kitchen/expanses/category/{categoryId}',
+      }
+      const res: IApiHandlerReturn = await getApiHandler(apiData)
+      if (res.isLoaded) {
+        setCategory(res.responseData.entities)
+      }
+    }
     fetchData()
   }, [])
 
+  useEffect(() => {
+    async function fetchData() {
+      const apiData = {
+        apiUrl: 'http://138.197.146.75:9050//v1/api/kitchen/expanses/month/{monthYear}',
+      }
+      const res: IApiHandlerReturn = await getApiHandler(apiData)
+      if (res.isLoaded) {
+        setCategory(res.responseData.entities)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const { watch } = methods
+
   const submitKitchenForm: SubmitHandler<IKitchenForm> = async (data: IKitchenForm) => {
     console.log('data submitted', data)
-    const kitchenResponseData = KitchenCreationResponse(data)
+    const kitchenResponseData: IKitchenApi = KitchenCreationResponse(data)
     console.log(kitchenResponseData)
     const apiData = {
       apiUrl: 'http://138.197.146.75:9050//v1/api/kitchen/expanses/create',
@@ -54,6 +76,7 @@ export default function KitchenExpenseForm(): JSX.Element {
     }
     const res = await postApiHandler(apiData)
     console.log(res)
+    res && res.isLoaded ? toast.success('updated') : toast.error('not found')
   }
   //refered by Enquiry Form
   return (
@@ -68,40 +91,31 @@ export default function KitchenExpenseForm(): JSX.Element {
               <form onSubmit={methods.handleSubmit(submitKitchenForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="name" label="Paid Amount" />
+                    <FormInputText name="amountToBePaid" label="Paid Amount" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect
                       name="buildings"
                       label="Building"
                       optionList={buildingList}
-                      optionObject={true}
                       optionParam="buildingName"
+                      optionObject={true}
                     />
                   </Grid>
 
                   <Grid item xs={12} sm={6} md={6}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                      <DatePicker
-                        label="Expense Date"
-                        value={value}
-                        onChange={(newValue) => {
-                          setValue(newValue)
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                      />
-                    </LocalizationProvider>
+                    <FormInputDatePicker label="Date" name="expanseMonthYear" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseName" label="ExpenseName" />
+                    <FormInputText name="expanseName" label="ExpenseName" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseCategory" label="Expense Category" />
+                    <FormInputText name="expansesCategory" label="Expense Category" />
                   </Grid>
 
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect
-                      name="expensestatus"
+                      name="expansesStatus"
                       label="Expense Status"
                       optionList={expenseStatus}
                       optionObject={false}
