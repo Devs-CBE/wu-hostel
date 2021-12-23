@@ -2,7 +2,10 @@ import {
   complaintDetailedFormApiDefaultData,
   complaintFormApiDeaultData,
 } from '@constant/api-default-value'
-import { IcomplaintDetailedForm, IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
+import {
+  IcomplaintDetailedForm,
+  IcomplaintDetailedFormApi,
+} from '@modal/Complaint-Detailed-Form.modal'
 import { IComplaintForm, IComplaintApi } from '@modal/complaint-form.modal'
 
 export function complaintCreationResponse(user: IComplaintForm, docs: string): IComplaintApi {

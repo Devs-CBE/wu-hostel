@@ -8,11 +8,13 @@ import FormInputText from '@components/FormInputText/FormInputText'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import { complaintDetailedFormSchema } from '@constant/validation-schema.constant'
-import { IcomplaintDetailedForm, IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
+import {
+  IcomplaintDetailedForm,
+  IcomplaintDetailedFormApi,
+} from '@modal/Complaint-Detailed-Form.modal'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { ComplaintDetailedFormCreationResponse } from './Complaint-utils'
-import { Box } from '@mui/system'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 
 export default function ComplaintDetailedView(): JSX.Element {
@@ -96,10 +98,10 @@ export default function ComplaintDetailedView(): JSX.Element {
                 </Grid>
               </Grid>
               <Grid container spacing={2} columns={12}>
-                <Grid item xs={12} sm={6} md={4} className=" wrapper-complaints">
+                <Grid item xs={12} sm={6} md={4}>
                   <FormInputText name="complaintStatus" label="Complaint Status" />
                 </Grid>
-                <Grid item xs={12} sm={12} md={12} className=" wrapper-complaints">
+                <Grid item xs={12} sm={12} md={12}>
                   <FormInputText
                     name="description"
                     label="Description"

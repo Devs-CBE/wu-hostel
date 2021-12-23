@@ -1,5 +1,5 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
-import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form'
+import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form.modal'
 import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { IKitchenForm } from '@modal/kitchen-form.modal'
@@ -10,7 +10,8 @@ import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 import { IBuildingForm } from '@modal/building-form-modal'
-import { IRoomTypeConstant } from '@constant/constant'
+import { expenseStatus, roomType } from '@constant/constant'
+import { IDashBoardFilter } from '@modal/dashboard.modal'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
   address: Yup.string().required(),
@@ -29,7 +30,7 @@ export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
   roomCapacity: Yup.number().required(),
   roomFloor: Yup.number().required(),
   roomName: Yup.string().required(),
-  roomType: Yup.mixed().oneOf(IRoomTypeConstant),
+  roomType: Yup.mixed().oneOf(roomType),
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
@@ -100,10 +101,9 @@ export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
-  expansesCategory: Yup.number().required('Required'),
-  expansesStatus: Yup.string().required('Required'),
-  id: Yup.number().required('Required'),
-  recurring: Yup.mixed().required('Required'),
+  expansesCategory: Yup.object().required('Required'),
+  expansesStatus: Yup.string().required('Required').oneOf(expenseStatus),
+  recurring: Yup.boolean().required('Required'),
 })
 export const buildingFormSchema: Yup.SchemaOf<IBuildingForm> = Yup.object({
   buildingAddress: Yup.string().required('Required'),
@@ -128,4 +128,8 @@ export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> =
   complaintStatus: Yup.string().required('Required'),
   complaints: Yup.number().required('Required'),
   description: Yup.string().required('Required'),
+})
+
+export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
+  dateFilter: Yup.date().optional(),
 })

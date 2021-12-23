@@ -7,8 +7,20 @@ import { useNavigate } from 'react-router-dom'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { getApiHandler } from '@utils/apiHandler'
 import { actionList, complaintHeader } from './admin-dashboardUtils'
+import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { IDashBoardFilter } from '@modal/dashboard.modal'
+import Grid from '@mui/material/Grid'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { dashboardFormSchema } from '@constant/validation-schema.constant'
 
 const AdminDashboard = (): JSX.Element => {
+  const methods = useForm<IDashBoardFilter>({
+    resolver: yupResolver(dashboardFormSchema),
+  })
+
+  const { watch } = methods
+
   const navigate = useNavigate()
   const [tableList, setTableList] = React.useState<Array<any>>([])
   const [headerName, setHeadername] = React.useState<Array<any>>([])
@@ -47,12 +59,34 @@ const AdminDashboard = (): JSX.Element => {
       navigate('/enquiry-mapping')
     }
   }
+
+  const submitDashboardFilter: SubmitHandler<IDashBoardFilter> = async (data: IDashBoardFilter) => {
+    console.log('data submitted', data)
+  }
+
   return (
     <div className="container m-5">
       <DashboardCard tabClick={tabChange}></DashboardCard>
       {/* {
         conditional rendering here
       } */}
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(submitDashboardFilter)}>
+          <Grid
+            container
+            spacing={1}
+            direction="row"
+            alignItems="flex-start"
+            alignContent="stretch"
+            marginBottom={3}
+            wrap="nowrap"
+          >
+            <Grid item md={3} sm={12} xs={12}>
+              <FormInputDatePicker label="Filter By Date" name="dateFilter" />
+            </Grid>
+          </Grid>
+        </form>
+      </FormProvider>
       <CommonTable
         headerName={headerName}
         actionList={actionLists}

@@ -15,16 +15,16 @@ import { IKitchenApi, IKitchenForm } from '@modal/kitchen-form.modal'
 import { KitchenCreationResponse } from './kitchen-utils'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { toast } from 'react-toastify'
+import { expenseStatus } from '@constant/constant'
+import FormInputToggle from '@components/FormInputToggle/formInputToggle'
 
 export default function KitchenExpenseForm(): JSX.Element {
   const methods = useForm<IKitchenForm>({
     resolver: yupResolver(kitchenFormSchema),
   })
 
-  const [buildingList, setBuilding] = useState([])
-  const [CategoryId, setCategory] = useState([])
-
-  const expenseStatus = ['Paid', 'UnPaid', 'Hold']
+  const [buildingList, setBuilding] = useState<Array<any>>([])
+  const [categoryList, setCategory] = useState<Array<any>>([])
 
   useEffect(() => {
     async function fetchData() {
@@ -41,15 +41,16 @@ export default function KitchenExpenseForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/kitchen/expanses/category/{categoryId}',
+        apiUrl: 'http://138.197.146.75:9050/v1/api/category/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
         setCategory(res.responseData.entities)
+        console.log(categoryList)
       }
     }
     fetchData()
-  }, [])
+  }, [categoryList])
 
   const submitKitchenForm: SubmitHandler<IKitchenForm> = async (data: IKitchenForm) => {
     console.log('data submitted', data)
@@ -61,7 +62,9 @@ export default function KitchenExpenseForm(): JSX.Element {
     }
     const res = await postApiHandler(apiData)
     console.log(res)
-    res && res.isLoaded ? toast.success('updated') : toast.error('not found')
+    res && res.isLoaded
+      ? toast.success('Expenses Added Successfully')
+      : toast.error('Please contact admin !')
   }
   //refered by Enquiry Form
   return (
@@ -95,7 +98,13 @@ export default function KitchenExpenseForm(): JSX.Element {
                     <FormInputText name="expanseName" label="ExpenseName" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expansesCategory" label="Expense Category" />
+                    <FormInputSelect
+                      name="expansesCategory"
+                      label="Expense Category"
+                      optionList={categoryList}
+                      optionObject={true}
+                      optionParam="categoryName"
+                    />
                   </Grid>
 
                   <Grid item xs={12} sm={6} md={6}>
@@ -114,6 +123,9 @@ export default function KitchenExpenseForm(): JSX.Element {
                       inputMultiline={true}
                       inputRows={3}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12}>
+                    <FormInputToggle name="recurring" label="Recurring" initialValue={false} />
                   </Grid>
                 </Grid>
                 <Box justifyContent="center" marginTop={5} display="flex" alignContent="center">

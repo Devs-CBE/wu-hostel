@@ -1,4 +1,4 @@
-import { IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form'
+import { IcomplaintDetailedFormApi } from '@modal/Complaint-Detailed-Form.modal'
 import { IComplaintApi } from '@modal/complaint-form.modal'
 import { IEnquiryMappingApi } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryApi } from '@modal/Enquiry-form.modal'

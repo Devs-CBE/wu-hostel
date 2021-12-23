@@ -4,9 +4,8 @@ export interface IKitchenForm {
   description: string
   expanseMonthYear: string
   expanseName: string
-  expansesCategory: number
+  expansesCategory: any
   expansesStatus: string
-  id: number | null
   recurring: boolean
 }
 
