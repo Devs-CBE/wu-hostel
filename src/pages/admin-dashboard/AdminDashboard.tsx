@@ -3,16 +3,24 @@ import CommonTable, { IActionButton } from '@components/common-table/common-tabl
 import * as React from 'react'
 import DashboardCard from './components/card'
 import { useNavigate } from 'react-router-dom'
-// import FrappeCharts from './components/charts'
+import FrappeCharts from './components/charts'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { getApiHandler } from '@utils/apiHandler'
-import { actionList, complaintHeader } from './admin-dashboardUtils'
+import {
+  actionList,
+  chartData,
+  color,
+  complaintHeader,
+  complaintStatus,
+  lineOptions,
+} from './admin-dashboardUtils'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { IDashBoardFilter } from '@modal/dashboard.modal'
 import Grid from '@mui/material/Grid'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { dashboardFormSchema } from '@constant/validation-schema.constant'
+import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 
 const AdminDashboard = (): JSX.Element => {
   const methods = useForm<IDashBoardFilter>({
@@ -23,9 +31,11 @@ const AdminDashboard = (): JSX.Element => {
   const [tableList, setTableList] = React.useState<Array<any>>([])
   const [headerName, setHeadername] = React.useState<Array<any>>([])
   const [actionLists, setActionList] = React.useState<Array<any>>([])
+  const [tabName, setTabName] = React.useState<string>('complaint')
 
   const tabChange = (data: any) => {
     console.log('tab item', data)
+    setTabName(data.name)
   }
 
   React.useEffect(() => {
@@ -65,33 +75,53 @@ const AdminDashboard = (): JSX.Element => {
   return (
     <div className="container m-5">
       <DashboardCard tabClick={tabChange}></DashboardCard>
-      {/* {
-        conditional rendering here
-      } */}
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(submitDashboardFilter)}>
-          <Grid
-            container
-            spacing={1}
-            direction="row"
-            alignItems="flex-start"
-            alignContent="stretch"
-            marginBottom={3}
-            wrap="nowrap"
-          >
-            <Grid item md={3} sm={12} xs={12}>
-              <FormInputDatePicker label="Filter By Date" name="dateFilter" />
+      {tabName === 'Complaints' ?? <></>}
+      {tabName === 'Enquiry/Booking Form' && (
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(submitDashboardFilter)}>
+            <Grid
+              container
+              spacing={1}
+              direction="row"
+              alignItems="flex-start"
+              alignContent="stretch"
+              marginBottom={3}
+              wrap="nowrap"
+            >
+              <Grid marginTop={1} item md={3} sm={6} xs={12}>
+                <FormInputDatePicker label="Filter By Date" name="dateFilter" />
+              </Grid>
+              <Grid item md={3} sm={6} xs={12}>
+                <FormInputSelect
+                  label="Filter By Status"
+                  name="status"
+                  optionList={complaintStatus}
+                  optionObject={false}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </FormProvider>
-      <CommonTable
-        headerName={headerName}
-        actionList={actionLists}
-        data={tableList}
-        linkClicked={tableClick}
-      />
-      {/* <FrappeCharts colors={color} lineOptions={lineOptions} data={chartData} type='bar' height={500} valuesOverPoints={1}/> */}
+          </form>
+        </FormProvider>
+      )}
+      {(tabName === 'Enquiry/Booking Form' || tabName === 'Complaints') && (
+        <CommonTable
+          headerName={headerName}
+          actionList={actionLists}
+          data={tableList}
+          linkClicked={tableClick}
+        />
+      )}
+
+      {tabName === 'Expenses' && (
+        <FrappeCharts
+          colors={color}
+          lineOptions={lineOptions}
+          data={chartData}
+          type="bar"
+          height={500}
+          valuesOverPoints={1}
+        />
+      )}
     </div>
   )
 }

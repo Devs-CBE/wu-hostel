@@ -132,4 +132,5 @@ export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> =
 
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
   dateFilter: Yup.date().optional(),
+  status: Yup.string().optional(),
 })

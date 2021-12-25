@@ -74,3 +74,5 @@ export const color = ['#ddd']
 export const lineOptions = {
   dotSize: 3,
 }
+
+export const complaintStatus = ['NEW', 'APPROVED']
