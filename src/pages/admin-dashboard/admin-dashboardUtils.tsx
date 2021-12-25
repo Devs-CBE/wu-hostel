@@ -12,12 +12,31 @@ export const complaintHeader = [
     parameterName: 'complaintDescription',
   },
   {
-    displayName: 'building',
-    parameterName: '',
+    displayName: 'mobile',
+    parameterName: 'contactNumber',
   },
   {
-    displayName: 'room',
+    displayName: 'Type',
+    parameterName: 'complaintsType',
+  },
+  {
+    displayName: 'Status',
+    parameterName: 'complaintStatus',
+  },
+  {
+    displayName: 'Action',
     parameterName: '',
+  },
+]
+
+export const enquiryHeader = [
+  {
+    displayName: 'name',
+    parameterName: 'createdBy',
+  },
+  {
+    displayName: 'complaints',
+    parameterName: 'complaintDescription',
   },
   {
     displayName: 'mobile',

@@ -40,7 +40,7 @@ export default function ComplaintFormUpdate(): JSX.Element {
     console.log('data submitted', data)
     const documentString = await toBase64(data.attachment[0])
     const apiData = {
-      apiUrl: `http://138.197.146.75:9050/v1/api/complaints/upload?complaintsId=${data.complaintId}`,
+      apiUrl: `/v1/api/complaints/upload?complaintsId=${data.complaintId}`,
       payload: documentString,
     }
     const res = await patchApiHandler(apiData)
