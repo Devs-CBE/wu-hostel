@@ -29,7 +29,7 @@ export default function KitchenExpenseForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
+        apiUrl: '/v1/api/buildings/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -41,7 +41,7 @@ export default function KitchenExpenseForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/category/list',
+        apiUrl: '/v1/api/category/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -57,7 +57,7 @@ export default function KitchenExpenseForm(): JSX.Element {
     const kitchenResponseData: IKitchenApi = KitchenCreationResponse(data)
     console.log(kitchenResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/kitchen/expanses/create',
+      apiUrl: '/v1/api/kitchen/expanses/create',
       payload: kitchenResponseData,
     }
     const res = await postApiHandler(apiData)

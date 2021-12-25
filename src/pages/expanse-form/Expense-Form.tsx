@@ -26,7 +26,7 @@ export default function ExpenseForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050//v1/api/expanses/buildings/{buildingId}',
+        apiUrl: '/v1/api/expanses/buildings/{buildingId}',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -39,7 +39,7 @@ export default function ExpenseForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/expanses/list',
+        apiUrl: '/v1/api/expanses/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -54,7 +54,7 @@ export default function ExpenseForm(): JSX.Element {
     const expenseResponseData: IExpenseFormApi = ExpenseCreationResponse(data)
     console.log(expenseResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/expanses/create',
+      apiUrl: '/v1/api/expanses/create',
       payload: expenseResponseData,
     }
     const res = await postApiHandler(apiData)

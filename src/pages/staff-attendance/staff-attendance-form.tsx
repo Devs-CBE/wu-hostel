@@ -20,16 +20,16 @@ export default function StaffAttendanceForm(): JSX.Element {
     resolver: yupResolver(staffFormSchema),
   })
 
-  const [userList, setUser] = React.useState([])
+  const [userList, setUser] = React.useState<Array<any>>([])
 
   React.useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/get/user',
+        apiUrl: '/v1/api/get/user',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
-        const user = res.responseData?.entites ? res.responseData.entites : []
+        const user = res.responseData.entities
         setUser(user)
       }
     }
@@ -44,7 +44,7 @@ export default function StaffAttendanceForm(): JSX.Element {
       StaffAttendanceCreationResponse(data)
     console.log(StaffAttendanceResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/staff/attendance/create',
+      apiUrl: '/v1/api/staff/attendance/create',
       payload: StaffAttendanceResponseData,
     }
     const res = await postApiHandler(apiData)

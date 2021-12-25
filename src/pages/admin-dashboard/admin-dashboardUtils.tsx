@@ -29,6 +29,33 @@ export const complaintHeader = [
   },
 ]
 
+export const enquiryHeader = [
+  {
+    displayName: 'name',
+    parameterName: 'createdBy',
+  },
+  {
+    displayName: 'complaints',
+    parameterName: 'complaintDescription',
+  },
+  {
+    displayName: 'mobile',
+    parameterName: 'contactNumber',
+  },
+  {
+    displayName: 'Type',
+    parameterName: 'complaintsType',
+  },
+  {
+    displayName: 'Status',
+    parameterName: 'complaintStatus',
+  },
+  {
+    displayName: 'Action',
+    parameterName: '',
+  },
+]
+
 export const actionList: IActionButton[] = [
   {
     icon: <ArrowForwardIcon />,

@@ -19,8 +19,6 @@ const AdminDashboard = (): JSX.Element => {
     resolver: yupResolver(dashboardFormSchema),
   })
 
-  const { watch } = methods
-
   const navigate = useNavigate()
   const [tableList, setTableList] = React.useState<Array<any>>([])
   const [headerName, setHeadername] = React.useState<Array<any>>([])
@@ -33,7 +31,7 @@ const AdminDashboard = (): JSX.Element => {
   React.useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/list/all',
+        apiUrl: '/v1/api/complaints/list/all',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {

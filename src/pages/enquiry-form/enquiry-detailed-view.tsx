@@ -49,7 +49,7 @@ export default function EnquiryDetailView(): JSX.Element {
 
     console.log(enquiryResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/enquiry/mapping/create',
+      apiUrl: '/v1/api/enquiry/mapping/create',
       payload: enquiryResponseData,
     }
 

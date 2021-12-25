@@ -35,7 +35,7 @@ export default function ComplaintDetailedView(): JSX.Element {
     async function fetchData() {
       if (complaintDetail?.id) {
         const apiData = {
-          apiUrl: `http://138.197.146.75:9050/v1/api/complaints/mapping/list/${complaintDetail.id}`,
+          apiUrl: `/v1/api/complaints/mapping/list/${complaintDetail.id}`,
         }
         const res: IApiHandlerReturn = await getApiHandler(apiData)
         if (res.isLoaded) {
@@ -59,7 +59,7 @@ export default function ComplaintDetailedView(): JSX.Element {
 
     console.log(complaintResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/mapping/create',
+      apiUrl: '/v1/api/complaints/mapping/create',
       payload: complaintResponseData,
     }
     const res = await postApiHandler(apiData)

@@ -28,7 +28,7 @@ export default function LocationForm(): JSX.Element {
     const locationResponse: ILocationApi = locationResponseDto(datas)
     console.log(locationResponse)
     const data = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/location/create',
+      apiUrl: '/v1/api/location/create',
       payload: locationResponse,
     }
     const res = await postApiHandler(data)

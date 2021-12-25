@@ -44,7 +44,7 @@ export default function ComplaintForm(): JSX.Element {
     const complaintRes = complaintCreationResponse(data, documentString)
     console.log(complaintRes)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/create',
+      apiUrl: '/v1/api/complaints/create',
       payload: complaintRes,
     }
     const res = await postApiHandler(apiData)
