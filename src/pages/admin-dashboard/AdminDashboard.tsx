@@ -31,7 +31,7 @@ const AdminDashboard = (): JSX.Element => {
   const [tableList, setTableList] = React.useState<Array<any>>([])
   const [headerName, setHeadername] = React.useState<Array<any>>([])
   const [actionLists, setActionList] = React.useState<Array<any>>([])
-  const [tabName, setTabName] = React.useState<string>('complaint')
+  const [tabName, setTabName] = React.useState<string>('Complaints')
 
   const tabChange = (data: any) => {
     console.log('tab item', data)
