@@ -75,4 +75,8 @@ export const routesConfig: IRoute[] = [
     path: 'kitchen-expense',
     components: React.lazy(() => import('@pages/kitchen-expanse-form/kitchen-expense-form')),
   },
+  {
+    path: 'monthly-rent',
+    components: React.lazy(() => import('@pages/monthly-rent/monthly-rent')),
+  },
 ]
