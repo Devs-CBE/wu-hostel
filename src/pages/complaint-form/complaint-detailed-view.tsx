@@ -16,6 +16,8 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { ComplaintDetailedFormCreationResponse } from './Complaint-utils'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
+import { Box, Button } from '@mui/material'
+import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 
 export default function ComplaintDetailedView(): JSX.Element {
   const methods = useForm<IcomplaintDetailedForm>({
@@ -45,6 +47,8 @@ export default function ComplaintDetailedView(): JSX.Element {
     }
     fetchData()
   }, [complaintDetail])
+
+  const complaintStatus = ['NEW', 'ASSIGNED', 'PENDING', 'COMPLETED']
 
   const submitComplaintDetailedForm: SubmitHandler<IcomplaintDetailedForm> = async (
     data: IcomplaintDetailedForm,
@@ -123,7 +127,12 @@ export default function ComplaintDetailedView(): JSX.Element {
                 <form onSubmit={methods.handleSubmit(submitComplaintDetailedForm)}>
                   <Grid container marginTop={2} spacing={2} columns={12}>
                     <Grid item xs={12} sm={12} md={12}>
-                      <FormInputText name="complaintStatus" label="Complaint Status" />
+                      <FormInputSelect
+                        name="complaintStatus"
+                        label="Complaint Status"
+                        optionList={complaintStatus}
+                        optionObject={false}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={12} md={12}>
                       <FormInputText
@@ -134,6 +143,18 @@ export default function ComplaintDetailedView(): JSX.Element {
                       />
                     </Grid>
                   </Grid>
+                  <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
+                    <div>
+                      <Button type="reset" variant="outlined">
+                        Cancel
+                      </Button>
+                    </div>
+                    <div className="ml-5">
+                      <Button type="submit" variant="contained">
+                        Update Complaint
+                      </Button>
+                    </div>
+                  </Box>
                 </form>
               </FormProvider>
             </div>

@@ -1,6 +1,8 @@
 import { IActionButton } from '@components/common-table/common-table'
 import { ChartData } from '@modal/charts.modal'
+import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { getApiHandler } from '@utils/apiHandler'
 
 export const complaintHeader = [
   {
@@ -76,3 +78,43 @@ export const lineOptions = {
 }
 
 export const complaintStatus = ['NEW', 'APPROVED']
+
+export async function loadExpenseData() {
+  const apiData = {
+    apiUrl: '/v1/api/expanses/list',
+  }
+  const expenseDataRes: IApiHandlerReturn = await getApiHandler(apiData)
+  return expenseDataRes
+}
+
+export async function loadEnquiryData() {
+  const apiData = {
+    apiUrl: '/v1/api/enquiry/list',
+  }
+  const enquiryDataRes: IApiHandlerReturn = await getApiHandler(apiData)
+  return enquiryDataRes
+}
+
+export async function loadComplaintData() {
+  const apiData = {
+    apiUrl: '/v1/api/complaints/list/all',
+  }
+  const complaintDataRes: IApiHandlerReturn = await getApiHandler(apiData)
+  return complaintDataRes
+}
+
+export async function loadRentData() {
+  const apiData = {
+    apiUrl: '/v1/api/complaints/list/all',
+  }
+  const complaintDataRes: IApiHandlerReturn = await getApiHandler(apiData)
+  return complaintDataRes
+}
+
+export async function loadKitchenData() {
+  const apiData = {
+    apiUrl: '/v1/api/kitchen/expanses/list',
+  }
+  const kitchenDataRes: IApiHandlerReturn = await getApiHandler(apiData)
+  return kitchenDataRes
+}

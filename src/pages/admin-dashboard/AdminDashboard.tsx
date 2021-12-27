@@ -36,6 +36,11 @@ const AdminDashboard = (): JSX.Element => {
   const tabChange = (data: any) => {
     console.log('tab item', data)
     setTabName(data.name)
+    if (data.name === 'Complaints') {
+    } else if (data.name === 'Enquiry/Booking Form') {
+    } else if (data.name === 'Expenses') {
+    } else if (data.name === 'Rent/Payment Remainder') {
+    }
   }
 
   React.useEffect(() => {
