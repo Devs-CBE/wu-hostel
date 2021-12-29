@@ -34,23 +34,23 @@ export const complaintHeader = [
 export const enquiryHeader = [
   {
     displayName: 'name',
-    parameterName: 'createdBy',
+    parameterName: 'name ',
   },
   {
-    displayName: 'complaints',
-    parameterName: 'complaintDescription',
+    displayName: 'Email',
+    parameterName: 'email',
   },
   {
-    displayName: 'mobile',
-    parameterName: 'contactNumber',
+    displayName: 'Phone Number',
+    parameterName: 'phoneNumber',
   },
   {
-    displayName: 'Type',
-    parameterName: 'complaintsType',
+    displayName: 'Number Of People',
+    parameterName: 'numberOfPeople',
   },
   {
-    displayName: 'Status',
-    parameterName: 'complaintStatus',
+    displayName: 'Date',
+    parameterName: 'date',
   },
   {
     displayName: 'Action',
@@ -92,7 +92,7 @@ export async function loadEnquiryData() {
     apiUrl: '/v1/api/enquiry/list',
   }
   const enquiryDataRes: IApiHandlerReturn = await getApiHandler(apiData)
-  return enquiryDataRes
+  return enquiryDataRes.responseData.entities
 }
 
 export async function loadComplaintData() {
@@ -100,7 +100,7 @@ export async function loadComplaintData() {
     apiUrl: '/v1/api/complaints/list/all',
   }
   const complaintDataRes: IApiHandlerReturn = await getApiHandler(apiData)
-  return complaintDataRes
+  return complaintDataRes.responseData.entities
 }
 
 export async function loadRentData() {

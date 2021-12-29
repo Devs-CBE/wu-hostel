@@ -12,7 +12,10 @@ import {
   color,
   complaintHeader,
   complaintStatus,
+  enquiryHeader,
   lineOptions,
+  loadComplaintData,
+  loadEnquiryData,
 } from './admin-dashboardUtils'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -33,11 +36,17 @@ const AdminDashboard = (): JSX.Element => {
   const [actionLists, setActionList] = React.useState<Array<any>>([])
   const [tabName, setTabName] = React.useState<string>('Complaints')
 
-  const tabChange = (data: any) => {
+  const tabChange = async (data: any) => {
     console.log('tab item', data)
     setTabName(data.name)
     if (data.name === 'Complaints') {
+      const complaintData = await loadComplaintData()
+      setTableList(complaintData)
+      setHeadername(complaintHeader)
     } else if (data.name === 'Enquiry/Booking Form') {
+      const enquiryData = await loadEnquiryData()
+      setHeadername(enquiryHeader)
+      setTableList(enquiryData)
     } else if (data.name === 'Expenses') {
     } else if (data.name === 'Rent/Payment Remainder') {
     }
