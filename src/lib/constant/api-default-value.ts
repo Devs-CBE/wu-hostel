@@ -8,6 +8,7 @@ import { ILocationApi } from '@modal/location-building-room.modal'
 import { IRoomsApi } from '@modal/rooms.modal'
 import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
+import { IMonthlyRentFormApi } from '@modal/monthly-rent.modal'
 import { IBuildingFormApi } from '@modal/building-form-modal'
 
 export const locationApiDefaultData: ILocationApi = {
@@ -229,4 +230,18 @@ export const buildingFormApiDefaultData: IBuildingFormApi = {
     updateAt: '',
     updatedBy: '',
   },
+}
+
+export const monthlyRentFormApiDefaultData: IMonthlyRentFormApi = {
+  amount: 0,
+  createAt: '',
+  createdBy: '',
+  deleted: true,
+  fullyPaid: true,
+  id: null,
+  monthAndYear: '',
+  publish: true,
+  updateAt: '',
+  updatedBy: '',
+  user: 0,
 }

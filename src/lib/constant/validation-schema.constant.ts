@@ -9,6 +9,7 @@ import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
+import { IMonthlyRentForm } from '@modal/monthly-rent.modal'
 import { IBuildingForm } from '@modal/building-form-modal'
 import { expenseStatus, roomType } from '@constant/constant'
 import { IDashBoardFilter } from '@modal/dashboard.modal'
@@ -128,6 +129,13 @@ export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> =
   complaintStatus: Yup.string().required('Required'),
   complaints: Yup.number().required('Required'),
   description: Yup.string().required('Required'),
+})
+
+export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object({
+  amount: Yup.number().required('Required'),
+  fullyPaid: Yup.boolean().required('Required'),
+  monthAndYear: Yup.string().required('Required'),
+  user: Yup.number().required('Required'),
 })
 
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
