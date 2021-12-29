@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import './Enquiry-Form.scss'
-import FormInputText from '@components/FormInputText/FormInputText'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IEnquiryMappingApi, IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
@@ -11,34 +10,14 @@ import { enquiryMappingCreationResponse } from './Enquiry-utils'
 import { enquiryMappingFormSchema } from '@constant/validation-schema.constant'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { toast } from 'react-toastify'
+import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 
 export default function EnquiryDetailView(): JSX.Element {
   const methods = useForm<IEnquiryMappingForm>({
     resolver: yupResolver(enquiryMappingFormSchema),
   })
 
-  const initialValue = {
-    name: '',
-    Phonenumber: '',
-    email: '',
-    noOfPeople: '',
-    roomchoice: '',
-    location: '',
-    building: '',
-    duration: '',
-    referal: '',
-    description: '',
-    address: '',
-    zipcode: '',
-  }
-  const [enquiryDetail, setEnquiryDetail] = useState(initialValue)
-
-  useEffect(() => {
-    const enquiryDetails = sessionStorage.getItem('enquiry_Detail')
-    const parseData = enquiryDetails ? JSON.parse(enquiryDetails) : initialValue
-    setEnquiryDetail(parseData)
-  }, [initialValue])
+  const adminType = ['ADMIN', 'SUPER_ADMIN', 'USER', 'STAFF', 'KITCHEN_STAFF']
 
   const submitEnquiryMappingForm: SubmitHandler<IEnquiryMappingForm> = async (
     data: IEnquiryMappingForm,
@@ -58,77 +37,119 @@ export default function EnquiryDetailView(): JSX.Element {
   }
   return (
     <>
-      <div className="wrapper wrapper-enquiry mt-4 justify-center">
-        <div className="form-container p-7">
-          <div className="p-1 flex-1 flex-row justify-center align-center">
-            <Box sx={{ flexGrow: 1 }}>
+      <div className=" wrapper-enquiry mt-4 justify-center">
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+          alignContent="stretch"
+          wrap="nowrap"
+        >
+          <Grid item xs={12} sm={5} md={5}>
+            <div className="form-container p-7">
+              <Typography className="text-center" variant="h3" color="initial">
+                Enquiry Detailed View
+              </Typography>
+              <Grid
+                container
+                paddingTop={2}
+                textAlign={'left'}
+                spacing={{ xs: 2, md: 2 }}
+                columns={12}
+              >
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Address</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Buildings</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Date</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Description</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Duration</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>E-mail</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Enquiry status</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Location</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Name</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>No of people</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Phone number</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Referral</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Room choice</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={4}>
+                  <span>Zipcode</span>
+                  <Typography variant="subtitle2"></Typography>
+                </Grid>
+              </Grid>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={5} md={5}>
+            <div className="form-container p-7">
               <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(submitEnquiryMappingForm)}>
-                  <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Name</span>
-                      <Typography variant="subtitle2">{enquiryDetail?.name}</Typography>
+                  <Grid container marginTop={2} spacing={2} columns={12}>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormInputSelect
+                        name="enquiryStatus"
+                        label="Admin Id"
+                        optionList={adminType}
+                        optionObject={false}
+                      />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Phone Number</span>
-                      <Typography variant="subtitle2">{enquiryDetail.Phonenumber}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Email</span>
-                      <Typography variant="subtitle2">{enquiryDetail.email}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>No. of people</span>
-                      <Typography variant="subtitle2">{enquiryDetail.noOfPeople}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Room Choice</span>
-                      <Typography variant="subtitle2">{enquiryDetail.roomchoice}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Location</span>
-                      <Typography variant="subtitle2">{enquiryDetail.location}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Building</span>
-                      <Typography variant="subtitle2">{enquiryDetail.building}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Duration</span>
-                      <Typography variant="subtitle2">{enquiryDetail.duration}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Referal</span>
-                      <Typography variant="subtitle2">{enquiryDetail.referal}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Description</span>
-                      <Typography variant="subtitle2">{enquiryDetail.description}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Address</span>
-                      <Typography variant="subtitle2">{enquiryDetail.address}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                      <span>Zipcode</span>
-                      <Typography variant="subtitle2">{enquiryDetail.zipcode}</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} className="wrapper">
-                      <FormInputText name="adminId" label="Admin Name" />
-                    </Grid>
-                    <Box marginTop={3} display="flex">
-                      <div className="my-2.5 ml-10">
-                        <Button type="submit" variant="contained" color="primary">
-                          Submit
-                        </Button>
-                      </div>
-                    </Box>
                   </Grid>
+                  <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
+                    <div>
+                      <Button type="reset" variant="outlined">
+                        Cancel
+                      </Button>
+                    </div>
+                    <div className="ml-5">
+                      <Button type="submit" variant="contained">
+                        Update Enquiry
+                      </Button>
+                    </div>
+                  </Box>
                 </form>
               </FormProvider>
-            </Box>
-          </div>
-        </div>
+            </div>
+          </Grid>
+        </Grid>
       </div>
     </>
   )
