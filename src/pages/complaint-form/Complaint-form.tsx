@@ -44,7 +44,7 @@ export default function ComplaintForm(): JSX.Element {
     const complaintRes = complaintCreationResponse(data, documentString)
     console.log(complaintRes)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/create',
+      apiUrl: '/v1/api/complaints/create',
       payload: complaintRes,
     }
     const res = await postApiHandler(apiData)
@@ -57,7 +57,7 @@ export default function ComplaintForm(): JSX.Element {
   return (
     <div className="wrapper-complaint p-5 flex justify-center">
       <div className="form-container p-7">
-        <div className="p-3 flex-1 flex-row justify-center align-center">
+        <div className="flex-1 flex-row justify-center align-center">
           <Typography className="text-center" variant="h3" color="initial">
             Complaint
           </Typography>

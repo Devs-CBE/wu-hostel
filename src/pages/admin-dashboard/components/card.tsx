@@ -51,7 +51,7 @@ export default function DashboardCard(props: IDashboardCardProps): JSX.Element {
               onClick={() => tabClick(item)}
               className={classNames([
                 'flex justify-center cursor-pointer items-center mb-5',
-                menuTab === item.name ? 'selected-form-container' : 'form-container',
+                menuTab === item.name ? 'selected-card-container' : 'card-container',
               ])}
             >
               <Typography variant="h6" margin={2}>

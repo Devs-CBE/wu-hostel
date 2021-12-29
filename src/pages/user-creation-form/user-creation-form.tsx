@@ -26,7 +26,7 @@ export default function UserCreationForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
+        apiUrl: '/v1/api/buildings/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -60,7 +60,7 @@ export default function UserCreationForm(): JSX.Element {
     const userResponse: IUserCreationFormApi = userCreationResponse(data)
     console.log(userResponse)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/location/create',
+      apiUrl: '/v1/api/location/create',
       payload: userResponse,
     }
     const res = await postApiHandler(apiData)

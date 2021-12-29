@@ -17,6 +17,6 @@ export interface IComplaintApi {
   contactNumber: string
   compaintStatus: 'NEW' | 'ASSIGNED' | 'PENDING' | 'COMPLETED'
   downloadPath: string
-  id: any
+  id: number | null
   user: any
 }
