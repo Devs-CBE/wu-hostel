@@ -12,7 +12,7 @@ export function KitchenCreationResponse(user: IKitchenForm): IKitchenApi {
   responseData.expanseName = user.expanseName
   responseData.expansesCategory = user.expansesCategory
   responseData.expansesStatus = user.expansesStatus
-  responseData.id = user.id
+  responseData.id = null
   responseData.recurring = user.recurring
 
   return responseData

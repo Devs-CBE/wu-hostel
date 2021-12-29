@@ -1,12 +1,11 @@
 export interface IKitchenForm {
   amountToBePaid: number
-  buildings: number
+  buildings: any
   description: string
   expanseMonthYear: string
   expanseName: string
-  expansesCategory: number
+  expansesCategory: any
   expansesStatus: string
-  id: number | null
   recurring: boolean
 }
 

@@ -8,9 +8,6 @@ import { locationCreationSchema } from '@constant/validation-schema.constant'
 import { ILocation, ILocationApi } from '@modal/location-building-room.modal'
 import RoomController from './room-controller'
 import { buildingDefaultValue, locationDefaultValue } from '@constant/form-default-value'
-import DeleteIcon from '@mui/icons-material/Delete'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import IconButton from '@mui/material/Button'
 import './location-form.scss'
 import { locationResponseDto } from './location-utils'
 import { postApiHandler } from '@utils/apiHandler'
@@ -31,7 +28,7 @@ export default function LocationForm(): JSX.Element {
     const locationResponse: ILocationApi = locationResponseDto(datas)
     console.log(locationResponse)
     const data = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/location/create',
+      apiUrl: '/v1/api/location/create',
       payload: locationResponse,
     }
     const res = await postApiHandler(data)
@@ -54,61 +51,63 @@ export default function LocationForm(): JSX.Element {
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(submitComplaintForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                  <Grid item xs={12} md={4} sm={4}>
+                  <Grid item xs={12} md={12} sm={12}>
                     <FormInputText label="Location Name" name="locationName" />
                   </Grid>
                 </Grid>
-                <label>Buildings</label>
                 {fields.map((item, index) => {
                   return (
-                    <Grid container spacing={{ xs: 2, md: 2 }} columns={12} key={item.id}>
-                      <Grid item xs={12} md={4} sm={4}>
-                        <FormInputText
-                          label="Building Address"
-                          name={`buildings[${index}].buildingAddress`}
-                        />
+                    <>
+                      <label>Buildings</label>
+                      <Grid container spacing={{ xs: 2, md: 2 }} columns={12} key={item.id}>
+                        <Grid item xs={12} md={4} sm={4}>
+                          <FormInputText
+                            label="Building Address"
+                            name={`buildings[${index}].buildingAddress`}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={4} sm={4}>
+                          <FormInputText
+                            label="Building Name"
+                            name={`buildings[${index}].buildingName`}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={4} sm={4}>
+                          <FormInputText label="Zipcode" name={`buildings[${index}].zipCode`} />
+                        </Grid>
+                        <Grid item xs={12} md={12} sm={12}>
+                          <RoomController nestIndex={index} {...{ control }} />
+                        </Grid>
+                        <Grid item xs={12} md={12} sm={12}>
+                          {fields.length - 1 === 0 ? (
+                            ''
+                          ) : (
+                            <Button
+                              className="mr-2"
+                              variant="outlined"
+                              onClick={() => {
+                                remove(index)
+                              }}
+                            >
+                              Remove Building
+                            </Button>
+                          )}
+                        </Grid>
                       </Grid>
-                      <Grid item xs={12} md={4} sm={4}>
-                        <FormInputText
-                          label="Building Name"
-                          name={`buildings[${index}].buildingName`}
-                        />
-                      </Grid>
-                      <Grid item xs={12} md={4} sm={4}>
-                        <FormInputText label="Zipcode" name={`buildings[${index}].zipCode`} />
-                      </Grid>
-                      <Grid item xs={12} md={12} sm={12}>
-                        <RoomController nestIndex={index} {...{ control }} />
-                      </Grid>
-                      {fields.length - 1 === 0 ? (
-                        <IconButton
-                          onClick={() => {
-                            remove(index)
-                          }}
-                          aria-label="delete"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      ) : (
-                        ''
-                      )}
-
-                      {fields.length - 1 === index ? (
-                        <IconButton
-                          onClick={() => {
-                            append(buildingDefaultValue)
-                          }}
-                          aria-label="add"
-                        >
-                          <AddCircleOutlineIcon />
-                        </IconButton>
-                      ) : (
-                        ''
-                      )}
-                    </Grid>
+                    </>
                   )
                 })}
-
+                <Grid item xs={12} md={12} sm={12}>
+                  <Button
+                    variant="outlined"
+                    className="ml-2"
+                    onClick={() => {
+                      append(buildingDefaultValue)
+                    }}
+                  >
+                    Add Building
+                  </Button>
+                </Grid>
                 <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
                   <div>
                     <Button type="reset" variant="outlined">
@@ -117,7 +116,7 @@ export default function LocationForm(): JSX.Element {
                   </div>
                   <div className="ml-5">
                     <Button type="submit" variant="contained">
-                      Create Complaint
+                      Create Location
                     </Button>
                   </div>
                 </Box>

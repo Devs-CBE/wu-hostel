@@ -1,5 +1,5 @@
 import { IComplaintForm, IComplaintUpdateForm } from '@modal/complaint-form.modal'
-import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form'
+import { IcomplaintDetailedForm } from '@modal/Complaint-Detailed-Form.modal'
 import { IEnquiryMappingForm } from '@modal/enquiry-detailed-view.modal'
 import { IEnquiryDetailForm, IEnquiryForm } from '@modal/Enquiry-form.modal'
 import { IKitchenForm } from '@modal/kitchen-form.modal'
@@ -10,25 +10,28 @@ import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
 import { IMonthlyRentForm } from '@modal/monthly-rent.modal'
+import { IBuildingForm } from '@modal/building-form-modal'
+import { expenseStatus, roomType } from '@constant/constant'
+import { IDashBoardFilter } from '@modal/dashboard.modal'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
-  address: Yup.mixed().required(),
-  email: Yup.mixed().required(),
-  name: Yup.mixed().required(),
-  password: Yup.mixed().required(),
-  phoneNumber: Yup.mixed().required(),
-  userType: Yup.mixed().required(),
-  zipCode: Yup.mixed().required(),
+  address: Yup.string().required(),
+  email: Yup.string().required(),
+  name: Yup.string().required(),
+  password: Yup.string().required(),
+  phoneNumber: Yup.string().required(),
+  userType: Yup.string().required(),
+  zipCode: Yup.string().required(),
   buildingsDTO: Yup.array(),
   roomsDTO: Yup.object(),
 })
 
 export const roomCreationSchema: Yup.SchemaOf<IRoomsForm> = Yup.object({
-  buildingsDTO: Yup.mixed().required(),
+  buildingsDTO: Yup.object().required(),
   roomCapacity: Yup.number().required(),
   roomFloor: Yup.number().required(),
   roomName: Yup.string().required(),
-  roomType: Yup.mixed().required(),
+  roomType: Yup.mixed().oneOf(roomType),
 })
 
 export const locationCreationSchema: Yup.SchemaOf<ILocation> = Yup.object({
@@ -90,22 +93,28 @@ export const complaintUpdateFormSchema: Yup.SchemaOf<IComplaintUpdateForm> = Yup
 })
 
 export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.object({
-  adminId: Yup.mixed().required('Required'),
+  adminId: Yup.number().required('Required'),
 })
 
 export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.mixed().required('Required'),
-
+  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
-  expansesCategory: Yup.number().required('Required'),
-  expansesStatus: Yup.string().required('Required'),
-  id: Yup.number().required('Required'),
-  recurring: Yup.mixed().required('Required'),
+  expansesCategory: Yup.object().required('Required'),
+  expansesStatus: Yup.string().required('Required').oneOf(expenseStatus),
+  recurring: Yup.boolean().required('Required'),
 })
-
+export const buildingFormSchema: Yup.SchemaOf<IBuildingForm> = Yup.object({
+  buildingAddress: Yup.string().required('Required'),
+  buildingName: Yup.string().required('Required'),
+  zipCode: Yup.string().required('Required'),
+  locationsDTO: Yup.object().shape({
+    locationName: Yup.string().required('Required'),
+    id: Yup.number().required('Required'),
+  }),
+})
 export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
   present: Yup.boolean().required('Required'),
   presentDate: Yup.date().required('Required'),
@@ -113,7 +122,7 @@ export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
 })
 
 export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
-  adminId: Yup.mixed().required('Required'),
+  adminId: Yup.number().required('Required'),
 })
 
 export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> = Yup.object({
@@ -127,4 +136,9 @@ export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object(
   fullyPaid: Yup.boolean().required('Required'),
   monthAndYear: Yup.string().required('Required'),
   user: Yup.number().required('Required'),
+})
+
+export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
+  dateFilter: Yup.date().optional(),
+  status: Yup.string().optional(),
 })

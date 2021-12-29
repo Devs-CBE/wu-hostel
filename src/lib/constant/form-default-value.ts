@@ -15,6 +15,6 @@ export const buildingDefaultValue = {
 }
 
 export const locationDefaultValue: ILocation = {
-  buildings: [buildingDefaultValue],
+  buildings: [],
   locationName: '',
 }

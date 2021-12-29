@@ -24,7 +24,7 @@ export default function RoomCreation(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/list',
+        apiUrl: '/v1/api/buildings/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -39,7 +39,7 @@ export default function RoomCreation(): JSX.Element {
     const userResponse: IRoomsApi = roomResponseDto(data)
     console.log(userResponse)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/rooms/create',
+      apiUrl: '/v1/api/rooms/create',
       payload: userResponse,
     }
     const res = await postApiHandler(apiData)
