@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
+import './staff-attendance.scss'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { staffFormSchema } from '@constant/validation-schema.constant'
@@ -13,7 +14,7 @@ import { toast } from 'react-toastify'
 import { Grid } from '@mui/material'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import FormInputToggle from '@components/FormInputToggle/formInputToggle'
-import FormInputSelect from '@components/FormInputSelect/formInputSelect'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 
 export default function StaffAttendanceForm(): JSX.Element {
   const methods = useForm<IStaffAttendanceForm>({
@@ -21,6 +22,22 @@ export default function StaffAttendanceForm(): JSX.Element {
   })
 
   const [userList, setUser] = React.useState<Array<any>>([])
+
+  // Attendance Table
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 300 },
+    { field: 'user', headerName: 'Name', width: 200 },
+  ]
+
+  const rows = [
+    { id: 1, user: 'Raja' },
+    { id: 2, user: 'Kavi' },
+    { id: 3, user: 'Karthi' },
+    { id: 4, user: 'Vel' },
+    { id: 5, user: 'Vetri' },
+  ]
+  // Attendance Table
 
   React.useEffect(() => {
     async function fetchData() {
@@ -55,7 +72,7 @@ export default function StaffAttendanceForm(): JSX.Element {
   }
 
   return (
-    <div className="wrapper-login p-5 flex justify-center">
+    <div className="wrapper-enquiry p-5 flex justify-center">
       <div className="form-container p-7">
         <div className="p-3 flex-1 flex-row justify-center align-center">
           <Typography className="text-center" variant="h3" color="initial">
@@ -66,21 +83,18 @@ export default function StaffAttendanceForm(): JSX.Element {
               <form onSubmit={methods.handleSubmit(submitStaffAttendanceForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
                   <Grid item xs={12} md={12} sm={12}>
-                    <FormInputSelect
-                      optionList={userList}
-                      optionParam="name"
-                      optionObject={true}
-                      label="User"
-                      name="user"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={12} sm={12}>
                     <FormInputDatePicker label="Date" name="presentDate" />
                   </Grid>
-                  <Grid item xs={12} md={12} sm={12}>
-                    <FormInputToggle label="Present / Absent" name="present" />
-                  </Grid>
                 </Grid>
+                <div style={{ height: 400, width: '100%' }}>
+                  <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                  />
+                </div>
                 <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
                   <div>
                     <Button type="reset" variant="outlined">
