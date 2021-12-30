@@ -14,19 +14,21 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { ExpenseCreationResponse } from './Expense-utils'
 import { toast } from 'react-toastify'
 import './Expense-Form.scss'
+import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
+import FormInputToggle from '@components/FormInputToggle/formInputToggle'
 
 export default function ExpenseForm(): JSX.Element {
   const methods = useForm<IExpenseForm>({
     resolver: yupResolver(expenseFormSchema),
   })
-  const [buildingList, setBuilding] = useState(['building1', 'building2', 1562, 7000])
+  const [buildingList, setBuilding] = useState<Array<any>>([])
   const expenseStatus = ['PAID', 'UNPAID', 'HOLD']
-  const [expenseCategoryList, setExpenseCategory] = useState([])
+  const [expenseCategoryList, setExpenseCategory] = useState<Array<any>>([])
 
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: '/v1/api/expanses/buildings/{buildingId}',
+        apiUrl: '/v1/api/buildings/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -35,11 +37,10 @@ export default function ExpenseForm(): JSX.Element {
     }
     fetchData()
   }, [])
-
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: '/v1/api/expanses/list',
+        apiUrl: 'v1/api/category/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -79,13 +80,13 @@ export default function ExpenseForm(): JSX.Element {
                       name="buildings"
                       label="Building"
                       optionList={buildingList}
-                      optionObject={false}
+                      optionObject={true}
                       optionParam="buildingName"
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect
-                      name="expenseCategory"
+                      name="expansesCategory"
                       label="Expense Category"
                       optionList={expenseCategoryList}
                       optionObject={false}
@@ -93,23 +94,19 @@ export default function ExpenseForm(): JSX.Element {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseName" label="Expense name" />
+                    <FormInputText name="expanseName" label="Expense name" />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={12} sm={6} md={6}>
                     <FormInputText name="amountToBePaid" label="Amount to be paid" />
                   </Grid>
 
-                  <Grid item xs={12} sm={6} md={3}>
-                    <FormInputText name="expenseMonthYear" label="Expense month-year" />
-                  </Grid>
-
                   <Grid item xs={12} sm={6} md={6}>
-                    <FormInputText name="expenseType" label="Expense type" />
+                    <FormInputDatePicker label="Date" name="expanseMonthYear" />
                   </Grid>
 
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect
-                      name="expenseStatus"
+                      name="expansesStatus"
                       label="Expense status"
                       optionList={expenseStatus}
                       optionObject={false}
@@ -124,6 +121,9 @@ export default function ExpenseForm(): JSX.Element {
                       inputMultiline={true}
                       inputRows={3}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={12}>
+                    <FormInputToggle name="recurring" label="Recurring" initialValue={false} />
                   </Grid>
                 </Grid>
                 <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">

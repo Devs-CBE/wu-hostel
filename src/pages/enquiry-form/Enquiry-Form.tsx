@@ -14,6 +14,7 @@ import { enquiryCreationResponse } from './Enquiry-utils'
 import { enquiryFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
+import { toast } from 'react-toastify'
 
 export default function EnquiryForm(): JSX.Element {
   const methods = useForm<IEnquiryForm>({
@@ -66,6 +67,9 @@ export default function EnquiryForm(): JSX.Element {
 
     const res = await postApiHandler(apiData)
     console.log(res)
+    res && res.isLoaded
+      ? toast.success('Enquiry Created successfully')
+      : toast.error('Please contact our admin')
   }
 
   return (
