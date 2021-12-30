@@ -58,11 +58,19 @@ export const enquiryHeader = [
   },
 ]
 
-export const actionList: IActionButton[] = [
+export const complaintActionList: IActionButton[] = [
   {
     icon: <ArrowForwardIcon />,
     action: 'detailed_view',
     route: 'complaint',
+  },
+]
+
+export const enquiryActionList: IActionButton[] = [
+  {
+    icon: <ArrowForwardIcon />,
+    action: 'detailed_view',
+    route: 'enquiry',
   },
 ]
 
@@ -81,23 +89,23 @@ export const complaintStatus = ['NEW', 'APPROVED']
 
 export async function loadExpenseData() {
   const apiData = {
-    apiUrl: '/v1/api/expanses/list',
+    apiUrl: `/v1/api/expanses/list`,
   }
   const expenseDataRes: IApiHandlerReturn = await getApiHandler(apiData)
   return expenseDataRes
 }
 
-export async function loadEnquiryData() {
+export async function loadEnquiryData(pageOffset = 0, pageSize = 5) {
   const apiData = {
-    apiUrl: '/v1/api/enquiry/list',
+    apiUrl: `/v1/api/enquiry/page/${pageOffset}/${pageSize}`,
   }
   const enquiryDataRes: IApiHandlerReturn = await getApiHandler(apiData)
   return enquiryDataRes.responseData.entities
 }
 
-export async function loadComplaintData() {
+export async function loadComplaintData(pageOffset = 0, pageSize = 5) {
   const apiData = {
-    apiUrl: '/v1/api/complaints/list/all',
+    apiUrl: `/v1/api/complaints/page/${pageOffset}/${pageSize}`,
   }
   const complaintDataRes: IApiHandlerReturn = await getApiHandler(apiData)
   return complaintDataRes.responseData.entities
@@ -105,7 +113,7 @@ export async function loadComplaintData() {
 
 export async function loadRentData() {
   const apiData = {
-    apiUrl: '/v1/api/complaints/list/all',
+    apiUrl: `/v1/api/complaints/list/all`,
   }
   const complaintDataRes: IApiHandlerReturn = await getApiHandler(apiData)
   return complaintDataRes
@@ -113,7 +121,7 @@ export async function loadRentData() {
 
 export async function loadKitchenData() {
   const apiData = {
-    apiUrl: '/v1/api/kitchen/expanses/list',
+    apiUrl: `/v1/api/kitchen/expanses/list`,
   }
   const kitchenDataRes: IApiHandlerReturn = await getApiHandler(apiData)
   return kitchenDataRes

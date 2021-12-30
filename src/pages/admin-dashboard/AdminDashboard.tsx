@@ -7,7 +7,8 @@ import FrappeCharts from './components/charts'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { getApiHandler } from '@utils/apiHandler'
 import {
-  actionList,
+  complaintActionList,
+  enquiryActionList,
   chartData,
   color,
   complaintHeader,
@@ -33,7 +34,7 @@ const AdminDashboard = (): JSX.Element => {
   const navigate = useNavigate()
   const [tableList, setTableList] = React.useState<Array<any>>([])
   const [headerName, setHeadername] = React.useState<Array<any>>([])
-  const [actionLists, setActionList] = React.useState<Array<any>>([])
+  const [actionList, setActionList] = React.useState<Array<any>>([])
   const [tabName, setTabName] = React.useState<string>('Complaints')
 
   const tabChange = async (data: any) => {
@@ -43,10 +44,12 @@ const AdminDashboard = (): JSX.Element => {
       const complaintData = await loadComplaintData()
       setTableList(complaintData)
       setHeadername(complaintHeader)
+      setActionList(complaintActionList)
     } else if (data.name === 'Enquiry/Booking Form') {
       const enquiryData = await loadEnquiryData()
       setHeadername(enquiryHeader)
       setTableList(enquiryData)
+      setActionList(enquiryActionList)
     } else if (data.name === 'Expenses') {
     } else if (data.name === 'Rent/Payment Remainder') {
     }
@@ -54,20 +57,12 @@ const AdminDashboard = (): JSX.Element => {
 
   React.useEffect(() => {
     async function fetchData() {
-      const apiData = {
-        apiUrl: '/v1/api/complaints/list/all',
-      }
-      const res: IApiHandlerReturn = await getApiHandler(apiData)
-      if (res.isLoaded) {
-        setTableList(res.responseData.entities)
-      }
+      const complaintData = await loadComplaintData()
+      setTableList(complaintData)
+      setHeadername(complaintHeader)
+      setActionList(complaintActionList)
     }
     fetchData()
-  }, [])
-
-  React.useEffect(() => {
-    setHeadername(complaintHeader)
-    setActionList(actionList)
   }, [])
 
   const tableClick = (data: any, btnAction: IActionButton) => {
@@ -79,6 +74,18 @@ const AdminDashboard = (): JSX.Element => {
     } else if (btnAction.route === 'enquiry') {
       sessionStorage.setItem('enquiry_detail', JSON.stringify(data))
       navigate('/enquiry-mapping')
+    }
+  }
+
+  const pageAction = async (pageOffset: number, pageSize: number) => {
+    if (tabName === 'Complaints') {
+      const complaintData = await loadComplaintData(pageOffset, pageSize)
+      setTableList(complaintData)
+      setHeadername(complaintHeader)
+    } else if (tabName === 'Enquiry/Booking Form') {
+      const enquiryData = await loadEnquiryData(pageOffset, pageSize)
+      setHeadername(enquiryHeader)
+      setTableList(enquiryData)
     }
   }
 
@@ -120,9 +127,10 @@ const AdminDashboard = (): JSX.Element => {
       {(tabName === 'Enquiry/Booking Form' || tabName === 'Complaints') && (
         <CommonTable
           headerName={headerName}
-          actionList={actionLists}
+          actionList={actionList}
           data={tableList}
           linkClicked={tableClick}
+          pageAction={pageAction}
         />
       )}
 

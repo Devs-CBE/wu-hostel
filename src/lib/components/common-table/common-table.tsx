@@ -7,6 +7,7 @@ interface ITableProps {
   data: Array<any>
   linkClicked: any
   actionList: Array<IActionButton>
+  pageAction: (pageOffset: number, pageSize: number) => void
 }
 
 export interface IActionButton {
@@ -17,18 +18,21 @@ export interface IActionButton {
 }
 
 export default function CommonTable(props: ITableProps): JSX.Element {
-  const [page, setPage] = React.useState(2)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [pageOffset, setPageOffset] = React.useState(0)
+  const [pageSize, setPageSize] = React.useState(5)
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage)
+    setPageOffset(newPage)
+    props.pageAction(newPage, pageSize)
   }
 
-  const handleChangeRowsPerPage = (
+  const handleChangePageSize = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
+    const changesPAgeSize = Number(event.target.value)
+    setPageSize(changesPAgeSize)
+    setPageOffset(0)
+    props.pageAction(0, changesPAgeSize)
   }
 
   return (
@@ -96,11 +100,12 @@ export default function CommonTable(props: ITableProps): JSX.Element {
                   <td colSpan={props.headerName.length}>
                     <TablePagination
                       component="div"
-                      count={100}
-                      page={page}
+                      count={10}
+                      page={pageOffset}
+                      rowsPerPageOptions={[5, 10, 15]}
                       onPageChange={handleChangePage}
-                      rowsPerPage={rowsPerPage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
+                      rowsPerPage={pageSize}
+                      onRowsPerPageChange={handleChangePageSize}
                     />
                   </td>
                 </tr>
