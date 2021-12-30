@@ -94,6 +94,7 @@ export default function KitchenExpenseForm(): JSX.Element {
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputDatePicker label="Date" name="expanseMonthYear" />
                   </Grid>
+
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputText name="expanseName" label="ExpenseName" />
                   </Grid>

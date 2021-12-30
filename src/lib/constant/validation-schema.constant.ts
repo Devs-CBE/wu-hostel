@@ -70,14 +70,14 @@ export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
 
 export const expenseFormSchema: Yup.SchemaOf<IExpenseForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.number().required('Required'),
+  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
   expansesCategory: Yup.number().required('Required'),
   expansesStatus: Yup.string().required('Required'),
   id: Yup.number().required('Required'),
-  recurring: Yup.mixed().required('Required'),
+  recurring: Yup.boolean().required('Required'),
 })
 
 export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({

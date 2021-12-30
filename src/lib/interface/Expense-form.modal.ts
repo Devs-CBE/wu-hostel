@@ -1,6 +1,6 @@
 export interface IExpenseForm {
   amountToBePaid: number
-  buildings: number
+  buildings: any
   description: string
   expanseMonthYear: string
   expanseName: string
