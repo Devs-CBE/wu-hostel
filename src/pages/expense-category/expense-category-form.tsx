@@ -19,22 +19,7 @@ export default function ExpenseCategoryForm(): JSX.Element {
   const methods = useForm<IExpenseCategoryForm>({
     resolver: yupResolver(expenseCategoryFormSchema),
   })
-  const categoryList = ['Kitchen', 'plumping']
-  // const [categoryList, setCategory] = useState<Array<any>>([])
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const apiData = {
-  //       apiUrl: 'http://138.197.146.75:9050/v1/api/category/list',
-  //     }
-  //     const res: IApiHandlerReturn = await getApiHandler(apiData)
-  //     if (res.isLoaded) {
-  //       setCategory(res.responseData.entities)
-  //       console.log(categoryList)
-  //     }
-  //   }
-  //   fetchData()
-  // }, [categoryList])
+  const categoryList = ['KITCHEN', 'plumping']
 
   const submitExpenseCategoryForm: SubmitHandler<IExpenseCategoryForm> = async (
     data: IExpenseCategoryForm,
@@ -44,7 +29,7 @@ export default function ExpenseCategoryForm(): JSX.Element {
       ExpenseCategoryCreationResponse(data)
     console.log(expenseCategoryResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/category/create',
+      apiUrl: '/v1/api/category/create',
       payload: expenseCategoryResponseData,
     }
     const res = await postApiHandler(apiData)

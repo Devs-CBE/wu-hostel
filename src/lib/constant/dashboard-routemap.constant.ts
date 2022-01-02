@@ -71,4 +71,9 @@ export const expenseRoute = [
     icon: LocationIcon,
     url: '/expense',
   },
+  {
+    name: 'Expense Category',
+    icon: LocationIcon,
+    url: '/expense-category',
+  },
 ]

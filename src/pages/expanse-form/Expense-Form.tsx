@@ -38,14 +38,15 @@ export default function ExpenseForm(): JSX.Element {
     }
     fetchData()
   }, [])
+
   useEffect(() => {
     async function fetchData() {
-      const apiData = {
+      const apiDatas = {
         apiUrl: 'v1/api/category/list',
       }
-      const res: IApiHandlerReturn = await getApiHandler(apiData)
-      if (res.isLoaded) {
-        setExpenseCategory(res.responseData.entities)
+      const categoryRes: IApiHandlerReturn = await getApiHandler(apiDatas)
+      if (categoryRes.isLoaded) {
+        setExpenseCategory(categoryRes.responseData.entities)
       }
     }
     fetchData()
@@ -94,7 +95,7 @@ export default function ExpenseForm(): JSX.Element {
                       name="expansesCategory"
                       label="Expense Category"
                       optionList={expenseCategoryList}
-                      optionObject={false}
+                      optionObject={true}
                       optionParam="expenseCategory"
                     />
                   </Grid>
