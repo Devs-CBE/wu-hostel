@@ -1,0 +1,25 @@
+@import '../../theme/variable';
+
+.wrapper-enquiry {
+  background-image: url(/assest/icons/person.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: auto;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-containers {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 40px;
+  max-width: 600px;
+  border: 1px solid $primary;
+  height: auto;
+}

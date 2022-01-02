@@ -13,6 +13,7 @@ import { IMonthlyRentForm } from '@modal/monthly-rent.modal'
 import { IBuildingForm } from '@modal/building-form-modal'
 import { expenseStatus, roomType } from '@constant/constant'
 import { IDashBoardFilter } from '@modal/dashboard.modal'
+import { IExpenseCategoryForm } from '@modal/expense-category.modals'
 
 export const userCreationSchema: Yup.SchemaOf<IUserCreationForm> = Yup.object({
   address: Yup.string().required(),
@@ -140,4 +141,9 @@ export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object(
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
   dateFilter: Yup.date().optional(),
   status: Yup.string().optional(),
+})
+
+export const expenseCategoryFormSchema: Yup.SchemaOf<IExpenseCategoryForm> = Yup.object({
+  categoryName: Yup.string().required('required'),
+  expanseCategoryType: Yup.string().required('required'),
 })

@@ -10,6 +10,7 @@ import { IStaffAttendanceFormApi } from '@modal/staff-attendance-form'
 import { IUserCreationFormApi } from '@modal/user-creation.modal'
 import { IMonthlyRentFormApi } from '@modal/monthly-rent.modal'
 import { IBuildingFormApi } from '@modal/building-form-modal'
+import { IExpenseCategoryFormApi } from '@modal/expense-category.modals'
 
 export const locationApiDefaultData: ILocationApi = {
   buildings: [],
@@ -244,4 +245,16 @@ export const monthlyRentFormApiDefaultData: IMonthlyRentFormApi = {
   updateAt: '',
   updatedBy: '',
   user: 0,
+}
+
+export const expenseCategoryFormApiDefaultData: IExpenseCategoryFormApi = {
+  categoryName: '',
+  createAt: '',
+  createdBy: '',
+  deleted: true,
+  expanseCategoryType: '',
+  id: null,
+  publish: true,
+  updateAt: '',
+  updatedBy: '',
 }
