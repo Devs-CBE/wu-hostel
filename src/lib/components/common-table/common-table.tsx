@@ -1,11 +1,13 @@
 import React from 'react'
 import IconButton from '@mui/material/IconButton'
+import TablePagination from '@mui/material/TablePagination'
 
 interface ITableProps {
   headerName: Array<any>
   data: Array<any>
   linkClicked: any
   actionList: Array<IActionButton>
+  pageAction: (pageOffset: number, pageSize: number) => void
 }
 
 export interface IActionButton {
@@ -16,6 +18,23 @@ export interface IActionButton {
 }
 
 export default function CommonTable(props: ITableProps): JSX.Element {
+  const [pageOffset, setPageOffset] = React.useState(0)
+  const [pageSize, setPageSize] = React.useState(5)
+
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    setPageOffset(newPage)
+    props.pageAction(newPage, pageSize)
+  }
+
+  const handleChangePageSize = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const changesPAgeSize = Number(event.target.value)
+    setPageSize(changesPAgeSize)
+    setPageOffset(0)
+    props.pageAction(0, changesPAgeSize)
+  }
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -77,6 +96,19 @@ export default function CommonTable(props: ITableProps): JSX.Element {
                     })}
                   </tr>
                 ))}
+                <tr>
+                  <td colSpan={props.headerName.length}>
+                    <TablePagination
+                      component="div"
+                      count={10}
+                      page={pageOffset}
+                      rowsPerPageOptions={[5, 10, 15]}
+                      onPageChange={handleChangePage}
+                      rowsPerPage={pageSize}
+                      onRowsPerPageChange={handleChangePageSize}
+                    />
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

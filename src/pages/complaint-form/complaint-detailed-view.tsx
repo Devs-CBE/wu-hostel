@@ -16,6 +16,8 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { ComplaintDetailedFormCreationResponse } from './Complaint-utils'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
+import { Box, Button } from '@mui/material'
+import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 
 export default function ComplaintDetailedView(): JSX.Element {
   const methods = useForm<IcomplaintDetailedForm>({
@@ -35,7 +37,7 @@ export default function ComplaintDetailedView(): JSX.Element {
     async function fetchData() {
       if (complaintDetail?.id) {
         const apiData = {
-          apiUrl: `http://138.197.146.75:9050/v1/api/complaints/mapping/list/${complaintDetail.id}`,
+          apiUrl: `/v1/api/complaints/mapping/list/${complaintDetail.id}`,
         }
         const res: IApiHandlerReturn = await getApiHandler(apiData)
         if (res.isLoaded) {
@@ -45,6 +47,8 @@ export default function ComplaintDetailedView(): JSX.Element {
     }
     fetchData()
   }, [complaintDetail])
+
+  const complaintStatus = ['NEW', 'ASSIGNED', 'PENDING', 'COMPLETED']
 
   const submitComplaintDetailedForm: SubmitHandler<IcomplaintDetailedForm> = async (
     data: IcomplaintDetailedForm,
@@ -59,7 +63,7 @@ export default function ComplaintDetailedView(): JSX.Element {
 
     console.log(complaintResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/complaints/mapping/create',
+      apiUrl: '/v1/api/complaints/mapping/create',
       payload: complaintResponseData,
     }
     const res = await postApiHandler(apiData)
@@ -70,49 +74,92 @@ export default function ComplaintDetailedView(): JSX.Element {
   }
   return (
     <>
-      <div className="wrapper wrapper-complaint mt-4 justify-center">
-        <div className="form-container p-7">
-          <Typography className="text-center" variant="h3" color="initial">
-            Complaint Detailed View
-          </Typography>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(submitComplaintDetailedForm)}>
-              <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                <Grid item xs={12} sm={6} md={4}>
+      <div className="wrapper-complaint mt-4 ">
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justifyContent="space-evenly"
+          alignItems="flex-start"
+          alignContent="stretch"
+          wrap="nowrap"
+        >
+          <Grid item xs={10} sm={5} md={5}>
+            <div className="form-container p-7">
+              <Typography className="text-center" variant="h3" color="initial">
+                Complaint Detailed View
+              </Typography>
+              <Grid
+                container
+                paddingTop={2}
+                textAlign={'left'}
+                spacing={{ xs: 2, md: 2 }}
+                columns={12}
+              >
+                <Grid item xs={12} sm={12} md={4} lg={6}>
                   <span>Name</span>
                   <Typography variant="subtitle2">{complaintDetail?.name}</Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <span>Complaints</span>
+                <Grid item xs={12} sm={12} md={4} lg={6}>
+                  <span>Complaints Description</span>
                   <Typography variant="subtitle2">
                     {complaintDetail?.complaintDescription}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={12} md={4} lg={6}>
+                  <span>Complaints Type</span>
+                  <Typography variant="subtitle2">{complaintDetail?.complaintsType}</Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} md={4} lg={6}>
                   <span>Mobile</span>
                   <Typography variant="subtitle2">{complaintDetail?.contactNumber}</Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={12} md={4} lg={6}>
                   <span>Remarks</span>
                   <Typography variant="subtitle2">{complaintDetail?.complaintStatus}</Typography>
                 </Grid>
               </Grid>
-              <Grid container spacing={2} columns={12}>
-                <Grid item xs={12} sm={6} md={4}>
-                  <FormInputText name="complaintStatus" label="Complaint Status" />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                  <FormInputText
-                    name="description"
-                    label="Description"
-                    inputMultiline={true}
-                    inputRows={3}
-                  />
-                </Grid>
-              </Grid>
-            </form>
-          </FormProvider>
-        </div>
+            </div>
+          </Grid>
+          <Grid item xs={10} sm={5} md={5}>
+            <div className="form-container p-7">
+              <FormProvider {...methods}>
+                <form onSubmit={methods.handleSubmit(submitComplaintDetailedForm)}>
+                  <Grid container marginTop={2} spacing={2} columns={12}>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormInputSelect
+                        name="complaintStatus"
+                        label="Complaint Status"
+                        optionList={complaintStatus}
+                        optionObject={false}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormInputText
+                        name="description"
+                        label="Description"
+                        inputMultiline={true}
+                        inputRows={3}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
+                    <div>
+                      <Button type="reset" variant="outlined">
+                        Cancel
+                      </Button>
+                    </div>
+                    <div className="ml-5">
+                      <Button type="submit" variant="contained">
+                        Update Complaint
+                      </Button>
+                    </div>
+                  </Box>
+                </form>
+              </FormProvider>
+            </div>
+          </Grid>
+        </Grid>
       </div>
     </>
   )

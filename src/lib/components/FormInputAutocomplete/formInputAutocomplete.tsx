@@ -2,36 +2,41 @@ import React from 'react'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 import CircularProgress from '@mui/material/CircularProgress'
-import axios from 'axios'
+import { useFormContext } from 'react-hook-form'
 
-export default function Asynchronous() {
+interface IFormAutocompleteProps {
+  label: string
+  name: string
+  optionList: any
+  optionParam: string
+  inputEvent: (value: string) => void
+}
+
+export default function FormInputAutocomplete({
+  label,
+  name,
+  optionList,
+  optionParam,
+  inputEvent,
+}: IFormAutocompleteProps) {
   const [open, setOpen] = React.useState(false)
-  const [options, setOptions] = React.useState<any>([])
-  const loading = open && options.length === 0
-
-  const onChangeHandle = async (value: any) => {
-    // this default api does not support searching but if you use google maps or some other use the value and post to get back you reslut and then set it using setOptions
-    console.log(value)
-
-    const response = await axios({
-      method: 'get',
-      url: 'https://country.register.gov.uk/records.json?page-size=5000',
-    })
-    console.log(response)
-
-    //  setOptions(Object.keys(response).map((key) => response[key].item[0]));
+  const loading = open && optionList.length === 0
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
+  const onChangeHandle = (value: any) => {
+    inputEvent(value)
   }
 
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([])
-    }
-  }, [open])
+  // React.useEffect(() => {
+  //   if (!open) {
+  //     setOptions([])
+  //   }
+  // }, [open])
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
-      style={{ width: 300 }}
       open={open}
       onOpen={() => {
         setOpen(true)
@@ -39,16 +44,25 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false)
       }}
-      getOptionLabel={(option: any) => option.name}
-      options={options}
+      renderOption={(props, option) => {
+        return (
+          <li {...props} key={option.id}>
+            {option[optionParam]}
+          </li>
+        )
+      }}
+      getOptionLabel={(option: any) => option[optionParam]}
+      options={optionList}
       loading={loading}
       renderInput={(params: any) => (
         <TextField
           {...params}
-          label="Asynchronous"
+          {...register}
+          label={label}
+          error={!!errors[name]}
+          helperText={errors[name]?.message ?? ''}
           variant="outlined"
           onChange={(ev: any) => {
-            // dont fire API if the user delete or not entered anything
             if (ev.target.value !== '' || ev.target.value !== null) {
               onChangeHandle(ev.target.value)
             }

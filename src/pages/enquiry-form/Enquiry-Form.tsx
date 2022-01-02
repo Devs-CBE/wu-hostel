@@ -14,6 +14,7 @@ import { enquiryCreationResponse } from './Enquiry-utils'
 import { enquiryFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
+import { toast } from 'react-toastify'
 
 export default function EnquiryForm(): JSX.Element {
   const methods = useForm<IEnquiryForm>({
@@ -29,7 +30,7 @@ export default function EnquiryForm(): JSX.Element {
     async function fetchData() {
       if (locationWatch) {
         const apiData = {
-          apiUrl: `http://138.197.146.75:9050/v1/api/buildings/location/${locationWatch.id}`,
+          apiUrl: `/v1/api/buildings/location/${locationWatch.id}`,
         }
         const res: IApiHandlerReturn = await getApiHandler(apiData)
         if (res.isLoaded) {
@@ -45,7 +46,7 @@ export default function EnquiryForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/location/list',
+        apiUrl: '/v1/api/location/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -60,12 +61,15 @@ export default function EnquiryForm(): JSX.Element {
     const enquiryResponseData = enquiryCreationResponse(data)
     console.log(enquiryResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/enquiry/create',
+      apiUrl: '/v1/api/enquiry/create',
       payload: enquiryResponseData,
     }
 
     const res = await postApiHandler(apiData)
     console.log(res)
+    res && res.isLoaded
+      ? toast.success('Enquiry Created successfully')
+      : toast.error('Please contact our admin')
   }
 
   return (

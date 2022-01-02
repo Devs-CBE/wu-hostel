@@ -9,6 +9,7 @@ import { IRoomsForm } from '@modal/rooms.modal'
 import { IUserCreationForm } from '@modal/user-creation.modal'
 import { IStaffAttendanceForm } from '@modal/staff-attendance-form'
 import * as Yup from 'yup'
+import { IMonthlyRentForm } from '@modal/monthly-rent.modal'
 import { IBuildingForm } from '@modal/building-form-modal'
 import { expenseStatus, roomType } from '@constant/constant'
 import { IDashBoardFilter } from '@modal/dashboard.modal'
@@ -70,14 +71,13 @@ export const enquiryFormSchema: Yup.SchemaOf<IEnquiryForm> = Yup.object({
 
 export const expenseFormSchema: Yup.SchemaOf<IExpenseForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.number().required('Required'),
+  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
   expansesCategory: Yup.number().required('Required'),
   expansesStatus: Yup.string().required('Required'),
-  id: Yup.number().required('Required'),
-  recurring: Yup.mixed().required('Required'),
+  recurring: Yup.boolean().required('Required'),
 })
 
 export const complaintFormSchema: Yup.SchemaOf<IComplaintForm> = Yup.object({
@@ -131,8 +131,16 @@ export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> =
   description: Yup.string().required('Required'),
 })
 
+export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object({
+  amount: Yup.number().required('Required'),
+  fullyPaid: Yup.boolean().required('Required'),
+  monthAndYear: Yup.string().required('Required'),
+  user: Yup.object().required('Required'),
+})
+
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
   dateFilter: Yup.date().optional(),
+  status: Yup.string().optional(),
 })
 
 export const expenseCategoryFormSchema: Yup.SchemaOf<IExpenseCategoryForm> = Yup.object({

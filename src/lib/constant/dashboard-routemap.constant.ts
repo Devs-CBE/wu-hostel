@@ -59,11 +59,16 @@ export const expenseRoute = [
   {
     name: 'Monthly Rent',
     icon: LocationIcon,
-    url: '/expanses',
+    url: '/monthly-rent',
   },
   {
     name: 'Kitchen Expenses',
     icon: LocationIcon,
     url: '/kitchen-expense',
+  },
+  {
+    name: 'Expenses',
+    icon: LocationIcon,
+    url: '/expense',
   },
 ]

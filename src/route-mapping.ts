@@ -79,4 +79,8 @@ export const routesConfig: IRoute[] = [
     path: 'expense-category',
     components: React.lazy(() => import('@pages/expense-category/expense-category-form')),
   },
+  {
+    path: 'monthly-rent',
+    components: React.lazy(() => import('@pages/monthly-rent/monthly-rent')),
+  },
 ]

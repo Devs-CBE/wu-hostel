@@ -25,7 +25,7 @@ function DashboardView({ defaultRouteConfig }: IDefaultRouteConfig): JSX.Element
                 onClick={(e) => {
                   navigate(item.url)
                 }}
-                className="form-container flex justify-center cursor-pointer items-center"
+                className="card-container flex justify-center cursor-pointer items-center"
               >
                 <img width="50px" src={item.icon} alt={item.name} />
                 <Typography variant="h6" margin={2}>

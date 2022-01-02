@@ -22,7 +22,7 @@ export default function BuildingForm(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/location/list',
+        apiUrl: '/v1/api/location/list',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
@@ -37,7 +37,7 @@ export default function BuildingForm(): JSX.Element {
     const buildingFormResponseData = buildingFormCreationResponse(data)
     console.log(buildingFormResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/buildings/create',
+      apiUrl: '/v1/api/buildings/create',
       payload: buildingFormResponseData,
     }
 

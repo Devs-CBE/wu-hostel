@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
+import './staff-attendance.scss'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { staffFormSchema } from '@constant/validation-schema.constant'
@@ -12,29 +13,35 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { Grid } from '@mui/material'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
-import FormInputToggle from '@components/FormInputToggle/formInputToggle'
-import FormInputSelect from '@components/FormInputSelect/formInputSelect'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 
 export default function StaffAttendanceForm(): JSX.Element {
   const methods = useForm<IStaffAttendanceForm>({
     resolver: yupResolver(staffFormSchema),
   })
 
-  const [userList, setUser] = React.useState([])
+  const [userList, setUser] = React.useState<Array<any>>([])
 
   React.useEffect(() => {
     async function fetchData() {
       const apiData = {
-        apiUrl: 'http://138.197.146.75:9050/v1/api/get/user',
+        apiUrl: '/v1/api/get/user',
       }
       const res: IApiHandlerReturn = await getApiHandler(apiData)
       if (res.isLoaded) {
-        const user = res.responseData?.entites ? res.responseData.entites : []
+        const user = res.responseData.entities
         setUser(user)
       }
     }
     fetchData()
   }, [])
+
+  // Attendance Table
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 300 },
+    { field: 'user', headerName: 'Name', width: 200 },
+  ]
 
   const submitStaffAttendanceForm: SubmitHandler<IStaffAttendanceForm> = async (
     data: IStaffAttendanceForm,
@@ -44,7 +51,7 @@ export default function StaffAttendanceForm(): JSX.Element {
       StaffAttendanceCreationResponse(data)
     console.log(StaffAttendanceResponseData)
     const apiData = {
-      apiUrl: 'http://138.197.146.75:9050/v1/api/staff/attendance/create',
+      apiUrl: '/v1/api/staff/attendance/create',
       payload: StaffAttendanceResponseData,
     }
     const res = await postApiHandler(apiData)
@@ -55,7 +62,7 @@ export default function StaffAttendanceForm(): JSX.Element {
   }
 
   return (
-    <div className="wrapper-login p-5 flex justify-center">
+    <div className="wrapper-enquiry p-5 flex justify-center">
       <div className="form-container p-7">
         <div className="p-3 flex-1 flex-row justify-center align-center">
           <Typography className="text-center" variant="h3" color="initial">
@@ -66,21 +73,18 @@ export default function StaffAttendanceForm(): JSX.Element {
               <form onSubmit={methods.handleSubmit(submitStaffAttendanceForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
                   <Grid item xs={12} md={12} sm={12}>
-                    <FormInputSelect
-                      optionList={userList}
-                      optionParam="name"
-                      optionObject={true}
-                      label="User"
-                      name="user"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={12} sm={12}>
                     <FormInputDatePicker label="Date" name="presentDate" />
                   </Grid>
-                  <Grid item xs={12} md={12} sm={12}>
-                    <FormInputToggle label="Present / Absent" name="present" />
-                  </Grid>
                 </Grid>
+                <div style={{ height: 400, width: '100%' }}>
+                  <DataGrid
+                    rows={userList}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                  />
+                </div>
                 <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
                   <div>
                     <Button type="reset" variant="outlined">

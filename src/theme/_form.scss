@@ -3,7 +3,7 @@
 .form-container {
   background: rgba(255, 255, 255, 0.75);
   border-radius: 40px;
-  min-width: 440px;
+  width: 100%;
   border: 1px solid $primary;
   min-height: 150px;
 }
@@ -11,7 +11,7 @@
 .card-container {
   background: rgba(255, 255, 255, 0.75);
   border-radius: 40px;
-  max-width: 900px;
+  max-width: 100%;
   border: 1px solid $primary;
   min-height: 150px;
 }
@@ -19,7 +19,7 @@
 .selected-card-container {
   background: $primary;
   border-radius: 40px;
-  max-width: 900px;
+  max-width: 100%;
   border: 1px solid $white;
   color: $white;
   min-height: 150px;

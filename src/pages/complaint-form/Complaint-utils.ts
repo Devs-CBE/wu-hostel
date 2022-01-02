@@ -24,8 +24,8 @@ export function ComplaintDetailedFormCreationResponse(
 ): IcomplaintDetailedFormApi {
   const responseData = complaintDetailedFormApiDefaultData
   responseData.complaintStatus = user.complaintStatus
-  responseData.complaints = 0
   responseData.description = user.description
-  responseData.id = null
+  responseData.complaints = 0
+  responseData.id = complaintDetail.id
   return responseData
 }
