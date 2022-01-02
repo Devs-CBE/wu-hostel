@@ -23,11 +23,25 @@ export function enquiryCreationResponse(user: IEnquiryForm): IEnquiryApi {
   return responseData
 }
 
-export const enquiryDetail = undefined
-
-export function enquiryMappingCreationResponse(user: IEnquiryMappingForm): IEnquiryMappingApi {
+export function enquiryMappingCreationResponse(
+  user: IEnquiryMappingForm,
+  enquiryDetails: any,
+): IEnquiryMappingApi {
   const responseData = enquiryMappingDefaultData
-  responseData.adminId = 0
-
+  responseData.adminId = user.adminId.id
+  responseData.address = enquiryDetails.address
+  // responseData.buildings = enquiryDetails.buildings.id
+  responseData.description = enquiryDetails.description
+  // responseData.duration = enquiryDetails.duration
+  responseData.email = enquiryDetails.email
+  responseData.enquiryStatus = 'NEW'
+  responseData.id = enquiryDetails.id
+  // responseData.locations = enquiryDetails.locations.id
+  responseData.name = enquiryDetails.name
+  responseData.numberOfPeople = enquiryDetails.numberOfPeople
+  responseData.phoneNumber = enquiryDetails.phoneNumber
+  // responseData.referral = enquiryDetails.referal
+  // responseData.roomChoice = enquiryDetails.roomChoice
+  responseData.zipCode = enquiryDetails.zipCode
   return responseData
 }

@@ -34,6 +34,10 @@ export default function DashboardCard(props: IDashboardCardProps): JSX.Element {
     setMenuTab(item.name)
     props.tabClick(item)
   }
+
+  React.useEffect(() => {
+    setMenuTab('Complaints')
+  }, [])
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid

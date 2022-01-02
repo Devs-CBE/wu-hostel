@@ -13,7 +13,6 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import { Grid } from '@mui/material'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
-import FormInputToggle from '@components/FormInputToggle/formInputToggle'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 
 export default function StaffAttendanceForm(): JSX.Element {
@@ -22,22 +21,6 @@ export default function StaffAttendanceForm(): JSX.Element {
   })
 
   const [userList, setUser] = React.useState<Array<any>>([])
-
-  // Attendance Table
-
-  const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 300 },
-    { field: 'user', headerName: 'Name', width: 200 },
-  ]
-
-  const rows = [
-    { id: 1, user: 'Raja' },
-    { id: 2, user: 'Kavi' },
-    { id: 3, user: 'Karthi' },
-    { id: 4, user: 'Vel' },
-    { id: 5, user: 'Vetri' },
-  ]
-  // Attendance Table
 
   React.useEffect(() => {
     async function fetchData() {
@@ -52,6 +35,13 @@ export default function StaffAttendanceForm(): JSX.Element {
     }
     fetchData()
   }, [])
+
+  // Attendance Table
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 300 },
+    { field: 'user', headerName: 'Name', width: 200 },
+  ]
 
   const submitStaffAttendanceForm: SubmitHandler<IStaffAttendanceForm> = async (
     data: IStaffAttendanceForm,
@@ -88,7 +78,7 @@ export default function StaffAttendanceForm(): JSX.Element {
                 </Grid>
                 <div style={{ height: 400, width: '100%' }}>
                   <DataGrid
-                    rows={rows}
+                    rows={userList}
                     columns={columns}
                     pageSize={5}
                     rowsPerPageOptions={[5]}

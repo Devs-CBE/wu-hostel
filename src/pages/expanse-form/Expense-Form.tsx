@@ -16,6 +16,7 @@ import { toast } from 'react-toastify'
 import './Expense-Form.scss'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import FormInputToggle from '@components/FormInputToggle/formInputToggle'
+import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 
 export default function ExpenseForm(): JSX.Element {
   const methods = useForm<IExpenseForm>({
@@ -50,6 +51,10 @@ export default function ExpenseForm(): JSX.Element {
     fetchData()
   }, [])
 
+  const onFieldChange = (e: any): void => {
+    console.log(e)
+  }
+
   const submitExpenseForm: SubmitHandler<IExpenseForm> = async (data: IExpenseForm) => {
     console.log('data submitted', data)
     const expenseResponseData: IExpenseFormApi = ExpenseCreationResponse(data)
@@ -75,13 +80,13 @@ export default function ExpenseForm(): JSX.Element {
             <FormProvider {...methods}>
               <form onSubmit={methods.handleSubmit(submitExpenseForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
-                  <Grid item xs={12} sm={6} md={6}>
-                    <FormInputSelect
+                  <Grid marginTop={1} item xs={12} sm={6} md={6}>
+                    <FormInputAutocomplete
                       name="buildings"
                       label="Building"
                       optionList={buildingList}
-                      optionObject={true}
                       optionParam="buildingName"
+                      inputEvent={onFieldChange}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>

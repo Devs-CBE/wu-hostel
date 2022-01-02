@@ -4,8 +4,6 @@ import * as React from 'react'
 import DashboardCard from './components/card'
 import { useNavigate } from 'react-router-dom'
 import FrappeCharts from './components/charts'
-import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
-import { getApiHandler } from '@utils/apiHandler'
 import {
   complaintActionList,
   enquiryActionList,

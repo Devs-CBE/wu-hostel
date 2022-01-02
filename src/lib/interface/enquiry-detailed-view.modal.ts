@@ -1,5 +1,5 @@
 export interface IEnquiryMappingForm {
-  adminId: number
+  adminId: any
 }
 
 export interface IEnquiryMappingApi {

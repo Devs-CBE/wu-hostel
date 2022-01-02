@@ -6,7 +6,7 @@ export function monthlyRentCreationResponse(user: IMonthlyRentForm): IMonthlyRen
   responseData.amount = user.amount
   responseData.fullyPaid = user.fullyPaid
   responseData.monthAndYear = user.monthAndYear
-  responseData.user = user.user
+  responseData.user = user.user.id
 
   return responseData
 }

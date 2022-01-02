@@ -33,8 +33,8 @@ export const complaintHeader = [
 
 export const enquiryHeader = [
   {
-    displayName: 'name',
-    parameterName: 'name ',
+    displayName: 'Name',
+    parameterName: 'name',
   },
   {
     displayName: 'Email',

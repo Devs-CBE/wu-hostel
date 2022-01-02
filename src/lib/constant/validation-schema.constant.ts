@@ -76,7 +76,6 @@ export const expenseFormSchema: Yup.SchemaOf<IExpenseForm> = Yup.object({
   expanseName: Yup.string().required('Required'),
   expansesCategory: Yup.number().required('Required'),
   expansesStatus: Yup.string().required('Required'),
-  id: Yup.number().required('Required'),
   recurring: Yup.boolean().required('Required'),
 })
 
@@ -135,7 +134,7 @@ export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object(
   amount: Yup.number().required('Required'),
   fullyPaid: Yup.boolean().required('Required'),
   monthAndYear: Yup.string().required('Required'),
-  user: Yup.number().required('Required'),
+  user: Yup.object().required('Required'),
 })
 
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({

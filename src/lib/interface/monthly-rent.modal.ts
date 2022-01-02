@@ -2,7 +2,7 @@ export interface IMonthlyRentForm {
   amount: number
   fullyPaid: boolean
   monthAndYear: string
-  user: number
+  user: any
 }
 
 export interface IMonthlyRentFormApi {
