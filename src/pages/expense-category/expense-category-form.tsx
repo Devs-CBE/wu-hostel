@@ -19,7 +19,7 @@ export default function ExpenseCategoryForm(): JSX.Element {
   const methods = useForm<IExpenseCategoryForm>({
     resolver: yupResolver(expenseCategoryFormSchema),
   })
-  const categoryList = ['KITCHEN', 'plumping']
+  const categoryList = ['KITCHEN', 'GENERAL']
 
   const submitExpenseCategoryForm: SubmitHandler<IExpenseCategoryForm> = async (
     data: IExpenseCategoryForm,
