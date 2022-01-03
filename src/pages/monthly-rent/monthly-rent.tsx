@@ -66,12 +66,12 @@ export default function MonthlyRent(): JSX.Element {
               <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(submitMonthlyRentForm)}>
                   <Grid item xs={12} sx={{ marginBottom: 2 }}>
-                    <FormInputSelect
+                    <FormInputAutocomplete
                       name="user"
                       label="User"
                       optionParam="name"
                       optionList={userList}
-                      optionObject={true}
+                      inputEvent={onFieldChange}
                     />
                   </Grid>
                   <Grid item xs={12} sx={{ marginBottom: 2 }}>
