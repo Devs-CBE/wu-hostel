@@ -82,13 +82,13 @@ export default function ExpenseForm(): JSX.Element {
               <form onSubmit={methods.handleSubmit(submitExpenseForm)}>
                 <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
                   <Grid marginTop={1} item xs={12} sm={6} md={6}>
-                    <FormInputAutocomplete
+                    {/* <FormInputAutocomplete
                       name="buildings"
                       label="Building"
                       optionList={buildingList}
                       optionParam="buildingName"
                       inputEvent={onFieldChange}
-                    />
+                    /> */}
                   </Grid>
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputSelect

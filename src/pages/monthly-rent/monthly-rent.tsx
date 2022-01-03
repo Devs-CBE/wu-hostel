@@ -8,10 +8,8 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { toast } from 'react-toastify'
 import './monthly-rent.scss'
 import { Box, Button, Grid, Typography } from '@mui/material'
-import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import FormInputToggle from '@components/FormInputToggle/formInputToggle'
 import FormInputText from '@components/FormInputText/FormInputText'
-import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 
@@ -80,7 +78,7 @@ export default function MonthlyRent(): JSX.Element {
                     <FormInputText name="amount" label="Amount" />
                   </Grid>
                   <Grid item xs={12} sx={{ marginBottom: 2 }}>
-                    <FormInputDatePicker label="Date" name="monthAndYear" />
+                    <FormInputText label="Month-Year" name="monthAndYear" />
                   </Grid>
                   <Grid item xs={12}>
                     <FormInputToggle label="Fully Paid" name="fullyPaid" />

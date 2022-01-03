@@ -166,7 +166,7 @@ export const expenseFormApiDeaultData: IExpenseFormApi = {
 
 export const kitchenFormApiDeaultData: IKitchenApi = {
   amountToBePaid: 0,
-  buildings: 0,
+  buildings: null,
   description: '',
   expanseMonthYear: '',
   expanseName: '',

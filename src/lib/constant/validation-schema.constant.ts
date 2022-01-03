@@ -98,7 +98,6 @@ export const enquiryDetailFormSchema: Yup.SchemaOf<IEnquiryDetailForm> = Yup.obj
 
 export const kitchenFormSchema: Yup.SchemaOf<IKitchenForm> = Yup.object({
   amountToBePaid: Yup.number().required('Required'),
-  buildings: Yup.object().required('Required'),
   description: Yup.string().required('Required'),
   expanseMonthYear: Yup.string().required('Required'),
   expanseName: Yup.string().required('Required'),
@@ -135,7 +134,11 @@ export const monthlyRentFormSchema: Yup.SchemaOf<IMonthlyRentForm> = Yup.object(
   amount: Yup.number().required('Required'),
   fullyPaid: Yup.boolean().required('Required'),
   monthAndYear: Yup.string().required('Required'),
-  user: Yup.object().required('Required'),
+  user: Yup.object().test(
+    'is_valid_object',
+    'Please select the option',
+    (value: any) => typeof value === 'object',
+  ),
 })
 
 export const dashboardFormSchema: Yup.SchemaOf<IDashBoardFilter> = Yup.object({
