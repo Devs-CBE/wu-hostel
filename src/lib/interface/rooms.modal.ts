@@ -4,7 +4,7 @@ export interface IRoomsApi {
   roomCapacity: number
   roomFloor: number
   roomName: string
-  roomType: 'BILLABLE' | 'NON_BILLABLE'
+  roomType: 'BILLABLE' | 'NONBILLABLE'
 }
 
 export interface IBuildingsDtoApi {
@@ -39,5 +39,5 @@ export interface IRoomsForm {
   roomCapacity: number
   roomFloor: number
   roomName: string
-  roomType: 'BILLABLE' | 'NON_BILLABLE'
+  roomType: 'BILLABLE' | 'NONBILLABLE'
 }

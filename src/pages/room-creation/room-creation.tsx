@@ -87,7 +87,7 @@ export default function RoomCreation(): JSX.Element {
                       label="Room Type"
                       name="roomType"
                       optionObject={false}
-                      optionList={['BILLABLE', 'NON_BILLABLE']}
+                      optionList={['BILLABLE', 'NONBILLABLE']}
                     />
                   </Grid>
                 </Grid>
