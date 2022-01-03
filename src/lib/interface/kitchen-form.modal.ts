@@ -1,6 +1,5 @@
 export interface IKitchenForm {
   amountToBePaid: number
-  buildings: any
   description: string
   expanseMonthYear: string
   expanseName: string
@@ -11,7 +10,7 @@ export interface IKitchenForm {
 
 export interface IKitchenApi {
   amountToBePaid: number
-  buildings: number
+  buildings: number | null
   description: string
   expanseMonthYear: string
   expanseName: string

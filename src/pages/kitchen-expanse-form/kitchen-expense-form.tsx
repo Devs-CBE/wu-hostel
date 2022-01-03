@@ -12,7 +12,7 @@ import { kitchenFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { IKitchenApi, IKitchenForm } from '@modal/kitchen-form.modal'
-import { KitchenCreationResponse } from './kitchen-utils'
+import { kitchenCreationResponse } from './kitchen-utils'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { toast } from 'react-toastify'
 import { expenseStatus } from '@constant/constant'
@@ -22,22 +22,7 @@ export default function KitchenExpenseForm(): JSX.Element {
   const methods = useForm<IKitchenForm>({
     resolver: yupResolver(kitchenFormSchema),
   })
-
-  const [buildingList, setBuilding] = useState<Array<any>>([])
   const [categoryList, setCategory] = useState<Array<any>>([])
-
-  useEffect(() => {
-    async function fetchData() {
-      const apiData = {
-        apiUrl: '/v1/api/buildings/list',
-      }
-      const res: IApiHandlerReturn = await getApiHandler(apiData)
-      if (res.isLoaded) {
-        setBuilding(res.responseData.entities)
-      }
-    }
-    fetchData()
-  }, [])
   useEffect(() => {
     async function fetchData() {
       const apiData = {
@@ -54,7 +39,7 @@ export default function KitchenExpenseForm(): JSX.Element {
 
   const submitKitchenForm: SubmitHandler<IKitchenForm> = async (data: IKitchenForm) => {
     console.log('data submitted', data)
-    const kitchenResponseData: IKitchenApi = KitchenCreationResponse(data)
+    const kitchenResponseData: IKitchenApi = kitchenCreationResponse(data)
     console.log(kitchenResponseData)
     const apiData = {
       apiUrl: '/v1/api/kitchen/expanses/create',
@@ -81,16 +66,6 @@ export default function KitchenExpenseForm(): JSX.Element {
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputText name="amountToBePaid" label="Paid Amount" />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={6}>
-                    <FormInputSelect
-                      name="buildings"
-                      label="Building"
-                      optionList={buildingList}
-                      optionParam="buildingName"
-                      optionObject={true}
-                    />
-                  </Grid>
-
                   <Grid item xs={12} sm={6} md={6}>
                     <FormInputDatePicker label="Date" name="expanseMonthYear" />
                   </Grid>
