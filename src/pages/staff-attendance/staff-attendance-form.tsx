@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import { Grid } from '@mui/material'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import FormInputSlider from '@components/FormInputSlider/formInputSlider'
 
 export default function StaffAttendanceForm(): JSX.Element {
   const methods = useForm<IStaffAttendanceForm>({
@@ -87,6 +88,8 @@ export default function StaffAttendanceForm(): JSX.Element {
                 </div>
                 <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">
                   <div>
+                    <FormInputSlider />
+
                     <Button type="reset" variant="outlined">
                       Cancel
                     </Button>
