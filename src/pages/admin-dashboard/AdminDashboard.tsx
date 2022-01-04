@@ -7,7 +7,6 @@ import FrappeCharts from './components/charts'
 import {
   complaintActionList,
   enquiryActionList,
-  chartData,
   color,
   complaintHeader,
   complaintStatus,
@@ -15,6 +14,7 @@ import {
   lineOptions,
   loadComplaintData,
   loadEnquiryData,
+  chartData,
 } from './admin-dashboardUtils'
 import FormInputDatePicker from '@components/FormInputDatePicker/formInputDatePicker'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -34,6 +34,7 @@ const AdminDashboard = (): JSX.Element => {
   const [headerName, setHeadername] = React.useState<Array<any>>([])
   const [actionList, setActionList] = React.useState<Array<any>>([])
   const [tabName, setTabName] = React.useState<string>('Complaints')
+  const [chartsData, setChartData] = React.useState<any>([])
 
   const tabChange = async (data: any) => {
     console.log('tab item', data)
@@ -49,6 +50,7 @@ const AdminDashboard = (): JSX.Element => {
       setTableList(enquiryData)
       setActionList(enquiryActionList)
     } else if (data.name === 'Expenses') {
+      setChartData(chartData)
     } else if (data.name === 'Rent/Payment Remainder') {
     }
   }
@@ -136,7 +138,7 @@ const AdminDashboard = (): JSX.Element => {
         <FrappeCharts
           colors={color}
           lineOptions={lineOptions}
-          data={chartData}
+          data={chartsData}
           type="bar"
           height={500}
           valuesOverPoints={1}
