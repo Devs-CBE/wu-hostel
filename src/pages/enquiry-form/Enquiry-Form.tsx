@@ -9,12 +9,12 @@ import Button from '@mui/material/Button'
 import { SubmitHandler, FormProvider, useForm } from 'react-hook-form'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { IEnquiryForm } from '@modal/Enquiry-form.modal'
-import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { enquiryCreationResponse } from './Enquiry-utils'
 import { enquiryFormSchema } from '@constant/validation-schema.constant'
 import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { toast } from 'react-toastify'
+import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 
 export default function EnquiryForm(): JSX.Element {
   const methods = useForm<IEnquiryForm>({
@@ -99,20 +99,18 @@ export default function EnquiryForm(): JSX.Element {
                     <FormInputText name="roomChoice" label="Room Choice" />
                   </Grid>
                   <Grid item xs={12} sm={6} md={4}>
-                    <FormInputSelect
+                    <FormInputAutocomplete
                       name="locations"
                       label="Location"
                       optionList={locationList}
-                      optionObject={true}
                       optionParam="locationName"
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={4}>
-                    <FormInputSelect
+                    <FormInputAutocomplete
                       name="buildings"
                       label="Building"
                       optionList={buildingList}
-                      optionObject={true}
                       optionParam="buildingName"
                     />
                   </Grid>

@@ -1,3 +1,4 @@
+import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import FormInputText from '@components/FormInputText/FormInputText'
 import { buildingFormSchema } from '@constant/validation-schema.constant'
@@ -58,12 +59,11 @@ export default function BuildingForm(): JSX.Element {
             <form onSubmit={methods.handleSubmit(submitBuildingForm)}>
               <Grid container spacing={{ xs: 2, md: 2 }} columns={12}>
                 <Grid item xs={12} sm={6} md={6}>
-                  <FormInputSelect
+                  <FormInputAutocomplete
                     name="locationsDTO"
                     label="Location"
                     optionList={locationList}
                     optionParam="locationName"
-                    optionObject={true}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={6}>

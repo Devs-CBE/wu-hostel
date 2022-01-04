@@ -9,7 +9,8 @@ interface IFormAutocompleteProps {
   name: string
   optionList: any
   optionParam: string
-  inputEvent: (value: string) => void
+  inputEvent?: (value: string) => void
+  multiSelect?: boolean
 }
 
 export default function FormInputAutocomplete({
@@ -17,6 +18,7 @@ export default function FormInputAutocomplete({
   name,
   optionList,
   optionParam,
+  multiSelect = false,
   inputEvent,
 }: IFormAutocompleteProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
@@ -33,9 +35,10 @@ export default function FormInputAutocomplete({
     <Controller
       name={name}
       control={control}
-      defaultValue={null}
+      defaultValue={multiSelect ? [] : null}
       render={({ field }) => (
         <Autocomplete
+          multiple={multiSelect}
           {...field}
           open={open}
           onOpen={() => {
@@ -54,7 +57,8 @@ export default function FormInputAutocomplete({
           onChange={(event, data) => {
             field.onChange(data)
           }}
-          getOptionLabel={(option: any) => option[optionParam]}
+          getOptionLabel={(option: any) => option[optionParam] || ''}
+          isOptionEqualToValue={(option, value) => value && option.id === value.id}
           options={optionList}
           loading={loading}
           renderInput={(params: any) => (

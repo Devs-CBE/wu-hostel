@@ -7,6 +7,7 @@ import { useFieldArray } from 'react-hook-form'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { roomDefaultValue } from '@constant/form-default-value'
+import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 
 interface IRoomControllerProps {
   nestIndex: number
@@ -18,6 +19,8 @@ export default function RoomController({ nestIndex, control }: IRoomControllerPr
     control,
     name: `buildings[${nestIndex}].rooms`,
   })
+
+  const roomTypeList = ['BILLABLE', 'NON_BILLABLE']
 
   return (
     <>
@@ -44,9 +47,11 @@ export default function RoomController({ nestIndex, control }: IRoomControllerPr
               />
             </Grid>
             <Grid item xs={12} md={4} sm={4}>
-              <FormInputText
+              <FormInputSelect
                 label="Room Type"
                 name={`buildings[${nestIndex}].rooms[${k}].roomType`}
+                optionObject={false}
+                optionList={roomTypeList}
               />
             </Grid>
             <Box justifyContent="center" marginTop={3} display="flex" alignContent="center">

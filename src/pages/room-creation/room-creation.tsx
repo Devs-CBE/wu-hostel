@@ -14,6 +14,7 @@ import { getApiHandler, postApiHandler } from '@utils/apiHandler'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { roomResponseDto } from './room.utils'
 import { toast } from 'react-toastify'
+import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 
 export default function RoomCreation(): JSX.Element {
   const [buildings, setBuilding] = useState([])
@@ -65,10 +66,9 @@ export default function RoomCreation(): JSX.Element {
               <form onSubmit={methods.handleSubmit(submitEnquiryForm)}>
                 <Grid container spacing={2} columns={12}>
                   <Grid item xs={12} md={4} sm={4}>
-                    <FormInputSelect
+                    <FormInputAutocomplete
                       label="Building"
                       name="buildingsDTO"
-                      optionObject={true}
                       optionParam="buildingName"
                       optionList={buildings}
                     />
@@ -87,7 +87,7 @@ export default function RoomCreation(): JSX.Element {
                       label="Room Type"
                       name="roomType"
                       optionObject={false}
-                      optionList={['BILLABLE', 'NONBILLABLE']}
+                      optionList={['BILLABLE', 'NON_BILLABLE']}
                     />
                   </Grid>
                 </Grid>

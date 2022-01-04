@@ -14,6 +14,7 @@ import { userCreationResponse } from './user-creation-utils'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { toast } from 'react-toastify'
+import FormInputAutocomplete from '@components/FormInputAutocomplete/formInputAutocomplete'
 
 export default function UserCreationForm(): JSX.Element {
   const methods = useForm<IUserCreationForm>({
@@ -136,12 +137,11 @@ export default function UserCreationForm(): JSX.Element {
                       />
                     </Grid>
                     <Grid item xs={12} md={4} sm={4}>
-                      <FormInputSelect
+                      <FormInputAutocomplete
                         label="Buildings"
                         name="buildingsDTO"
                         optionList={buildingList}
                         optionParam="buildingName"
-                        optionObject={true}
                         multiSelect={true}
                       />
                     </Grid>
