@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Box, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
@@ -7,7 +7,7 @@ import './expense-category-form.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import FormInputText from '@components/FormInputText/FormInputText'
 import FormInputSelect from '@components/FormInputSelect/formInputSelect'
-import { getApiHandler, postApiHandler } from '@utils/apiHandler'
+import { postApiHandler } from '@utils/apiHandler'
 import { IApiHandlerReturn } from '@modal/CommonComponent.modal'
 import { toast } from 'react-toastify'
 import { IExpenseCategoryForm, IExpenseCategoryFormApi } from '@modal/expense-category.modals'
@@ -32,7 +32,7 @@ export default function ExpenseCategoryForm(): JSX.Element {
       apiUrl: '/v1/api/category/create',
       payload: expenseCategoryResponseData,
     }
-    const res = await postApiHandler(apiData)
+    const res: IApiHandlerReturn = await postApiHandler(apiData)
     console.log(res)
     res && res.isLoaded
       ? toast.success('Expenses category Added Successfully')

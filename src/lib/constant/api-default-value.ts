@@ -13,7 +13,37 @@ import { IBuildingFormApi } from '@modal/building-form-modal'
 import { IExpenseCategoryFormApi } from '@modal/expense-category.modals'
 
 export const locationApiDefaultData: ILocationApi = {
-  buildings: [],
+  buildings: [
+    {
+      buildingAddress: '',
+      buildingName: '',
+      createAt: '',
+      createdBy: '',
+      deleted: false,
+      id: null,
+      latitude: '',
+      longitude: '',
+      publish: true,
+      rooms: [
+        {
+          createAt: '',
+          createdBy: '',
+          deleted: false,
+          id: null,
+          publish: true,
+          roomCapacity: 0,
+          roomFloor: 0,
+          roomName: '',
+          roomType: 'BILLABLE',
+          updateAt: '',
+          updatedBy: '',
+        },
+      ],
+      updateAt: '',
+      updatedBy: '',
+      zipCode: '',
+    },
+  ],
   createAt: '',
   createdBy: '',
   deleted: false,

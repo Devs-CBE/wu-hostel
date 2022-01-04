@@ -87,7 +87,7 @@ export const lineOptions = {
 
 export const complaintStatus = ['NEW', 'APPROVED']
 
-export async function loadExpenseData() {
+export async function loadExpenseData(): Promise<any> {
   const apiData = {
     apiUrl: `/v1/api/expanses/list`,
   }
@@ -95,7 +95,7 @@ export async function loadExpenseData() {
   return expenseDataRes
 }
 
-export async function loadEnquiryData(pageOffset = 0, pageSize = 5) {
+export async function loadEnquiryData(pageOffset = 0, pageSize = 5): Promise<any> {
   const apiData = {
     apiUrl: `/v1/api/enquiry/page/${pageOffset}/${pageSize}`,
   }
@@ -103,7 +103,7 @@ export async function loadEnquiryData(pageOffset = 0, pageSize = 5) {
   return enquiryDataRes.responseData.entities
 }
 
-export async function loadComplaintData(pageOffset = 0, pageSize = 5) {
+export async function loadComplaintData(pageOffset = 0, pageSize = 5): Promise<any> {
   const apiData = {
     apiUrl: `/v1/api/complaints/page/${pageOffset}/${pageSize}`,
   }
@@ -111,7 +111,7 @@ export async function loadComplaintData(pageOffset = 0, pageSize = 5) {
   return complaintDataRes.responseData.entities
 }
 
-export async function loadRentData() {
+export async function loadRentData(): Promise<any> {
   const apiData = {
     apiUrl: `/v1/api/complaints/list/all`,
   }
@@ -119,7 +119,7 @@ export async function loadRentData() {
   return complaintDataRes
 }
 
-export async function loadKitchenData() {
+export async function loadKitchenData(): Promise<any> {
   const apiData = {
     apiUrl: `/v1/api/kitchen/expanses/list`,
   }

@@ -11,6 +11,7 @@ import { buildingDefaultValue, locationDefaultValue } from '@constant/form-defau
 import './location-form.scss'
 import { locationResponseDto } from './location-utils'
 import { postApiHandler } from '@utils/apiHandler'
+import { toast } from 'react-toastify'
 
 export default function LocationForm(): JSX.Element {
   const methods = useForm<ILocation>({
@@ -32,6 +33,9 @@ export default function LocationForm(): JSX.Element {
       payload: locationResponse,
     }
     const res = await postApiHandler(data)
+    res && res.isLoaded
+      ? toast.success('Location Added Successfully')
+      : toast.error('Please contact admin !')
     console.log(res)
   }
 

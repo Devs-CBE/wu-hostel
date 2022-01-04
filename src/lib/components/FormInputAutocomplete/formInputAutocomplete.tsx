@@ -18,22 +18,16 @@ export default function FormInputAutocomplete({
   optionList,
   optionParam,
   inputEvent,
-}: IFormAutocompleteProps) {
+}: IFormAutocompleteProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const loading = open && optionList.length === 0
   const {
     control,
     formState: { errors },
   } = useFormContext()
-  const onChangeHandle = (value: any) => {
-    inputEvent(value)
-  }
-
-  // React.useEffect(() => {
-  //   if (!open) {
-  //     setOptions([])
-  //   }
-  // }, [open])
+  // const onChangeHandle = (value: any) => {
+  //   inputEvent(value)
+  // }
 
   return (
     <Controller

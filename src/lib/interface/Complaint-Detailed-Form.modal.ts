@@ -10,3 +10,7 @@ export interface IcomplaintDetailedFormApi {
   description: string
   id: number | null
 }
+
+export interface IComplaintDetailSession {
+  id: number
+}

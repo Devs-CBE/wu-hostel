@@ -5,6 +5,7 @@ import {
 import {
   IcomplaintDetailedForm,
   IcomplaintDetailedFormApi,
+  IComplaintDetailSession,
 } from '@modal/Complaint-Detailed-Form.modal'
 import { IComplaintForm, IComplaintApi } from '@modal/complaint-form.modal'
 
@@ -20,7 +21,7 @@ export function complaintCreationResponse(user: IComplaintForm, docs: string): I
 
 export function ComplaintDetailedFormCreationResponse(
   user: IcomplaintDetailedForm,
-  complaintDetail: any,
+  complaintDetail: IComplaintDetailSession,
 ): IcomplaintDetailedFormApi {
   const responseData = complaintDetailedFormApiDefaultData
   responseData.complaintStatus = user.complaintStatus
