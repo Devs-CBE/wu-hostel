@@ -1,6 +1,5 @@
 export interface IcomplaintDetailedForm {
   complaintStatus: string
-  complaints: number
   description: string
 }
 

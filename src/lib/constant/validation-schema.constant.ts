@@ -121,12 +121,11 @@ export const staffFormSchema: Yup.SchemaOf<IStaffAttendanceForm> = Yup.object({
 })
 
 export const enquiryMappingFormSchema: Yup.SchemaOf<IEnquiryMappingForm> = Yup.object({
-  adminId: Yup.number().required('Required'),
+  adminId: Yup.object().required('Required'),
 })
 
 export const complaintDetailedFormSchema: Yup.SchemaOf<IcomplaintDetailedForm> = Yup.object({
   complaintStatus: Yup.string().required('Required'),
-  complaints: Yup.number().required('Required'),
   description: Yup.string().required('Required'),
 })
 
